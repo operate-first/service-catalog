@@ -16,3 +16,5 @@ metadata:
 spec:
   type: service
   SLA: SLA
+  lifecycle: some lifecycle
+  owner: some owner
