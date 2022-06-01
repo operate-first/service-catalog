@@ -1,0 +1,10 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: backstage-route
+spec:
+  port:
+    targetPort: 7007
+  to:
+    kind: Service
+    name: backstage
