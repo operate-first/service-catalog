@@ -22,3 +22,18 @@ spec:
           envFrom:
             - secretRef:
                 name: postgres-secrets
+            - secretRef:
+                name: hippo-pguser-backstage
+          securityContext:
+            runAsUser: 0
+            allowPrivilegeEscalation: true
+          volumeMounts:
+          - name: ca-cert
+            mountPath: "/mnt"
+      volumes:
+      - name: ca-cert
+        secret:
+          secretName: hippo-cluster-cert
+          items:
+          - key: ca.crt
+            path: ca.crt
