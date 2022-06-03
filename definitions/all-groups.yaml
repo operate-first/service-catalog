@@ -5,4 +5,4 @@ metadata:
   description: A collection of all operate-first groups
 spec:
   targets:
-    - groups/operate-first.yaml
+    - ./groups/operate-first.yaml
