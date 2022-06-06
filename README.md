@@ -1,10 +1,16 @@
 # [Backstage](https://backstage.io)
 
-This is your newly scaffolded Backstage App, Good Luck!
+## Image
+- To build the image run 
+```sh
+yarn build-image
+```
 
-To start the app, run:
+## Local dev setup
+- To start the local dev stup run:
 
 ```sh
 yarn install
 yarn dev
 ```
+

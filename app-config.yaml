@@ -1,3 +1,5 @@
+# Base config
+
 app:
   title: Operate First Cloud
   baseUrl: http://localhost:7007
@@ -27,9 +29,7 @@ backend:
       # Temporary change later!
       - secret: y2zPpQqoAAa3Fn7uAk/kEJNOPjLMNYr3
   baseUrl: http://localhost:7007
-  listen:
-    port: 7007
-    host: 0.0.0.0
+  listen: 0.0.0.0:7007
   csp:
     connect-src: ["'self'", 'http:', 'https:']
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
@@ -64,12 +64,12 @@ integrations:
 # Note: After experimenting with basic setup, use CI/CD to generate docs
 # and an external cloud storage when deploying TechDocs for production use-case.
 # https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
-# techdocs:
-#   builder: 'local' # Alternatives - 'external'
-#   generator:
-#     runIn: 'docker' # Alternatives - 'local'
-#   publisher:
-#     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
+techdocs:
+  builder: 'local' # Alternatives - 'external'
+  generator:
+    runIn: 'docker' # Alternatives - 'local'
+  publisher:
+    type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers

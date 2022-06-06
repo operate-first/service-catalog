@@ -1,6 +1,7 @@
 .git
 node_modules
-packages/*/src
 packages/*/node_modules
 plugins
+manifests
+definitions
 *.local.yaml

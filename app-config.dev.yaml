@@ -1,7 +1,8 @@
-# Used in production
+# Used in dev setup on a k8s/openshift cluster
 
 backend:
   # config options: https://node-postgres.com/api/client
+  baseUrl: # Your base url in the cluster
   database:
     client: pg
     connection:
@@ -14,4 +15,4 @@ backend:
       # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
       ssl:
         ca: 
-          $file: /mnt/ca.crt
+          $file: /mnt/certs/ca.crt

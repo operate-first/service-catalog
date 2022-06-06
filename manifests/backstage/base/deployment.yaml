@@ -16,23 +16,23 @@ spec:
       containers:
         - name: backstage
           image: quay.io/skopecky/backstage
+          command: ["node"]
+          args: []  # added by patch in overlays
           imagePullPolicy: Always
           ports:
             - containerPort: 7007
           envFrom:
             - secretRef:
-                name: postgres-secrets
-            - secretRef:
                 name: hippo-pguser-backstage
           env:
           - name: NODE_ENV
-            value: "development"
+            value: ""  # added by patch in overlays
           securityContext:
             runAsUser: 0
             allowPrivilegeEscalation: true
           volumeMounts:
           - name: ca-cert
-            mountPath: "/mnt"
+            mountPath: "/mnt/certs"
       volumes:
       - name: ca-cert
         secret:
