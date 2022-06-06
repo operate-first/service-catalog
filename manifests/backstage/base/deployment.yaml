@@ -24,6 +24,8 @@ spec:
           envFrom:
             - secretRef:
                 name: hippo-pguser-backstage
+            - secretRef:
+                name: backstage
           env:
           - name: NODE_ENV
             value: ""  # added by patch in overlays

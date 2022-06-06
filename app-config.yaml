@@ -26,8 +26,7 @@ backend:
   # information on the format
   auth:
     keys:
-      # Temporary change later!
-      - secret: y2zPpQqoAAa3Fn7uAk/kEJNOPjLMNYr3
+      - secret: ${backend_secret}
   baseUrl: http://localhost:7007
   listen: 0.0.0.0:7007
   csp:
@@ -79,9 +78,6 @@ scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
 catalog:
-  # import:
-  #   entityFilename: catalog-info.yaml
-  #   pullRequestBranchName: backstage-integration
   rules:
     - allow:
         - Component
