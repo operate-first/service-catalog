@@ -27,9 +27,9 @@ export default async function createPlugin(
       //
       //   https://backstage.io/docs/auth/identity-resolver
       github: providers.github.create({
-        // signIn: {
-        //   resolver: providers.github.resolvers.usernameMatchingUserEntityName(),
-        // },
+        signIn: {
+          resolver: providers.github.resolvers.usernameMatchingUserEntityName(),
+        },
       }),
     },
   });

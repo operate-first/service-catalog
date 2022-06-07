@@ -6,7 +6,7 @@
 - Configurations for the local setup are in `app-config.local.yaml`
 - Run the app first time with:
 ```sh
-backend_secret=$(node -p 'require("crypto").randomBytes(24).toString("base64")') \
+export backend_secret=$(node -p 'require("crypto").randomBytes(24).toString("base64")') \
 yarn dev
 ```
 - To run the app again just use `yarn dev`

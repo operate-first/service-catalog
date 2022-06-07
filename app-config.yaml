@@ -72,9 +72,18 @@ techdocs:
   publisher:
     type: 'local'  # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
+# see https://backstage.io/docs/auth/ to learn about auth providers
 auth:
-  # see https://backstage.io/docs/auth/ to learn about auth providers
   providers: {}
+  # environment: production
+  # providers:
+  #   production:
+  #     github:
+  #       clientId: ${AUTH_GITHUB_CLIENT_ID}
+  #       clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+  #       uncomment if using GitHub Enterprise
+  #       enterpriseInstanceUrl: ${AUTH_GITHUB_ENTERPRISE_INSTANCE_URL}
+
 
 # see https://backstage.io/docs/features/software-templates/configuration for software template options
 scaffolder:
