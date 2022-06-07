@@ -13,4 +13,4 @@ patches:
         value: "production"
     target:
       kind: Deployment
-      name: backstage 
+      name: backstage

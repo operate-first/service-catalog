@@ -1,5 +1,5 @@
 # Operate First Cloud Service Catalog
-- Some description 
+- Some description
 
 # Development setup
 ## Run locally
@@ -21,4 +21,3 @@ yarn dev
 ```sh
 yarn build-image
 ```
-
