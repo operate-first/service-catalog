@@ -1885,6 +1885,27 @@
     react-router-dom "6.0.0-beta.0"
     react-use "^17.2.4"
 
+"@backstage/plugin-permission-backend@^0.5.7":
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/@backstage/plugin-permission-backend/-/plugin-permission-backend-0.5.7.tgz#1834b5f473c95a4a25346f702e401e21a219f507"
+  integrity sha512-lYO/XgFo5Mlmml7GyqNQy1wbnH342qW1oHsKQB6h3hp2B2nGUd99iRxbzyUrAz6k342spAAX1uM7rCMZP1dc8g==
+  dependencies:
+    "@backstage/backend-common" "^0.13.3"
+    "@backstage/config" "^1.0.1"
+    "@backstage/errors" "^1.0.0"
+    "@backstage/plugin-auth-node" "^0.2.1"
+    "@backstage/plugin-permission-common" "^0.6.1"
+    "@backstage/plugin-permission-node" "^0.6.1"
+    "@types/express" "*"
+    dataloader "^2.0.0"
+    express "^4.17.1"
+    express-promise-router "^4.1.0"
+    lodash "^4.17.21"
+    node-fetch "^2.6.7"
+    winston "^3.2.1"
+    yn "^4.0.0"
+    zod "^3.11.6"
+
 "@backstage/plugin-permission-common@^0.6.1":
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/@backstage/plugin-permission-common/-/plugin-permission-common-0.6.1.tgz#fd63ba10b90896e6f8627c569a5f28127821523f"

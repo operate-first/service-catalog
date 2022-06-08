@@ -71,3 +71,6 @@ catalog:
   locations:
     - type: url
       target: https://github.com/SamoKopecky/apps/blob/master/service-catalog/all.yaml
+
+permission:
+  enabled: true

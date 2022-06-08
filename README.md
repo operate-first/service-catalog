@@ -7,6 +7,8 @@
 - Run the app first time with:
 ```sh
 export backend_secret=$(node -p 'require("crypto").randomBytes(24).toString("base64")') \
+yarn install
+yarn tsc
 yarn dev
 ```
 - To run the app again just use `yarn dev`
