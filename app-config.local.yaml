@@ -12,11 +12,3 @@ backend:
   database:
     client: better-sqlite3
     connection: ':memory:'
-
-auth:
-  environment: production
-  providers:
-    production:
-      github:
-        clientId: 2de370556fbda03ce24f
-        clientSecret: 5d6aa421520e0ae159fba93de52ee4d73e85eb37

@@ -9,7 +9,7 @@ app:
       - icon: github
         title: Issues
         links:
-          - url: https://github.com/backstage/backstage/issues
+          - url: https://github.com/operate-first/support/issues
             title: GitHub Issues
       - title: Slack Chatroom
         icon: chat
@@ -42,19 +42,7 @@ backend:
   cache:
     store: memory
     # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
-#   workingDirectory: /tmp
-
-integrations:
-  github:
-#     - host: github.com
-#       This is a Personal Access Token or PAT from GitHub. You can find out how to generate this token, and more information
-#       about setting up the GitHub integration here: https://backstage.io/docs/getting-started/configuration#setting-up-a-github-integration
-#       token: ${GITHUB_TOKEN}
-
-#     Example for how to add your GitHub Enterprise instance using the API:
-#     - host: ghe.example.net
-#       apiBaseUrl: https://ghe.example.net/api/v3
-#       token: ${GHE_TOKEN}
+    # workingDirectory: /tmp
 
 # proxy:
 #   '/test':
@@ -71,22 +59,6 @@ techdocs:
     runIn: 'docker'  # Alternatives - 'local'
   publisher:
     type: 'local'  # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
-
-# see https://backstage.io/docs/auth/ to learn about auth providers
-auth:
-  providers: {}
-  # environment: production
-  # providers:
-  #   production:
-  #     github:
-  #       clientId: ${AUTH_GITHUB_CLIENT_ID}
-  #       clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
-  #       uncomment if using GitHub Enterprise
-  #       enterpriseInstanceUrl: ${AUTH_GITHUB_ENTERPRISE_INSTANCE_URL}
-
-
-# see https://backstage.io/docs/features/software-templates/configuration for software template options
-scaffolder:
 
 catalog:
   rules:
