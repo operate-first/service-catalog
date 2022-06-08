@@ -5,4 +5,4 @@ metadata:
   description: A collection of all operate-first users
 spec:
   targets:
-    - ./users/operate-first.yaml
+    - ./users/user1.yaml

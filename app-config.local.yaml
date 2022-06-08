@@ -7,7 +7,7 @@ backend:
   baseUrl: http://localhost:7007
   auth:
     keys:
-      - $include: config.yaml#auth
+      - secret:  # Generated secret here
   cors:
     origin: http://localhost:3000
     methods: [GET, POST, PUT, DELETE]
@@ -25,4 +25,8 @@ catalog:
         - User
         - Group
   locations:
-    $include: config.yaml#catalog
+    - type: file
+      target: ../../examples/all.yaml
+    #  Uncomment to use defintions files from apps repo
+    # - type: url
+    #   target: https://github.com/SamoKopecky/apps/blob/master/service-catalog/all.yaml

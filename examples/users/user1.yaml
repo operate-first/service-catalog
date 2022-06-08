@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: user1
+spec:
+  profile:
+    email: user1@example.org
+  memberOf: [group1]

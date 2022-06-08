@@ -5,4 +5,4 @@ metadata:
   description: A collection of all operate-first systems
 spec:
   targets:
-    - ./systems/operate-first-cloud.yaml
+    - ./systems/system1.yaml

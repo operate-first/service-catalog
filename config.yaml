@@ -1,8 +1,0 @@
-auth:
-  secret: Cn+gUg/gwgRejJOQfoqNkKc7usAXQApo
-catalog:
-  - type: file
-    target: ../../definitions/all.yaml
-  #  Uncomment to use defintions files from apps repo
-  # - type: url
-  #   target: https://github.com/SamoKopecky/apps/blob/master/service-catalog/all.yaml

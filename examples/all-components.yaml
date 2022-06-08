@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: Services
+  description: A collection of all operate-first services
+spec:
+  targets:
+    - ./components/service1.yaml
+    - ./components/service2.yaml
+    - ./components/service3.yaml
+    - ./components/service4.yaml

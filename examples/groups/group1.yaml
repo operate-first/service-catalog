@@ -1,9 +1,9 @@
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: operate-first
-  description: operate-first group
+  name: group1
+  description: description for group 1
 spec:
   type: team
   children: []
-  members: [operate-first]
+  members: [user1]

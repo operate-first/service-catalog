@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Service4
+  description: Description for service 4
+  links:
+    - url: https://example.org
+      title: Support path
+      icon: user
+spec:
+  type: service
+  lifecycle: production
+  owner: group:group1
+  system: system:system1
