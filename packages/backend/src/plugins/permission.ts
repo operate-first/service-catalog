@@ -3,7 +3,6 @@ import { createRouter } from '@backstage/plugin-permission-backend';
 import {
   AuthorizeResult,
   PolicyDecision,
-  isResourcePermission
 } from '@backstage/plugin-permission-common';
 import {
   PermissionPolicy,
@@ -11,11 +10,9 @@ import {
 } from '@backstage/plugin-permission-node';
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
-import { getRootLogger } from '@backstage/backend-common';
 
 class TestPermissionPolicy implements PermissionPolicy {
   async handle(request: PolicyQuery): Promise<PolicyDecision> {
-    getRootLogger().info(request.permission.name)
     if (request.permission.name === 'catalog.entity.read') {
       return { result: AuthorizeResult.ALLOW }
     }
