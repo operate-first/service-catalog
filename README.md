@@ -24,7 +24,7 @@ yarn dev
 
 ### Catalog components
 - Catalog components can either be loaded locally from the `examples` folder or a GitHub repository.
-- This can be configured in `app-config.local.yaml` in the `catalog.locations.catalog` key .
+- This can be configured in `app-config.local.yaml` in the `catalog.locations` key .
 
 ## Run in a Kubernetes cluster
 - Configurations for the cluster dev setup are in `app-config.dev.yaml`
