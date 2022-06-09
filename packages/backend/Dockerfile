@@ -5,8 +5,7 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 
 COPY packages packages
-# Comment this out if you don't have any internal plugins
-# COPY plugins plugins
+COPY plugins plugins
 
 RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -exec rm -rf {} \+
 
@@ -22,8 +21,6 @@ COPY . .
 
 RUN yarn tsc
 RUN yarn --cwd packages/backend build
-# If you have not yet migrated to package roles, use the following command instead:
-# RUN yarn --cwd packages/backend backstage-cli backend:bundle --build-dependencies
 
 # Stage 3 - Build the actual backend image and install production dependencies
 FROM node:16-bullseye-slim
@@ -43,4 +40,4 @@ RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 # Copy any other files that we need at runtime
 COPY app-config.yaml app-config.* ./
 
-#CMD ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.dev.yaml"]
+CMD ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.local.yaml"]

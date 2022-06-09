@@ -3,5 +3,8 @@ node_modules
 packages/*/node_modules
 plugins
 manifests
-definitions
+dist-types
 *.local.yaml
+.aicoe-ci.yaml
+.pre-commit-config.yaml
+.prow.yaml
