@@ -14,3 +14,15 @@ patches:
     target:
       kind: Deployment
       name: backstage
+  - patch: |
+      - op: remove
+        path: /spec/tls
+      - op: remove
+        path: /spec/wildcardPolicy
+      - op: add
+        path: /metadata/annotations
+        value:
+          kubernetes.io/tls-acme: "true"
+    target:
+      kind: Route
+      name: backstage
