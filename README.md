@@ -8,11 +8,11 @@
 You can either run a development setup locally or in a k8s cluster.
 ## Run locally
 - Configurations for the local setup are in `app-config.local.yaml`
-- Before running the app firstly generate a secret using
+- Before running the app firstly generate a secret and export it to an environmental variable using
 ```sh
-node -p 'require("crypto").randomBytes(24).toString("base64")'
+export backend_secret=\
+$(node -p 'require("crypto").randomBytes(24).toString("base64")')
 ```
-- and edit the `app-config.local.yaml` file by using the generated value as the value for the key `.backend.auth.keys.secret`.
 - If you are running the app for the first time use these commands:
 ```sh
 yarn install
@@ -24,7 +24,7 @@ yarn dev
 
 ### Catalog components
 - Catalog components can either be loaded locally from the `examples` folder or a GitHub repository.
-- This can be configured in `app-config.local.yaml` in the `catalog.locations` key .
+- This can be configured in `app-config.local.yaml` in the `catalog.locations` key.
 
 ## Run in a Kubernetes cluster
 - Configurations for the cluster dev setup are in `app-config.dev.yaml`

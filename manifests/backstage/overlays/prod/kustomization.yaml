@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: backstage
 resources:
   - ../../base
+generators:
+  - secret-generator.yaml
 patches:
   - patch: |
       - op: replace

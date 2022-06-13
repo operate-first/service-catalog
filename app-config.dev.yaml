@@ -1,8 +1,7 @@
 # Used in dev setup on a k8s/openshift cluster
 
 backend:
-  # config options: https://node-postgres.com/api/client
-  baseUrl:  # Your base url in the cluster
+  baseUrl:
   database:
     client: pg
     connection:
