@@ -8,6 +8,3 @@ spec:
   to:
     kind: Service
     name: backstage
-  tls:
-    termination: edge
-  wildcardPolicy: None

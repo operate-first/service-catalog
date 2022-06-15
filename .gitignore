@@ -38,5 +38,3 @@ site
 
 # Sensitive credentials
 *-credentials.yaml
-
-.sops.yaml

@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: backstage
 resources:
   - ../../base
+components:
+  - ../../components/postgres_db
 patches:
   - patch: |
       - op: replace
@@ -14,3 +16,5 @@ patches:
     target:
       kind: Deployment
       name: backstage
+patchesStrategicMerge:
+  - route.yaml

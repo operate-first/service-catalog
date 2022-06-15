@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backstage
-          image: backstage
+          image: service-catalog
           command: ["node"]
           args: []  # added by patch in overlays
           imagePullPolicy: Always
