@@ -4,4 +4,4 @@ metadata:
   name: crunchy-postgres-group
 spec:
   targetNamespaces:
-  - backstage
+  - service-catalog

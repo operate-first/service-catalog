@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: backstage
+namespace: service-catalog
 resources:
   - ../../base
 generators:
@@ -15,7 +15,7 @@ patches:
         value: "production"
     target:
       kind: Deployment
-      name: backstage
+      name: service-catalog
   - patch: |
       - op: add
         path: /metadata/annotations
@@ -23,4 +23,4 @@ patches:
           kubernetes.io/tls-acme: "true"
     target:
       kind: Route
-      name: backstage
+      name: service-catalog

@@ -1,7 +1,7 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: backstage
+  name: service-catalog
 spec:
   tls:
     termination: edge

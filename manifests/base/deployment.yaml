@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backstage
+  name: service-catalog
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backstage
+      app: service-catalog
   template:
     metadata:
       labels:
-        app: backstage
+        app: service-catalog
     spec:
       containers:
-        - name: backstage
+        - name: service-catalog
           image: service-catalog
           command: ["node"]
           args: []  # added by patch in overlays
@@ -22,9 +22,9 @@ spec:
             - containerPort: 7007
           envFrom:
             - secretRef:
-                name: hippo-pguser-backstage
+                name: service-catalog-pguser-service-catalog
             - secretRef:
-                name: backstage
+                name: service-catalog
           env:
           - name: NODE_ENV
             value: ""  # added by patch in overlays
@@ -37,7 +37,7 @@ spec:
       volumes:
       - name: ca-cert
         secret:
-          secretName: hippo-cluster-cert
+          secretName: service-catalog-cluster-cert
           items:
           - key: ca.crt
             path: ca.crt

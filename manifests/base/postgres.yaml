@@ -1,7 +1,7 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: hippo
+  name: service-catalog
 spec:
   image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-14.2-1
   postgresVersion: 14
@@ -26,5 +26,5 @@ spec:
               requests:
                 storage: 1Gi
   users:
-    - name: backstage
+    - name: service-catalog
       options: "SUPERUSER"

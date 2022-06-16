@@ -1,10 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: backstage
+namespace: service-catalog
 resources:
   - ../../base
 components:
-  - ../../components/postgres_db
+  - ../../components/postgres-db
 patches:
   - patch: |
       - op: replace
@@ -15,6 +15,10 @@ patches:
         value: "development"
     target:
       kind: Deployment
-      name: backstage
+      name: service-catalog
 patchesStrategicMerge:
   - route.yaml
+images:
+  - name: quay.io/operate-first/service-catalog
+    newName:
+    newTag:

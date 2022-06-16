@@ -1,10 +1,10 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: backstage
+  name: service-catalog
 spec:
   port:
     targetPort: 7007
   to:
     kind: Service
-    name: backstage
+    name: service-catalog
