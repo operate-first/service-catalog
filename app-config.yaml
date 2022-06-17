@@ -70,7 +70,7 @@ catalog:
         - Group
   locations:
     - type: url
-      target: https://github.com/SamoKopecky/apps/blob/master/service-catalog/all.yaml
+      target: https://github.com/operate-first/apps/blob/master/service-catalog/all.yaml
 
 permission:
   enabled: true
