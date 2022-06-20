@@ -28,9 +28,6 @@ spec:
           env:
           - name: NODE_ENV
             value: ""  # added by patch in overlays
-          securityContext:
-            runAsUser: 0
-            allowPrivilegeEscalation: true
           volumeMounts:
           - name: ca-cert
             mountPath: "/mnt/certs"
