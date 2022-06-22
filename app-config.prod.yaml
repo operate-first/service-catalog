@@ -1,7 +1,7 @@
 # Used in production setup on a k8s/openshift cluster
 
 backend:
-  baseUrl: https://service-catalog-service-catalog.apps.smaug.na.operate-first.cloud
+  baseUrl: https://service-catalog.operate-first.cloud
   database:
     client: pg
     connection:

@@ -16,11 +16,5 @@ patches:
     target:
       kind: Deployment
       name: service-catalog
-  - patch: |
-      - op: add
-        path: /metadata/annotations
-        value:
-          kubernetes.io/tls-acme: "true"
-    target:
-      kind: Route
-      name: service-catalog
+patchesStrategicMerge:
+  - route.yaml
