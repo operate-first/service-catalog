@@ -1,6 +1,6 @@
 # Service Catalog
 
-This is the service catalog for the [operate-first](https://github.com/operate-first) community cloud. The catalog can be accessed with [this](http://example.org) link or via the operate first [website](https://www.operate-first.cloud).
+This is the service catalog for the [operate-first](https://github.com/operate-first) community cloud. The catalog can be accessed with [this](https://service-catalog.operate-first.cloud) link or via the operate first [website](https://www.operate-first.cloud).
 
 ## Architecture
 
