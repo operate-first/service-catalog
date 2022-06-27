@@ -53,8 +53,13 @@ Here are a few things you can do that will increase the likelihood of your pull 
 Work in Progress pull requests are also welcome to get feedback early on, or if there is something blocked you. Please open such pull requests as *Draft*.
 
 # Development setup
+
 You can either run a development setup locally or in a k8s cluster.
+
 ## Run locally
+
+Before you begin please install and use supported Node.js version (we support [NVM](https://github.com/nvm-sh/nvm)), check `.nvmrc` for the appropriate version.
+
 Configurations for the local setup are located in `app-config.local.yaml`.
 
 1. Firstly generate a secret and export it to an environmental variable:

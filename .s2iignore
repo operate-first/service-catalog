@@ -8,3 +8,4 @@ dist-types
 .pre-commit-config.yaml
 .prow.yaml
 .gitignore
+.nvmrc
