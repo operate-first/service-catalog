@@ -7,3 +7,4 @@ dist-types
 .aicoe-ci.yaml
 .pre-commit-config.yaml
 .prow.yaml
+.gitignore
