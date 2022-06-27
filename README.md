@@ -93,9 +93,12 @@ cd manifests/overlays/dev && kustomize edit set image quay.io/operate-first/serv
 {oc,kubectl} apply -k manifests/overlays/dev
 ```
 
-### Docker image
-The image can be built using:
+### S2I image
+This repository uses s2i to create images. To create image run script located in `packages/backend`:
 ```sh
-yarn build-image
+./packages/backend/build-image.sh
 ```
-- This uses a `Dockerfile` located in `packages/backend/Dockerfile`.
+This will generate an image called `service-catalog`, this image is aimed to be used in production so it needs access to PostgreSQL database. To run this image with podman run:
+```sh
+podman run -it -p 7007:7007 --env "backend_secret=$(node -p 'require("crypto").randomBytes(24).toString("base64")')" service-catalog:latest
+```
