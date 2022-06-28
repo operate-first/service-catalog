@@ -16,10 +16,10 @@
 
 import React, { useContext, PropsWithChildren } from 'react';
 import { Link, makeStyles } from '@material-ui/core';
-// import HomeIcon from '@material-ui/icons/Home';
+import HomeIcon from '@material-ui/icons/Home';
 // import ExtensionIcon from '@material-ui/icons/Extension';
 // import MapIcon from '@material-ui/icons/MyLocation';
-import LibraryBooks from '@material-ui/icons/LibraryBooks';
+import CategoryIcon from '@material-ui/icons/Category';
 // import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
@@ -86,7 +86,8 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       <SidebarDivider />
       <SidebarGroup label="Menu" icon={<MenuIcon />}>
         {/* Global nav, not org-specific */}
-        <SidebarItem icon={LibraryBooks} to="catalog" text="Service Catalog" />
+        <SidebarItem icon={HomeIcon} to="/" text="Home" />
+        <SidebarItem icon={CategoryIcon} to="catalog" text="Catalog" />
         {/* <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" /> */}
         {/* <SidebarItem icon={LibraryBooks} to="docs" text="Docs" /> */}
         {/* <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." /> */}
