@@ -9,6 +9,7 @@ metadata:
       icon: user
   annotations:
     operate-first.cloud/component-icon-url: https://picsum.photos/201
+    github.com/project-slug: operate-first/probot-extensions
 spec:
   type: service
   lifecycle: production

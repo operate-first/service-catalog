@@ -9,6 +9,7 @@ metadata:
       icon: user
   annotations:
     operate-first.cloud/component-icon-url: https://picsum.photos/200
+    github.com/project-slug: operate-first/service-catalog
 spec:
   type: service
   lifecycle: production

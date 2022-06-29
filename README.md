@@ -10,9 +10,9 @@ The service catalog is implemented using [backstage](https://backstage.io/). Thi
 
 Backstage can utilize a separate location (for example a GitHub repository) for the catalog component definitions. More information on how these files are defined can be found in the backstage [documentation](https://backstage.io/docs/features/software-catalog/descriptor-format).
 
-Component definition files for this service-catalog are located [here](https://github.com/SamoKopecky/apps/tree/master/service-catalog). If you want to edit them, make a pull request in that repository.
+Component definition files for this service-catalog are located [here](https://github.com/operate-first/apps/tree/master/service-catalog). If you want to edit them, make a pull request in that repository.
 
-There is an `example` folder located that only contains catalog items dedicated to local development. Switching between local and remote sources can configured in `app-config.local.yaml` in the `catalog.locations` key.
+There is an `example` folder located that only contains catalog items dedicated to local development. Switching between local and remote sources can be configured in `app-config.local.yaml` in the `catalog.locations` key.
 
 ## Permissions
 
@@ -20,11 +20,11 @@ Right now the access to the catalog is read-only for everyone. Permissions are d
 
 ## Integrations
 
-It is possible to integrate backstage using many other external providers such as GitHub or GitLab. For now we decided that using no integrations is the best option. Read more about [integrations](https://backstage.io/docs/integrations/).
+It is possible to integrate backstage using many other external providers such as GitHub or GitLab. For now, we decided that using no integrations is the best option. Read more about [integrations](https://backstage.io/docs/integrations/).
 
 ## Configuration files
 
-There are 4 configuration files present in this repository. Backstage handles configuration files similarly to how `kustomize` handles deployment manifests. There is a base configuration file, in this case `app-config.yaml`. Then 3 other configuration files add on top of the base config file by merging the two files.
+There are 4 configuration files present in this repository. Backstage handles configuration files similarly to how `kustomize` handles deployment manifests. There is a base configuration file, in this case, `app-config.yaml`. Then 3 other configuration files add on top of the base config file by merging the two files.
 
 Only edit the base file if you are sure that the change will be relevant for all other 3 configuration files. More information can be found in the backstage [documentation](https://backstage.io/docs/conf/).
 
@@ -42,7 +42,7 @@ The current backstage version can be found in `backstage.json`. More about keepi
 1. Fork and clone the repository
 2. Make your changes
 3. Push to your fork and submit a pull request
-4. Pat your self on the back and wait for your pull request to be reviewed and merged.
+4. Pat yourself on the back and wait for your pull request to be reviewed and merged.
 
 Here are a few things you can do that will increase the likelihood of your pull request being accepted:
 
@@ -62,12 +62,11 @@ Before you begin please install and use supported Node.js version (we support [N
 
 Configurations for the local setup are located in `app-config.local.yaml`.
 
-1. Firstly generate a secret and export it to an environmental variable:
+1. Firstly create your `.env` file from the template in `.env.example`, then export the variables using:
 ```sh
-export backend_secret=\
-$(node -p 'require("crypto").randomBytes(24).toString("base64")')
+set -a && source .env && set +a
 ```
-1. If you are running the app for the first time run:
+2. If you are running the app for the first time run:
 ```sh
 # Install depedencies
 yarn install

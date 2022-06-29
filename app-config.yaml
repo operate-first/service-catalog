@@ -74,3 +74,11 @@ catalog:
 
 permission:
   enabled: true
+
+auth:
+  environment: development
+  providers:
+    github:
+      development:
+        clientId: ${auth_github_client_id}
+        clientSecret: ${auth_github_client_secret}
