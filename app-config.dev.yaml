@@ -1,7 +1,10 @@
 # Used in dev setup on a k8s/openshift cluster
 
+app:
+  baseUrl: <url>
+
 backend:
-  baseUrl:
+  baseUrl: <url>
   database:
     client: pg
     connection:
@@ -15,3 +18,5 @@ backend:
       ssl:
         ca:
           $file: /mnt/certs/ca.crt
+  cors:
+    origin: <url>

@@ -1,5 +1,8 @@
 # Used in production setup on a k8s/openshift cluster
 
+app:
+  baseUrl: https://service-catalog.operate-first.cloud
+
 backend:
   baseUrl: https://service-catalog.operate-first.cloud
   database:
@@ -15,3 +18,5 @@ backend:
       ssl:
         ca:
           $file: /mnt/certs/ca.crt
+  cors:
+    origin: https://service-catalog.operate-first.cloud
