@@ -31,9 +31,11 @@ import search from './plugins/search';
 import permission from './plugins/permission';
 import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
+import badges from './plugins/badges';
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
+
   const reader = UrlReaders.default({ logger: root, config });
   const discovery = SingleHostDiscovery.fromConfig(config);
   const cacheManager = CacheManager.fromConfig(config);
@@ -81,6 +83,7 @@ async function main() {
   const searchEnv = useHotMemoize(module, () => createEnv('search'));
   const appEnv = useHotMemoize(module, () => createEnv('app'));
   const permissionEnv = useHotMemoize(module, () => createEnv('permission'));
+  const badgesEnv = useHotMemoize(module, () => createEnv('badges'));
 
   const apiRouter = Router();
   apiRouter.use('/catalog', await catalog(catalogEnv));
@@ -90,6 +93,7 @@ async function main() {
   apiRouter.use('/proxy', await proxy(proxyEnv));
   apiRouter.use('/search', await search(searchEnv));
   apiRouter.use('/permission', await permission(permissionEnv));
+  apiRouter.use('/badges', await badges(badgesEnv));
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());

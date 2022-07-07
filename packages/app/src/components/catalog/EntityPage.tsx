@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import React from 'react';
+import React, { ReactNode, useMemo, useState } from 'react';
 import { Button, Grid } from '@material-ui/core';
 import {
   EntityApiDefinitionCard,
@@ -67,6 +67,35 @@ import {
   RELATION_PART_OF,
   RELATION_PROVIDES_API,
 } from '@backstage/catalog-model';
+
+import { EntityBadgesDialog } from '@backstage/plugin-badges';
+import BadgeIcon from '@material-ui/icons/CallToAction';
+
+const EntityLayoutWrapper = (props: { children?: ReactNode }) => {
+  const [badgesDialogOpen, setBadgesDialogOpen] = useState(false);
+
+  const extraMenuItems = useMemo(() => {
+    return [
+      {
+        title: 'Badges',
+        Icon: BadgeIcon,
+        onClick: () => setBadgesDialogOpen(true),
+      },
+    ];
+  }, []);
+
+  return (
+    <>
+      <EntityLayout UNSTABLE_extraContextMenuItems={extraMenuItems}>
+        {props.children}
+      </EntityLayout>
+      <EntityBadgesDialog
+        open={badgesDialogOpen}
+        onClose={() => setBadgesDialogOpen(false)}
+      />
+    </>
+  );
+};
 
 const cicdContent = (
   // This is an example of how you can implement your company's logic in entity page.
@@ -135,7 +164,7 @@ const overviewContent = (
 );
 
 const serviceEntityPage = (
-  <EntityLayout>
+  <EntityLayoutWrapper>
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
     </EntityLayout.Route>
@@ -169,11 +198,11 @@ const serviceEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       <EntityTechdocsContent />
     </EntityLayout.Route>
-  </EntityLayout>
+  </EntityLayoutWrapper>
 );
 
 const websiteEntityPage = (
-  <EntityLayout>
+  <EntityLayoutWrapper>
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
     </EntityLayout.Route>
@@ -196,7 +225,7 @@ const websiteEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       <EntityTechdocsContent />
     </EntityLayout.Route>
-  </EntityLayout>
+  </EntityLayoutWrapper>
 );
 
 /**
@@ -207,7 +236,7 @@ const websiteEntityPage = (
  */
 
 const defaultEntityPage = (
-  <EntityLayout>
+  <EntityLayoutWrapper>
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
     </EntityLayout.Route>
@@ -215,7 +244,7 @@ const defaultEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       <EntityTechdocsContent />
     </EntityLayout.Route>
-  </EntityLayout>
+  </EntityLayoutWrapper>
 );
 
 const componentPage = (
@@ -233,7 +262,7 @@ const componentPage = (
 );
 
 const apiPage = (
-  <EntityLayout>
+  <EntityLayoutWrapper>
     <EntityLayout.Route path="/" title="Overview">
       <Grid container spacing={3}>
         {entityWarningContent}
@@ -264,11 +293,11 @@ const apiPage = (
         </Grid>
       </Grid>
     </EntityLayout.Route>
-  </EntityLayout>
+  </EntityLayoutWrapper>
 );
 
 const userPage = (
-  <EntityLayout>
+  <EntityLayoutWrapper>
     <EntityLayout.Route path="/" title="Overview">
       <Grid container spacing={3}>
         {entityWarningContent}
@@ -280,11 +309,11 @@ const userPage = (
         </Grid>
       </Grid>
     </EntityLayout.Route>
-  </EntityLayout>
+  </EntityLayoutWrapper>
 );
 
 const groupPage = (
-  <EntityLayout>
+  <EntityLayoutWrapper>
     <EntityLayout.Route path="/" title="Overview">
       <Grid container spacing={3}>
         {entityWarningContent}
@@ -299,11 +328,11 @@ const groupPage = (
         </Grid>
       </Grid>
     </EntityLayout.Route>
-  </EntityLayout>
+  </EntityLayoutWrapper>
 );
 
 const systemPage = (
-  <EntityLayout>
+  <EntityLayoutWrapper>
     <EntityLayout.Route path="/" title="Overview">
       <Grid container spacing={3} alignItems="stretch">
         {entityWarningContent}
@@ -343,11 +372,11 @@ const systemPage = (
         unidirectional={false}
       />
     </EntityLayout.Route>
-  </EntityLayout>
+  </EntityLayoutWrapper>
 );
 
 const domainPage = (
-  <EntityLayout>
+  <EntityLayoutWrapper>
     <EntityLayout.Route path="/" title="Overview">
       <Grid container spacing={3} alignItems="stretch">
         {entityWarningContent}
@@ -362,7 +391,7 @@ const domainPage = (
         </Grid>
       </Grid>
     </EntityLayout.Route>
-  </EntityLayout>
+  </EntityLayoutWrapper>
 );
 
 export const entityPage = (
