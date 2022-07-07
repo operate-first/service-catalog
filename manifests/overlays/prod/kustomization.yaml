@@ -7,12 +7,12 @@ generators:
   - secret-generator.yaml
 patches:
   - patch: |
-      - op: replace
-        path: /spec/template/spec/containers/0/args
-        value: ["packages/backend", "--config", "app-config.yaml", "--config", "app-config.prod.yaml"]
-      - op: replace
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: app-config.prod.yaml
+      - op: add
         path: /spec/template/spec/containers/0/env/0/value
-        value: "production"
+        value: production
     target:
       kind: Deployment
       name: service-catalog

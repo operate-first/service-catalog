@@ -29,15 +29,18 @@ There are 4 configuration files present in this repository. Backstage handles co
 Only edit the base file if you are sure that the change will be relevant for all other 3 configuration files. More information can be found in the backstage [documentation](https://backstage.io/docs/conf/).
 
 ## Backstage version
+
 The external `@backstage` packages can be bumped using
+
 ```sh
 yarn backstage-cli versions:bump
 ```
+
 The current backstage version can be found in `backstage.json`. More about keeping `backstage` up to date can be found [here](https://backstage.io/docs/getting-started/keeping-backstage-updated).
 
-# Contributing
+## Contributing
 
-## Submitting a pull request
+### Submitting a pull request
 
 1. Fork and clone the repository
 2. Make your changes
@@ -52,58 +55,62 @@ Here are a few things you can do that will increase the likelihood of your pull 
 
 Work in Progress pull requests are also welcome to get feedback early on, or if there is something blocked you. Please open such pull requests as *Draft*.
 
-# Development setup
+## Development setup
 
 You can either run a development setup locally or in a k8s cluster.
 
-## Run locally
+### Run locally
 
 Before you begin please install and use supported Node.js version (we support [NVM](https://github.com/nvm-sh/nvm)), check `.nvmrc` for the appropriate version.
 
 Configurations for the local setup are located in `app-config.local.yaml`.
 
-1. Firstly generate a secret and export it to an environmental variable:
-```sh
-export backend_secret=\
-$(node -p 'require("crypto").randomBytes(24).toString("base64")')
-```
 1. If you are running the app for the first time run:
-```sh
-# Install depedencies
-yarn install
 
-# Compile
-yarn tsc
-```
-3. Run the app with:
-```sh
-# Run with hot reload capabilities
-yarn dev
-```
-4. A tab in your default browser should appear if not by default, the app will be available on http://localhost:3000.
+    ```sh
+    # Install depedencies
+    yarn install
 
-## Run in a Kubernetes cluster
+    # Compile
+    yarn tsc
+    ```
+
+2. Run the app with:
+
+    ```sh
+    # Run with hot reload capabilities
+    yarn dev
+    ```
+
+3. A tab in your default browser should appear if not by default, the app will be available on http://localhost:3000.
+
+### Run in a Kubernetes cluster
+
 Configurations for the cluster dev setup are in `app-config.dev.yaml`.
-1. Generate a secret and copy it
-```sh
-echo -n "$(node -p 'require("crypto").randomBytes(24).toString("base64")')" | base64
-```
-2. Paste the secret into `manifests/base/secret` into `data.backend_secret`
-3. Update image repository URL with your image repository:
-```sh
-cd manifests/overlays/dev && kustomize edit set image quay.io/operate-first/service-catalog=<your url>
-```
-4. Deploy using
-```
-{oc,kubectl} apply -k manifests/overlays/dev
-```
+
+1. Update image repository URL with your image repository:
+
+    ```sh
+    cd manifests/overlays/dev && kustomize edit set image quay.io/operate-first/service-catalog=<your url>
+    ```
+
+2. Deploy using
+
+    ```sh
+    {oc,kubectl} apply -k manifests/overlays/dev
+    ```
 
 ### S2I image
+
 This repository uses s2i to create images. To create image run script located in `packages/backend`:
+
 ```sh
 ./packages/backend/build-image.sh
 ```
+
 This will generate an image called `service-catalog`, this image is aimed to be used in production so it needs access to PostgreSQL database. To run this image with podman run:
+
 ```sh
-podman run -it -p 7007:7007 --env "backend_secret=$(node -p 'require("crypto").randomBytes(24).toString("base64")')" service-catalog:latest
+export BACKEND_SECRET=$(node -p 'require("crypto").randomBytes(24).toString("base64")')
+podman run -it -p 7007:7007 --env "BACKEND_SECRET" service-catalog:latest
 ```
