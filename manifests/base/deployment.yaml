@@ -16,8 +16,11 @@ spec:
         - name: service-catalog
           image: service-catalog
           command: ["node"]
-          args: []  # added by patch in overlays
-          imagePullPolicy: Always
+          args:
+            - packages/backend
+            - --config
+            - app-config.yaml
+            - --config
           ports:
             - containerPort: 7007
           envFrom:
@@ -26,15 +29,14 @@ spec:
             - secretRef:
                 name: service-catalog
           env:
-          - name: NODE_ENV
-            value: ""  # added by patch in overlays
+            - name: NODE_ENV
           volumeMounts:
-          - name: ca-cert
-            mountPath: "/mnt/certs"
+            - name: ca-cert
+              mountPath: "/mnt/certs"
       volumes:
-      - name: ca-cert
-        secret:
-          secretName: service-catalog-cluster-cert
-          items:
-          - key: ca.crt
-            path: ca.crt
+        - name: ca-cert
+          secret:
+            secretName: service-catalog-cluster-cert
+            items:
+              - key: ca.crt
+                path: ca.crt

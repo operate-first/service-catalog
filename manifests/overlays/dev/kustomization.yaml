@@ -7,17 +7,18 @@ components:
   - ../../components/postgres-db
 patches:
   - patch: |
-      - op: replace
-        path: /spec/template/spec/containers/0/args
-        value: ["packages/backend", "--config", "app-config.yaml", "--config", "app-config.dev.yaml"]
-      - op: replace
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: app-config.dev.yaml
+      - op: add
         path: /spec/template/spec/containers/0/env/0/value
-        value: "development"
+        value: development
     target:
       kind: Deployment
       name: service-catalog
 patchesStrategicMerge:
   - route.yaml
+  - secret.yaml
 images:
   - name: quay.io/operate-first/service-catalog
     newName:
