@@ -8,10 +8,7 @@ import {
   CodeSnippet,
   HelpIcon,
 } from '@backstage/core-components';
-import {
-  HomePageCompanyLogo,
-  TemplateBackstageLogo,
-} from '@backstage/plugin-home';
+import { HomePageCompanyLogo } from '@backstage/plugin-home';
 import { HomePageSearchBar } from '@backstage/plugin-search';
 import {
   CircularProgress,
@@ -25,6 +22,7 @@ import useAsyncFn from 'react-use/lib/useAsyncFn';
 import useDebounce from 'react-use/lib/useDebounce';
 import { useApi } from '@backstage/core-plugin-api';
 import { Entity } from '@backstage/catalog-model';
+import Logo from '../Logo/Logo';
 
 const useStyles = makeStyles(theme => ({
   searchBar: {
@@ -44,10 +42,7 @@ const useLogoStyles = makeStyles(theme => ({
   },
   svg: {
     width: 'auto',
-    height: 100,
-  },
-  path: {
-    fill: '#7df3e1',
+    height: 150,
   },
 }));
 
@@ -135,7 +130,7 @@ const CatalogCards = () => {
 };
 export const HomePage = () => {
   const classes = useStyles();
-  const { svg, path, container } = useLogoStyles();
+  const { svg, container } = useLogoStyles();
 
   return (
     <SearchContextProvider>
@@ -144,7 +139,7 @@ export const HomePage = () => {
           <Grid container justifyContent="center" spacing={6}>
             <HomePageCompanyLogo
               className={container}
-              logo={<TemplateBackstageLogo classes={{ svg, path }} />}
+              logo={<Logo classes={{ svg }} />}
             />
             <Grid container item xs={12} alignItems="center" direction="row">
               <HomePageSearchBar
