@@ -21,8 +21,7 @@ import HomeIcon from '@material-ui/icons/Home';
 // import MapIcon from '@material-ui/icons/MyLocation';
 import CategoryIcon from '@material-ui/icons/Category';
 // import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
-import LogoFull from './LogoFull';
-import LogoIcon from './LogoIcon';
+import Logo from '../Logo/Logo';
 import { NavLink } from 'react-router-dom';
 import {
   Settings as SidebarSettings,
@@ -52,9 +51,11 @@ const useSidebarLogoStyles = makeStyles({
     alignItems: 'center',
     marginBottom: -14,
   },
-  link: {
-    width: sidebarConfig.drawerWidthClosed,
+  linkExpanded: {
     marginLeft: 24,
+  },
+  linkCollapsed: {
+    width: sidebarConfig.drawerWidthClosed,
   },
 });
 
@@ -68,9 +69,9 @@ const SidebarLogo = () => {
         component={NavLink}
         to="/"
         underline="none"
-        className={classes.link}
+        className={isOpen ? classes.linkExpanded : classes.linkCollapsed}
       >
-        {isOpen ? <LogoFull /> : <LogoIcon />}
+        {isOpen ? <Logo /> : <Logo classes={{ svg: classes.linkCollapsed }} />}
       </Link>
     </div>
   );
