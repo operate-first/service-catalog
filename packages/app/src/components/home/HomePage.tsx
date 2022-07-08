@@ -71,7 +71,7 @@ const useCatalogStyles = makeStyles({
     },
   },
 });
-const ICON_ANNOTATION = 'operate-first.cloud/component-icon-url';
+const ICON_ANNOTATION = 'operate-first.cloud/logo-url';
 
 const CatalogCards = () => {
   const catalogApi = useApi(catalogApiRef);

@@ -8,7 +8,7 @@ metadata:
       title: Support path
       icon: user
   annotations:
-    operate-first.cloud/component-icon-url: https://picsum.photos/200
+    operate-first.cloud/logo-url: https://picsum.photos/200
 spec:
   type: service
   lifecycle: production
