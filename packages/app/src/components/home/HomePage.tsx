@@ -48,6 +48,7 @@ const useLogoStyles = makeStyles(theme => ({
 
 const useCatalogStyles = makeStyles({
   root: {
+    height: '100%',
     transition: 'all .25s linear',
     textAlign: 'center',
     '&:hover': {
