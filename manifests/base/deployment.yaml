@@ -26,10 +26,18 @@ spec:
           envFrom:
             - secretRef:
                 name: service-catalog-pguser-service-catalog
-            - secretRef:
-                name: service-catalog
           env:
             - name: NODE_ENV
+            - name: BACKEND_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: service-catalog
+                  key: BACKEND_SECRET
+            - name: ARGOCD_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: service-catalog
+                  key: ARGOCD_AUTH_TOKEN
           volumeMounts:
             - name: ca-cert
               mountPath: "/mnt/certs"

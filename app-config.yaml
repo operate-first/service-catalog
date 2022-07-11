@@ -44,6 +44,17 @@ backend:
     # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
     # workingDirectory: /tmp
 
+proxy:
+  '/argocd/api':
+    # url to the api of your hosted argoCD instance
+    target: https://argocd.operate-first.cloud/api/v1/
+    changeOrigin: true
+    # this line is required if your hosted argoCD instance has self-signed certificate
+    secure: true
+    headers:
+      Cookie:
+        $env: ARGOCD_AUTH_TOKEN
+
 # proxy:
 #   '/test':
 #     target: 'https://example.com'
