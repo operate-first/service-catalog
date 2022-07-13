@@ -20,3 +20,11 @@ backend:
           $file: /mnt/certs/ca.crt
   cors:
     origin: https://service-catalog.operate-first.cloud
+
+auth:
+  environment: production
+  providers:
+    github:
+      production:
+        clientId: ${AUTH_GITHUB_CLIENT_ID}
+        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
