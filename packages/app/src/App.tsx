@@ -36,10 +36,11 @@ import { HomepageCompositionRoot } from '@backstage/plugin-home';
 import { HomePage } from './components/home/HomePage';
 
 import { badgesPlugin } from '@backstage/plugin-badges'
+import { grafanaPlugin } from '@k-phoen/backstage-plugin-grafana';
 
 const app = createApp({
   apis,
-  plugins: [badgesPlugin],
+  plugins: [badgesPlugin, grafanaPlugin],
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {
       createComponent: scaffolderPlugin.routes.root,

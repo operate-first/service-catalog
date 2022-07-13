@@ -48,6 +48,11 @@ spec:
                 secretKeyRef:
                   name: service-catalog
                   key: AUTH_GITHUB_CLIENT_SECRET
+            - name: GRAFANA_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: service-catalog
+                  key: GRAFANA_TOKEN
           volumeMounts:
             - name: ca-cert
               mountPath: "/mnt/certs"

@@ -54,11 +54,14 @@ proxy:
     headers:
       Cookie:
         $env: ARGOCD_AUTH_TOKEN
+  '/grafana/api':
+    target: https://grafana.operate-first.cloud
+    headers:
+      Authorization: Bearer ${GRAFANA_TOKEN}
 
-# proxy:
-#   '/test':
-#     target: 'https://example.com'
-#     changeOrigin: true
+grafana:
+  # Publicly accessible domain
+  domain: https://grafana.operate-first.cloud
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs

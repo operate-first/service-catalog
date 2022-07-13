@@ -90,6 +90,10 @@ import {
   EntityAdrContent,
   isAdrAvailable
 } from '@backstage/plugin-adr';
+import {
+  EntityGrafanaDashboardsCard,
+  EntityGrafanaAlertsCard,
+} from '@k-phoen/backstage-plugin-grafana';
 
 const EntityLayoutWrapper = (props: { children?: ReactNode }) => {
   const [badgesDialogOpen, setBadgesDialogOpen] = useState(false);
@@ -180,6 +184,14 @@ const overviewContent = (
         </Grid>
       </EntitySwitch.Case>
     </EntitySwitch>
+
+    <Grid item md={6}>
+      <EntityGrafanaDashboardsCard />
+    </Grid>
+    <Grid item md={6}>
+      <EntityGrafanaAlertsCard />
+    </Grid>
+
     <Grid item md={4} xs={12}>
       <EntityLinksCard />
     </Grid>
