@@ -65,6 +65,43 @@ annotations:
     grafana/tag-selector: thoth
 ```
 
+## Kubernetes plugin
+
+The [kubernetes plugin](https://backstage.io/docs/features/kubernetes/overview) requires a label attached to the metadata of a deployment and then it requires a special annotation in the component definition file, for example:
+
+Deployment manifest:
+
+```yaml
+metadata:
+  labels:
+    backstage.io/kubernetes-id: service1
+```
+
+Component definition:
+
+```yaml
+annotations:
+  backstage.io/kubernetes-id: service1
+```
+
+The plugin can also fetch Kubernetes resources using any Kubernetes labels:
+
+Deployment manifest:
+
+```yaml
+metadata:
+  labels:
+    app: my-app
+    component: front-end
+```
+
+Component definition:
+
+```yaml
+annotations:
+  backstage.io/kubernetes-label-selector: 'app=my-app,component=front-end'
+```
+
 ## Contributing
 
 ### Submitting a pull request
@@ -112,6 +149,8 @@ Configurations for the local setup are located in `app-config.local.yaml`.
     ```
 
 4. A tab in your default browser should appear if not by default, the app will be available on http://localhost:3000.
+
+For local development with the kubernetes plugin, kubectl proxy is by default started on port `8001`, if you have something already running on this port make sure to add the `--port=<your_port>` option to the kubectl proxy command in `yarn dev` script.
 
 ### Run in a Kubernetes cluster
 

@@ -5,6 +5,7 @@ resources:
   - ../../base
 components:
   - ../../components/postgres-db
+  - ../../components/rbac
 patches:
   - patch: |
       - op: add

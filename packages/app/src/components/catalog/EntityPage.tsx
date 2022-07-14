@@ -93,6 +93,8 @@ import {
   EntityGrafanaAlertsCard,
   isGrafanaAvailable
 } from '@k-phoen/backstage-plugin-grafana';
+import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
+
 
 const EntityLayoutWrapper = (props: { children?: ReactNode }) => {
   const [badgesDialogOpen, setBadgesDialogOpen] = useState(false);
@@ -271,6 +273,10 @@ const serviceEntityPage = (
 
     <EntityLayout.Route if={isAdrAvailable} path="/adrs" title="ADRs">
       <EntityAdrContent />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+      <EntityKubernetesContent refreshIntervalMs={30000} />
     </EntityLayout.Route>
 
   </EntityLayoutWrapper>

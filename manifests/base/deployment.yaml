@@ -12,6 +12,7 @@ spec:
       labels:
         app: service-catalog
     spec:
+      serviceAccountName: service-catalog-k8s-plugin
       containers:
         - name: service-catalog
           image: service-catalog
