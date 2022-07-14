@@ -71,6 +71,11 @@ import {
   EntityArgoCDOverviewCard,
   isArgocdAvailable
 } from '@roadiehq/backstage-plugin-argo-cd';
+import {
+  EntitySecurityInsightsCard,
+  isSecurityInsightsAvailable,
+  EntitySecurityInsightsContent,
+} from '@roadiehq/backstage-plugin-security-insights';
 
 import { EntityBadgesDialog } from '@backstage/plugin-badges';
 import BadgeIcon from '@material-ui/icons/CallToAction';
@@ -179,8 +184,16 @@ const overviewContent = (
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
     <EntitySwitch>
+      <EntitySwitch.Case if={isSecurityInsightsAvailable}>
+        <Grid item md={6}>
+          <EntitySecurityInsightsCard />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
+
+    <EntitySwitch>
       <EntitySwitch.Case if={e => Boolean(isGithubInsightsAvailable(e))}>
-      <Grid item md={6}>
+        <Grid item md={6}>
           <EntityGithubInsightsContributorsCard />
         </Grid>
         <Grid item md={6}>
@@ -238,6 +251,13 @@ const serviceEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       <EntityTechdocsContent />
     </EntityLayout.Route>
+
+    <EntityLayout.Route
+      path="/security-insights"
+      title="Security Insights">
+      <EntitySecurityInsightsContent />
+    </EntityLayout.Route>
+
   </EntityLayoutWrapper>
 );
 
