@@ -4,27 +4,27 @@ This is the service catalog for the [operate-first](https://github.com/operate-f
 
 ## Architecture
 
-The service catalog is implemented using [backstage](https://backstage.io/). This instance of backstage is built using two basic packages, `app` and `backend`. The `app` packages serves as the frontend and `backend` package as the backend. These two applications then communicate with each other to create the service-catalog.
+The service catalog is implemented using [backstage](https://backstage.io/). This instance of backstage is built using two basic packages, `app` and `backend`. The `app` packages serves as the frontend and `backend` package as the backend. These two applications then communicate with each other to create the service catalog.
 
 ## Catalog items
 
 Backstage can utilize a separate location (for example a GitHub repository) for the catalog component definitions. More information on how these files are defined can be found in the backstage [documentation](https://backstage.io/docs/features/software-catalog/descriptor-format).
 
-Component definition files for this service-catalog are located [here](https://github.com/SamoKopecky/apps/tree/master/service-catalog). If you want to edit them, make a pull request in that repository.
+Component definition files for this service catalog are located [here](https://github.com/SamoKopecky/apps/tree/master/service-catalog). If you want to edit them, make a pull request in that repository.
 
-There is an `example` folder located that only contains catalog items dedicated to local development. Switching between local and remote sources can configured in `app-config.local.yaml` in the `catalog.locations` key.
+There is an `example` folder located that only contains catalog items dedicated to local development. Switching between local and remote sources can be configured in `app-config.local.yaml` in the `catalog.locations` key.
 
 ## Permissions
 
-Right now the access to the catalog is read-only for everyone. Permissions are defined using a [permission policy](https://backstage.io/docs/permissions/writing-a-policy). A permission policy is defined in `packages/backend/src/plugins/permission.ts`.
+Access to the service catalog is read-only for everyone. Permissions are defined using a [permission policy](https://backstage.io/docs/permissions/writing-a-policy). A permission policy is defined [here](https://github.com/operate-first/service-catalog/blob/main/packages/backend/src/plugins/permission.ts#L14-L21).
 
 ## Integrations
 
-It is possible to integrate backstage using many other external providers such as GitHub or GitLab. For now we decided that using no integrations is the best option. Read more about [integrations](https://backstage.io/docs/integrations/).
+It is possible to integrate backstage using many other external providers such as GitHub or GitLab. For now, we decided that using no integrations is the best option. Read more about [integrations](https://backstage.io/docs/integrations/).
 
 ## Configuration files
 
-There are 4 configuration files present in this repository. Backstage handles configuration files similarly to how `kustomize` handles deployment manifests. There is a base configuration file, in this case `app-config.yaml`. Then 3 other configuration files add on top of the base config file by merging the two files.
+There are 4 configuration files present in this repository. Backstage handles configuration files similarly to how `kustomize` handles deployment manifests. There is a base configuration file, in this case, `app-config.yaml`. Then 3 other configuration files add on top of the base config file by merging the files. Not all configs are used at the same time, it only makes sense to run the app with a base config and another, depending on the run environment.
 
 Only edit the base file if you are sure that the change will be relevant for all other 3 configuration files. More information can be found in the backstage [documentation](https://backstage.io/docs/conf/).
 
@@ -61,7 +61,7 @@ You can either run a development setup locally or in a k8s cluster.
 
 ### Run locally
 
-Before you begin please install and use supported Node.js version (we support [NVM](https://github.com/nvm-sh/nvm)), check `.nvmrc` for the appropriate version.
+Before you begin please install and use the supported Node.js version (we support [NVM](https://github.com/nvm-sh/nvm)), check `.nvmrc` for the appropriate version.
 
 Configurations for the local setup are located in `app-config.local.yaml`.
 
@@ -88,7 +88,7 @@ Configurations for the local setup are located in `app-config.local.yaml`.
 
 Configurations for the cluster dev setup are in `app-config.dev.yaml`.
 
-1. Update image repository URL with your image repository:
+1. Update the image repository URL with your image repository:
 
     ```sh
     cd manifests/overlays/dev && kustomize edit set image quay.io/operate-first/service-catalog=<your url>
