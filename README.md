@@ -55,6 +55,15 @@ annotations:
     backstage.io/adr-location: https://github.com/operate-first/blueprint/tree/main/adr
 ```
 
+## Grafana plugin
+
+The [grafana plugin](https://github.com/K-Phoen/backstage-plugin-grafana/) can display either links to dashboards or alerts on the overview page for a configured tag in the components annotations. For example:
+
+```yaml
+annotations:
+    grafana/tag-selector: thoth
+```
+
 ## Contributing
 
 ## GitHub Insights/Security Insights
