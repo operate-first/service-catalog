@@ -91,7 +91,9 @@ Before you begin please install and use the supported Node.js version (we suppor
 
 Configurations for the local setup are located in `app-config.local.yaml`.
 
-1. If you are running the app for the first time run:
+1. Firstly create your `.env` file from the template in `.env.example`.
+
+2. If you are running the app for the first time run:
 
     ```sh
     # Install depedencies
@@ -101,14 +103,14 @@ Configurations for the local setup are located in `app-config.local.yaml`.
     yarn tsc
     ```
 
-2. Run the app with:
+3. Run the app with:
 
     ```sh
     # Run with hot reload capabilities
     yarn dev
     ```
 
-3. A tab in your default browser should appear if not by default, the app will be available on http://localhost:3000.
+4. A tab in your default browser should appear if not by default, the app will be available on http://localhost:3000.
 
 ### Run in a Kubernetes cluster
 
