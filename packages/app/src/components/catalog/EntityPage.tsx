@@ -67,18 +67,12 @@ import {
   RELATION_PART_OF,
   RELATION_PROVIDES_API,
 } from '@backstage/catalog-model';
+import { EntityBadgesDialog } from '@backstage/plugin-badges';
+import BadgeIcon from '@material-ui/icons/CallToAction';
 import {
   EntityArgoCDOverviewCard,
   isArgocdAvailable
 } from '@roadiehq/backstage-plugin-argo-cd';
-import {
-  EntitySecurityInsightsCard,
-  isSecurityInsightsAvailable,
-  EntitySecurityInsightsContent,
-} from '@roadiehq/backstage-plugin-security-insights';
-
-import { EntityBadgesDialog } from '@backstage/plugin-badges';
-import BadgeIcon from '@material-ui/icons/CallToAction';
 import {
   EntityGithubInsightsContent,
   EntityGithubInsightsLanguagesCard,
@@ -87,6 +81,15 @@ import {
   EntityGithubInsightsContributorsCard,
   isGithubInsightsAvailable,
 } from '@roadiehq/backstage-plugin-github-insights';
+import {
+  EntitySecurityInsightsCard,
+  isSecurityInsightsAvailable,
+  EntitySecurityInsightsContent,
+} from '@roadiehq/backstage-plugin-security-insights';
+import {
+  EntityAdrContent,
+  isAdrAvailable
+} from '@backstage/plugin-adr';
 
 const EntityLayoutWrapper = (props: { children?: ReactNode }) => {
   const [badgesDialogOpen, setBadgesDialogOpen] = useState(false);
@@ -256,6 +259,10 @@ const serviceEntityPage = (
       path="/security-insights"
       title="Security Insights">
       <EntitySecurityInsightsContent />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route if={isAdrAvailable} path="/adrs" title="ADRs">
+      <EntityAdrContent />
     </EntityLayout.Route>
 
   </EntityLayoutWrapper>
