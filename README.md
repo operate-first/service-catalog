@@ -49,6 +49,15 @@ annotations:
 
 ## Contributing
 
+## GitHub Insights/Security Insights
+
+For the insights plugins to work it is required to put `github.com/project-slug` annotation to your components definition. The value of this annotation is a GitHub project slug which consists of the organization/user and the repository name, see the example below.
+
+```yaml
+annotations:
+    github.com/project-slug: operate-first/service-catalog
+```
+
 ### Submitting a pull request
 
 1. Fork and clone the repository
