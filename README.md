@@ -46,6 +46,14 @@ For the insights plugin to work it is required to put `github.com/project-slug` 
 annotations:
     github.com/project-slug: operate-first/service-catalog
 ```
+## ADR plugin
+
+ADR plugin requires an annotation to be present in your component definition. Right now the only value that is accepted by the annotation is a GitHub repository link to the folder which contains your ADRs, see the example below.
+
+```yaml
+annotations:
+    backstage.io/adr-location: https://github.com/operate-first/blueprint/tree/main/adr
+```
 
 ## Contributing
 

@@ -14,6 +14,7 @@
     "@backstage/core-components": "^0.9.4",
     "@backstage/core-plugin-api": "^1.0.2",
     "@backstage/integration-react": "^1.1.0",
+    "@backstage/plugin-adr": "^0.1.1",
     "@backstage/plugin-api-docs": "^0.8.5",
     "@backstage/plugin-badges": "^0.2.30",
     "@backstage/plugin-catalog": "^1.2.0",
