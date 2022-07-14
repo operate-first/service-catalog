@@ -38,14 +38,15 @@ yarn backstage-cli versions:bump
 
 The current backstage version can be found in `backstage.json`. More about keeping `backstage` up to date can be found [here](https://backstage.io/docs/getting-started/keeping-backstage-updated).
 
-## GitHub Insights
+## GitHub Insights/Security Insights
 
-For the insights plugin to work it is required to put `github.com/project-slug` annotation to your components definition. The value of this annotation is a GitHub project slug which consists of the organization/user and the repository name, see the example below.
+For the insights plugins to work it is required to put `github.com/project-slug` annotation to your components definition. The value of this annotation is a GitHub project slug which consists of the organization/user and the repository name, see the example below.
 
 ```yaml
 annotations:
     github.com/project-slug: operate-first/service-catalog
 ```
+
 ## ADR plugin
 
 ADR plugin requires an annotation to be present in your component definition. Right now the only value that is accepted by the annotation is a GitHub repository link to the folder which contains your ADRs, see the example below.
@@ -56,15 +57,6 @@ annotations:
 ```
 
 ## Contributing
-
-## GitHub Insights/Security Insights
-
-For the insights plugins to work it is required to put `github.com/project-slug` annotation to your components definition. The value of this annotation is a GitHub project slug which consists of the organization/user and the repository name, see the example below.
-
-```yaml
-annotations:
-    github.com/project-slug: operate-first/service-catalog
-```
 
 ### Submitting a pull request
 
