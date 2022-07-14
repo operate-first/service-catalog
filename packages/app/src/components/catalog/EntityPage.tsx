@@ -74,6 +74,14 @@ import {
 
 import { EntityBadgesDialog } from '@backstage/plugin-badges';
 import BadgeIcon from '@material-ui/icons/CallToAction';
+import {
+  EntityGithubInsightsContent,
+  EntityGithubInsightsLanguagesCard,
+  EntityGithubInsightsReadmeCard,
+  EntityGithubInsightsReleasesCard,
+  EntityGithubInsightsContributorsCard,
+  isGithubInsightsAvailable,
+} from '@roadiehq/backstage-plugin-github-insights';
 
 const EntityLayoutWrapper = (props: { children?: ReactNode }) => {
   const [badgesDialogOpen, setBadgesDialogOpen] = useState(false);
@@ -170,6 +178,22 @@ const overviewContent = (
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
+    <EntitySwitch>
+      <EntitySwitch.Case if={e => Boolean(isGithubInsightsAvailable(e))}>
+      <Grid item md={6}>
+          <EntityGithubInsightsContributorsCard />
+        </Grid>
+        <Grid item md={6}>
+          <EntityGithubInsightsLanguagesCard />
+        </Grid>
+        <Grid item md={6}>
+          <EntityGithubInsightsReadmeCard maxHeight={350} />
+        </Grid>
+        <Grid item md={6}>
+          <EntityGithubInsightsReleasesCard />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
   </Grid>
 );
 
@@ -181,6 +205,12 @@ const serviceEntityPage = (
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route
+      path="/code-insights"
+      title="Code Insights">
+      <EntityGithubInsightsContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/api" title="API">
