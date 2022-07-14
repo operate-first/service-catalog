@@ -32,6 +32,7 @@ import permission from './plugins/permission';
 import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import badges from './plugins/badges';
+import kubernetes from './plugins/kubernetes';
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
@@ -84,6 +85,7 @@ async function main() {
   const appEnv = useHotMemoize(module, () => createEnv('app'));
   const permissionEnv = useHotMemoize(module, () => createEnv('permission'));
   const badgesEnv = useHotMemoize(module, () => createEnv('badges'));
+  const kubernetesEnv = useHotMemoize(module, () => createEnv('kubernetes'));
 
   const apiRouter = Router();
   apiRouter.use('/catalog', await catalog(catalogEnv));
@@ -94,6 +96,7 @@ async function main() {
   apiRouter.use('/search', await search(searchEnv));
   apiRouter.use('/permission', await permission(permissionEnv));
   apiRouter.use('/badges', await badges(badgesEnv));
+  apiRouter.use('/kubernetes', await kubernetes(kubernetesEnv));
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());
