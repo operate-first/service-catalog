@@ -38,6 +38,16 @@ spec:
                 secretKeyRef:
                   name: service-catalog
                   key: ARGOCD_AUTH_TOKEN
+            - name: AUTH_GITHUB_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: service-catalog
+                  key: AUTH_GITHUB_CLIENT_ID
+            - name: AUTH_GITHUB_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: service-catalog
+                  key: AUTH_GITHUB_CLIENT_SECRET
           volumeMounts:
             - name: ca-cert
               mountPath: "/mnt/certs"
