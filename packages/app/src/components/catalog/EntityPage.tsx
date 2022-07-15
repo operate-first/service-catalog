@@ -93,6 +93,7 @@ import {
 import {
   EntityGrafanaDashboardsCard,
   EntityGrafanaAlertsCard,
+  isGrafanaAvailable
 } from '@k-phoen/backstage-plugin-grafana';
 
 const EntityLayoutWrapper = (props: { children?: ReactNode }) => {
@@ -185,12 +186,16 @@ const overviewContent = (
       </EntitySwitch.Case>
     </EntitySwitch>
 
-    <Grid item md={6}>
-      <EntityGrafanaDashboardsCard />
-    </Grid>
-    <Grid item md={6}>
-      <EntityGrafanaAlertsCard />
-    </Grid>
+    <EntitySwitch>
+      <EntitySwitch.Case if={isGrafanaAvailable}>
+      <Grid item md={6}>
+        <EntityGrafanaDashboardsCard />
+      </Grid>
+      <Grid item md={6}>
+        <EntityGrafanaAlertsCard />
+      </Grid>
+    </EntitySwitch.Case>
+    </EntitySwitch>
 
     <Grid item md={4} xs={12}>
       <EntityLinksCard />
