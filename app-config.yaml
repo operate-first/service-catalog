@@ -29,10 +29,11 @@ backend:
       - secret: ${BACKEND_SECRET}
   baseUrl: http://localhost:7007
   listen: 0.0.0.0:7007
+  # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
+  # Default Helmet Content-Security-Policy values can be removed by setting the key to false
   csp:
     connect-src: ["'self'", 'http:', 'https:']
-    # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
-    # Default Helmet Content-Security-Policy values can be removed by setting the key to false
+    img-src: ["'self'", 'https:']
   cors:
     origin: http://localhost:7007
     methods: [GET, POST, PUT, DELETE]
