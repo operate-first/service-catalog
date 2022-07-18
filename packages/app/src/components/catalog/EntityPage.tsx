@@ -82,8 +82,6 @@ import {
   isGithubInsightsAvailable,
 } from '@roadiehq/backstage-plugin-github-insights';
 import {
-  EntitySecurityInsightsCard,
-  isSecurityInsightsAvailable,
   EntitySecurityInsightsContent,
 } from '@roadiehq/backstage-plugin-security-insights';
 import {
@@ -203,13 +201,6 @@ const overviewContent = (
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
-    <EntitySwitch>
-      <EntitySwitch.Case if={isSecurityInsightsAvailable}>
-        <Grid item md={6}>
-          <EntitySecurityInsightsCard />
-        </Grid>
-      </EntitySwitch.Case>
-    </EntitySwitch>
 
     <EntitySwitch>
       <EntitySwitch.Case if={e => Boolean(isGithubInsightsAvailable(e))}>
