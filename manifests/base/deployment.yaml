@@ -63,3 +63,8 @@ spec:
             items:
               - key: ca.crt
                 path: ca.crt
+      resources:
+        limits:
+          cpu: 300m
+        requests:
+          cpu: 200m
