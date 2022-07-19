@@ -60,6 +60,7 @@ const useCatalogStyles = makeStyles({
     '& img': {
       height: 80,
       width: 80,
+      objectFit: 'contain',
     },
   },
   subheader: {
