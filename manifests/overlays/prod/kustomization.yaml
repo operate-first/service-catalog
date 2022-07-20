@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: service-catalog
 resources:
   - ../../base
+  - obc.yaml
 generators:
   - secret-generator.yaml
 patches:
@@ -13,6 +14,16 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/env/0/value
         value: production
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom/-
+        value:
+          secretRef:
+            name: service-catalog-bucket-claim
+      - op: add
+        path: /spec/template/spec/containers/0/envFrom/-
+        value:
+          configMapRef:
+            name: service-catalog-bucket-claim
     target:
       kind: Deployment
       name: service-catalog
