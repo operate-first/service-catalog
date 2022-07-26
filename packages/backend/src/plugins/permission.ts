@@ -13,8 +13,12 @@ import { PluginEnvironment } from '../types';
 
 class ReadOnlyPermissionPolicy implements PermissionPolicy {
   async handle(request: PolicyQuery): Promise<PolicyDecision> {
-    if (request.permission.name === 'catalog.entity.read') {
-      return { result: AuthorizeResult.ALLOW }
+    const permissions = [
+      'catalog.entity.read',
+      'catalog.entity.refresh'
+    ];
+    if (permissions.includes(request.permission.name)) {
+      return { result: AuthorizeResult.ALLOW };
     }
     return { result: AuthorizeResult.DENY };
   }
