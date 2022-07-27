@@ -11,7 +11,7 @@ import {
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
 
-class TestPermissionPolicy implements PermissionPolicy {
+class ReadOnlyPermissionPolicy implements PermissionPolicy {
   async handle(request: PolicyQuery): Promise<PolicyDecision> {
     if (request.permission.name === 'catalog.entity.read') {
       return { result: AuthorizeResult.ALLOW }
@@ -27,7 +27,7 @@ export default async function createPlugin(
     config: env.config,
     logger: env.logger,
     discovery: env.discovery,
-    policy: new TestPermissionPolicy(),
+    policy: new ReadOnlyPermissionPolicy(),
     identity: IdentityClient.create({
       discovery: env.discovery,
       issuer: await env.discovery.getExternalBaseUrl('auth'),
