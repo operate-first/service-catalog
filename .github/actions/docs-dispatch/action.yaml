@@ -1,0 +1,56 @@
+name: docs-dispatch
+inputs:
+  entity_name:
+    required: true
+  entity_kind:
+    required: true
+  entity_namespace:
+    required: false
+    default: 'default'
+  repository:
+    required: true
+    description: 'Repository that your documentation files are located at'
+  docs_path:
+    required: true
+    description: 'Directory path to your documentation folder relative to the repository root'
+  filter:
+    required: false
+    description: 'Glob expression filtering the changed files'
+    default: '.'
+  token:
+    required: true
+    description: 'GitHub token that requires metadata:read and contents:read&write permissions to target repository'
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: ${{ inputs.repository }}
+
+    - uses: dorny/paths-filter@v2
+      id: changes
+      with:
+        filters: |
+          root_docs:
+            - 'docs/**'
+            - 'mkdocs.yaml'
+            - 'mkdocs.yml'
+          docs:
+            - '${{ inputs.filter }}'
+
+    - name: Send dispatch for root docs
+      if: (steps.changes.outputs.root_docs == 'true' && inputs.docs_path == '.') || steps.changes.outputs.docs == 'true'
+      run: |
+        curl -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: token ${{ inputs.token }}" \
+          https://api.github.com/repos/operate-first/service-catalog/dispatches \
+          -d '{"event_type":"docs-update","client_payload":{
+            "docs_path":"${{ inputs.docs_path }}",
+            "repository":"${{ inputs.repository }}",
+            "entity_name":"${{ inputs.entity_name }}",
+            "entity_kind":"${{ inputs.entity_kind }}",
+            "entity_namespace":"${{ inputs.entity_namespace }}"
+          }}'
+      shell: bash

@@ -22,7 +22,7 @@ backend:
     origin: https://service-catalog.operate-first.cloud
 
 techdocs:
-  builder: 'local'
+  builder: 'external'
   generator:
     runIn: 'local'
   publisher:
@@ -30,7 +30,8 @@ techdocs:
     awsS3:
       bucketName: ${BUCKET_NAME}
       region: ${BUKCET_REGION}
-      endpoint: https://${BUCKET_ENDPOINT}:${BUCKET_PORT}
+      endpoint: https://s3-openshift-storage.apps.smaug.na.operate-first.cloud
+      s3ForcePathStyle: true
       credentials:
         accessKeyId: ${AWS_ACCESS_KEY_ID}
         secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
