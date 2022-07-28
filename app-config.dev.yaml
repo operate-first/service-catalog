@@ -20,3 +20,21 @@ backend:
           $file: /mnt/certs/ca.crt
   cors:
     origin: <url>
+
+kubernetes:
+  serviceLocatorMethod:
+    type: 'multiTenant'
+  clusterLocatorMethods:
+    - type: 'config'
+      clusters:
+        - url: https://openshift.default.svc.cluster.local
+          name: dev-cluster
+          authProvider: 'serviceAccount'
+          skipTLSVerify: true
+          skipMetricsLookup: false
+          # Uncomment this if you want to use a different url other then the local one
+          # for local cluster you don't need to provide service account token
+          # serviceAccountToken: ${SERVICE_ACCOUNT_TOKEN}
+          # Optional values
+          # dashboardUrl: <dashboard_url>
+          # dashboardApp: <dashboard_type>  # Supported dashboards: standard, rancher, openshift, gke, aks, eks

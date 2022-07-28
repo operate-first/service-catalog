@@ -42,3 +42,19 @@ auth:
       production:
         clientId: ${AUTH_GITHUB_CLIENT_ID}
         clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+
+kubernetes:
+  serviceLocatorMethod:
+    type: 'multiTenant'
+  clusterLocatorMethods:
+    - type: 'config'
+      clusters:
+        - url: https://api.smaug.na.operate-first.cloud:6443
+          name: smaug
+          authProvider: 'serviceAccount'
+          skipTLSVerify: false
+          skipMetricsLookup: false
+          # The plugin will automatically use the auto mounted token
+          # serviceAccountToken: ${SERVICE_ACCOUNT_TOKEN}
+          dashboardUrl: https://console-openshift-console.apps.smaug.na.operate-first.cloud
+          dashboardApp: openshift
