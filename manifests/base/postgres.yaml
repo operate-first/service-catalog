@@ -21,6 +21,10 @@ spec:
   backups:
     pgbackrest:
       image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.38-0
+      global:
+        # Save backups for 14 days, this means 2 full backups with 6 differential ones in between
+        repo1-retention-full: "14"
+        repo1-retention-full-type: count
       repoHost:
         resources:
           limits:
@@ -29,6 +33,11 @@ spec:
             cpu: 200m
       repos:
       - name: repo1
+        schedules:
+          # Every sunday at 01:00 full backup
+          full: "0 1 * * 0"
+          # Monday through saturday at 01:00 differential backup
+          differential: "0 1 * * 1-6"
         volume:
           volumeClaimSpec:
             accessModes:
