@@ -1,35 +1,23 @@
 name: Send dispatch to publisher
 
-# This is a template for other repositories, uncomment this when applyting
-# this to a real service repository
-# on:
-#   push:
-#     branches:
-#       - main
-#       - master
-#     paths:
-#       - "**/docs/**"
-#       - "mkdocs.yaml"
-#       - "mkdocs.yml"
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/docs/**"
+      - "mkdocs.yaml"
+      - "mkdocs.yml"
 
 jobs:
   send-repo-dispatches:
     runs-on: ubuntu-latest
     steps:
-      - name: Send dispatch for service2
-        uses: operate-first/service-catalog/.github/actions/docs-dispatch@main
-        with:
-          filter: 'service2/**'
-          docs_path: 'service2'
-          entity_name: 'service2'
-          entity_kind: 'Component'
-          repository: ${{ github.repository }}
-          token: ${{ secrets.SESHETA_TOKEN }}
-      - name: Send dispatch for service1
+      - name: Send dispatch for service-catalog
         uses: operate-first/service-catalog/.github/actions/docs-dispatch@main
         with:
           docs_path: '.'
-          entity_name: 'service1'
+          entity_name: 'service-catalog'
           entity_kind: 'Component'
           repository: ${{ github.repository }}
           token: ${{ secrets.SESHETA_TOKEN }}

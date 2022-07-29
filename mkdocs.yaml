@@ -1,0 +1,10 @@
+site_name: 'Service Catalog documentation'
+
+nav:
+  - Home: index.md
+  - Configuring catalog entities: configuring-entities.md
+  - Contributing and development setup: contributing.md
+
+plugins:
+  - techdocs-core
+  - search
