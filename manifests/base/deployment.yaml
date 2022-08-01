@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: service-catalog
+      app.kubernetes.io/component: app
   template:
     metadata:
       labels:
-        app: service-catalog
+        app.kubernetes.io/component: app
     spec:
       serviceAccountName: service-catalog-k8s-plugin
       containers:
