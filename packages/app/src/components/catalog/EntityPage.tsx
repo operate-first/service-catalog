@@ -188,13 +188,13 @@ const overviewContent = (
 
     <EntitySwitch>
       <EntitySwitch.Case if={isGrafanaAvailable}>
-      <Grid item md={6}>
-        <EntityGrafanaDashboardsCard />
-      </Grid>
-      <Grid item md={6}>
-        <EntityGrafanaAlertsCard />
-      </Grid>
-    </EntitySwitch.Case>
+        <Grid item md={6}>
+          <EntityGrafanaDashboardsCard />
+        </Grid>
+        <Grid item md={6}>
+          <EntityGrafanaAlertsCard />
+        </Grid>
+      </EntitySwitch.Case>
     </EntitySwitch>
 
     <Grid item md={4} xs={12}>
@@ -328,6 +328,18 @@ const defaultEntityPage = (
   </EntityLayoutWrapper>
 );
 
+const resourcePage = (
+  <EntityLayoutWrapper>
+    <EntityLayout.Route path="/" title="Overview">
+      {overviewContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/docs" title="Docs">
+      <EntityTechdocsContent />
+    </EntityLayout.Route>
+  </EntityLayoutWrapper>
+);
+
 const componentPage = (
   <EntitySwitch>
     <EntitySwitch.Case if={isComponentType('service')}>
@@ -432,6 +444,9 @@ const systemPage = (
         <Grid item md={6}>
           <EntityHasResourcesCard variant="gridItem" />
         </Grid>
+        <Grid item md={4} xs={12}>
+          <EntityLinksCard />
+        </Grid>
       </Grid>
     </EntityLayout.Route>
     <EntityLayout.Route path="/diagram" title="Diagram">
@@ -470,6 +485,9 @@ const domainPage = (
         <Grid item md={6}>
           <EntityHasSystemsCard variant="gridItem" />
         </Grid>
+        <Grid item md={4} xs={12}>
+          <EntityLinksCard />
+        </Grid>
       </Grid>
     </EntityLayout.Route>
   </EntityLayoutWrapper>
@@ -483,6 +501,7 @@ export const entityPage = (
     <EntitySwitch.Case if={isKind('user')} children={userPage} />
     <EntitySwitch.Case if={isKind('system')} children={systemPage} />
     <EntitySwitch.Case if={isKind('domain')} children={domainPage} />
+    <EntitySwitch.Case if={isKind('resource')} children={resourcePage} />
 
     <EntitySwitch.Case>{defaultEntityPage}</EntitySwitch.Case>
   </EntitySwitch>
