@@ -74,6 +74,7 @@ const useCatalogStyles = makeStyles({
   },
 });
 const ICON_ANNOTATION = 'operate-first.cloud/logo-url';
+const FEATURED_ANNOTATION = 'operate-first.cloud/featured';
 
 const CatalogCards = () => {
   const catalogApi = useApi(catalogApiRef);
@@ -82,7 +83,12 @@ const CatalogCards = () => {
   const [{ loading, error }, refresh] = useAsyncFn(
     async () => {
       const response = await catalogApi.getEntities();
-      setEntities(response.items.filter(e => e.kind === 'Component'));
+      setEntities(response.items.filter(
+        e => (
+          e.metadata.annotations?.[ICON_ANNOTATION] &&
+          e.metadata.annotations?.[FEATURED_ANNOTATION] === 'true'
+        )
+      ));
     },
     [catalogApi],
     { loading: true },
