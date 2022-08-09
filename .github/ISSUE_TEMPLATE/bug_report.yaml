@@ -1,0 +1,27 @@
+name: Report Issue or Bug
+description: Create report of issue or bug
+title: <your-issue-title>
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the problem
+    validations:
+      required: true
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to reproduce the problem
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: |
+        If applicable, add screenshots to help explain your problem.    
