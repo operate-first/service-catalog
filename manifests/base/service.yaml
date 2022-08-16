@@ -4,7 +4,7 @@ metadata:
   name: service-catalog
 spec:
   selector:
-    app: service-catalog
+    app.kubernetes.io/component: app
   ports:
     - port: 7007
       targetPort: 7007
