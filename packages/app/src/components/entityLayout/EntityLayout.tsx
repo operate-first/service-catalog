@@ -44,11 +44,12 @@ import {
   UnregisterEntityDialog,
   useAsyncEntity,
 } from '@backstage/plugin-catalog-react';
-import { Box, TabProps } from '@material-ui/core';
+import { Box, makeStyles, TabProps } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { EntityContextMenu } from './EntityContextMenu';
+import { ICON_ANNOTATION } from '../../constants';
 
 /** @public */
 export type EntityLayoutRouteProps = {
@@ -65,6 +66,18 @@ const Route: (props: EntityLayoutRouteProps) => null = () => null;
 attachComponentData(Route, dataKey, true);
 attachComponentData(Route, 'core.gatherMountPoints', true); // This causes all mount points that are discovered within this route to use the path of the route itself
 
+const useCatalogStyles = makeStyles({
+  icon: {
+    '& img': {
+      height: 45,
+      width: 45,
+      objectFit: 'contain',
+      marginTop: 10,
+      marginRight: 10
+    },
+  },
+});
+
 function EntityLayoutTitle(props: {
   title: string;
   entity: Entity | undefined;
@@ -72,6 +85,12 @@ function EntityLayoutTitle(props: {
   const { entity, title } = props;
   return (
     <Box display="inline-flex" alignItems="center" height="1em" maxWidth="100%">
+      <Box className={useCatalogStyles().icon}>
+        <img
+          alt={`${entity?.metadata.name} logo`}
+          src={entity?.metadata.annotations?.[ICON_ANNOTATION]}
+        />
+      </Box>
       <Box
         component="span"
         textOverflow="ellipsis"
