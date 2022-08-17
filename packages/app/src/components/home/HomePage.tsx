@@ -23,6 +23,7 @@ import useDebounce from 'react-use/lib/useDebounce';
 import { useApi } from '@backstage/core-plugin-api';
 import { Entity } from '@backstage/catalog-model';
 import Logo from '../Logo/Logo';
+import { ICON_ANNOTATION } from '../../constants'
 
 const useStyles = makeStyles(theme => ({
   searchBar: {
@@ -73,7 +74,6 @@ const useCatalogStyles = makeStyles({
     },
   },
 });
-const ICON_ANNOTATION = 'operate-first.cloud/logo-url';
 
 const CatalogCards = () => {
   const catalogApi = useApi(catalogApiRef);
