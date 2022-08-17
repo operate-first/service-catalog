@@ -31,7 +31,6 @@ import {
   EntityHasResourcesCard,
   EntityHasSubcomponentsCard,
   EntityHasSystemsCard,
-  EntityLayout,
   EntityLinksCard,
   EntitySwitch,
   EntityOrphanWarning,
@@ -94,7 +93,7 @@ import {
   isGrafanaAvailable
 } from '@k-phoen/backstage-plugin-grafana';
 import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
-
+import { EntityLayout } from '../entityLayout/EntityLayout'
 
 const EntityLayoutWrapper = (props: { children?: ReactNode }) => {
   const [badgesDialogOpen, setBadgesDialogOpen] = useState(false);
