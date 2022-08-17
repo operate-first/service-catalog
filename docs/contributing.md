@@ -23,11 +23,11 @@ Here are a few things you can do that will increase the likelihood of your pull 
 
 Work in Progress pull requests are also welcome to get feedback early on, or if there is something blocked you. Please open such pull requests as *Draft*.
 
-# Development setup
+## Development setup
 
 You can either run a development setup locally or in a k8s cluster.
 
-## Run locally
+### Run locally
 
 Before you begin please install and use the supported Node.js version (we support [NVM][6]), check `.nvmrc` for the appropriate version.
 
@@ -52,18 +52,18 @@ Configurations for the local setup are located in `app-config.local.yaml`.
     yarn dev
     ```
 
-4. A tab in your default browser should appear if not by default, the app will be available on http://localhost:3000.
+4. A tab in your default browser should open by default if not, the app will be available on http://localhost:3000.
 
 For local development with the kubernetes plugin, kubectl proxy is by default started on port `8001`, if you have something already running on this port make sure to add the `--port=<your_port>` option to the kubectl proxy command in `yarn dev` script.
 
-## Run in a Kubernetes cluster
+### Run in a Kubernetes cluster
 
 Configurations for the cluster dev setup are in `app-config.dev.yaml`.
 
 1. Update the image repository URL with your image repository:
 
     ```sh
-    cd manifests/overlays/dev && kustomize edit set image quay.io/operate-first/service-catalog=<your url>
+    cd manifests/overlays/dev && kustomize edit set image quay.io/operate-first/service-catalog=<your url> && cd -
     ```
 
 2. Deploy using
@@ -72,7 +72,7 @@ Configurations for the cluster dev setup are in `app-config.dev.yaml`.
     {oc,kubectl} apply -k manifests/overlays/dev
     ```
 
-## S2I image
+### S2I image
 
 This repository uses s2i to create images. To create image run script located in `packages/backend`:
 

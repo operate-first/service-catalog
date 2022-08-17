@@ -1,17 +1,23 @@
 # Configuring catalog entities
 
-Catalog entities are configurable through YAML definition files which can be found [here][1]. Documentation on configuring entities without using any plugins can be found in the [upstream documentation][2]. The sections below describe how to configure installed plugins for catalog entities.
+Catalog entities are configurable through YAML definition files located [here][1]. Basic entity declaration is thoroughly described in [upstream documentation][2]. Please be aware that this source is a bare declaration and omits plugin and extension capabilities specific to Operate First instance. Read the following sections to fully understand all the available plugins.
 
-When creating new entities this [ADR][16] should be followed.
+When creating new entities [ADR 0022][16] should be followed.
 
 ## TechDocs plugin
 
-TechDocs plugin handles the building and the publishing of your documentation. For this plugin an annotation is not enough to configure it. Firstly [create the necessary file structure](#mkdocs) for your documentation. A [GitHub workflow][10] is required to on the repository that hosts the documentation source files. For a guide on how to [setup this workflow](#using-techdocs-workflow-template) check the subsection below. After the workflow is setup an url reference to your documentation is required in the catalog entity definition file. This url will not be used a reference for the documentation builder but as a reference to the source files in the catalog so that users can find the source files. See the example for an annotation below.
+TechDocs plugin publishes documentation for an entity. We use an upstream recommended setup, where documentation is built and bundled asynchronously to the service catalog deployment. As a result the configuration of this plugin for a new entity has 3 steps:
 
-```yaml
-annotations:
-    backstage.io/techdocs-ref: url:https://github.com/operate-first/service-catalog/tree/main/docs
-```
+1. [Create the necessary file structure](#mkdocs) for your documentation.
+
+2. A [GitHub workflow][10] is required on the repository that hosts the documentation source files. For a guide on how to [setup this workflow](#using-techdocs-workflow-template) check the subsection below.
+
+3. Add an url reference to your entity definition. This url should point to the documentation source code and it is not used by the documentation builder but rather as a reference when user demands changes etc. See the example for an annotation below.
+
+  ```yaml
+  annotations:
+      backstage.io/techdocs-ref: url:https://github.com/operate-first/service-catalog/tree/main/docs
+  ```
 
 ### MkDocs
 
@@ -35,11 +41,11 @@ docs/
 mkdocs.yaml
 ```
 
-Depending on which setup you will chose the configuration of the workflow will be different.
+Depending on which setup you chose the configuration of the workflow is different.
 
 ### Using TechDocs workflow template
 
-A template can be found [here][9], after the template has been coppiced uncomment this part:
+A template can be found [here][9], after the template has been coppied uncomment this part:
 
 ```yaml
 on:
@@ -55,7 +61,7 @@ on:
 
 since it will allow the workflow to run on any changes made to the documentation.
 
-Next up define the steps for the workflow. Each step has to reference [this][11] action which is used to activate the build and publish process. A code snipped below explains how to use this action when your documentation is placed in the root of your directory:
+Next up define the steps for the workflow. Each step has to reference [this][11] action which is used to activate the build and publish process. A code snipped below explains how to use this action when your documentation is placed in the root of your repository:
 
 ```yaml
 - name: Send dispatch for service-catalog
@@ -94,14 +100,25 @@ If the documentation is not located in the root of the repository, a filter defi
 
 ## GitHub Insights/Security Insights
 
-For the insights plugins to work it is required to put `github.com/project-slug` annotation to your components definition. The value of this annotation is a GitHub project slug which consists of the organization/user and the repository name, see the example below.
+These GitHub specific plugins can display various GitHub content to the user. GitHub Insights renders a readme, contributors and such. Security Insights can display pending security advisories. Both plugins rely on a `github.com/project-slug` annotation presence in the entity definition.
 
 ```yaml
 annotations:
     github.com/project-slug: operate-first/service-catalog
 ```
 
-As long as the repository is public `GitHub Insights` will be shown, for one exception. If the repository is private and the GitHub account that is used for the login and has the permission for the repository, insights will be also shown. This applies to `Security Insights` too, if the GitHub account has the correct permissions to view the repository security insights, the plugin will show them.
+Both of these plugins (`GitHub Insights` and `Security Insights`) interface directly to GitHub on front-end. Therefore some information visibility is subjective to each user. In general following rules apply:
+
+GitHub Insights plugin:
+
+1. Repository is private
+  1. User has access to the repository -> Content is visible to the user
+  2. User doesn't have access to the repository -> Content is not visible to the user
+2. Repository is public -> Content is visible to any user
+
+Security Insights:
+
+1. User is granted permissions to view security advisories -> Security insights are visible to the user
 
 [Documentation reference for GitHub Insights][3]
 
@@ -109,7 +126,7 @@ As long as the repository is public `GitHub Insights` will be shown, for one exc
 
 ## ADR plugin
 
-ADR plugin requires an annotation to be present in your component definition. Right now the only value that is accepted by the annotation is a GitHub repository link to the folder which contains your ADRs, see the example below.
+ADR plugin renders all ADRs present for given entity. It is configured via an annotation on the entity definition. Right now the only valid value for the annotation is a GitHub repository link to the folder which contains your ADRs, see the example below.
 
 ```yaml
 annotations:
@@ -120,7 +137,7 @@ annotations:
 
 ## Grafana plugin
 
-The grafana plugin can display either links to dashboards or alerts on the overview page for a configured tag in the components annotations. For example:
+Grafana plugin can display links to Grafana dashboards and alerts on the overview page. It is configured via an annotation on entity declaration. This annotation describes which Grafana tag should be queried for dashboards and AlertManager tag for alerts.
 
 ```yaml
 annotations:
@@ -131,42 +148,44 @@ annotations:
 
 ## Kubernetes plugin
 
-The kubernetes plugin requires a label attached to the metadata of a deployment and then it requires a special annotation in the component definition file, for example:
+Kubernetes plugin allows you to see pod and deployment status for each entity. There are 2 possible ways available to map pods and deployments to Service Catalog entities:
 
-Deployment manifest:
+1. Specify a label selector for Kubernetes entities `backstage.io/kubernetes-label-selector`
 
-```yaml
-metadata:
-  labels:
+  Deployment manifest:
+
+  ```yaml
+  metadata:
+    labels:
+      app: my-app
+      component: front-end
+  ```
+
+  Component definition:
+
+  ```yaml
+  annotations:
+    backstage.io/kubernetes-label-selector: 'app=my-app,component=front-end'
+  ```
+
+2. Use `backstage.io/kubernetes-id` label on kubernetes entities and the same as an annotation on service catalog entity.
+
+  Deployment manifest:
+
+  ```yaml
+  metadata:
+    labels:
+      backstage.io/kubernetes-id: service-catalog
+  ```
+
+  Component definition:
+
+  ```yaml
+  annotations:
     backstage.io/kubernetes-id: service-catalog
-```
+  ```
 
-Component definition:
-
-```yaml
-annotations:
-  backstage.io/kubernetes-id: service-catalog
-```
-
-The plugin can also fetch Kubernetes resources using any Kubernetes labels:
-
-Deployment manifest:
-
-```yaml
-metadata:
-  labels:
-    app: my-app
-    component: front-end
-```
-
-Component definition:
-
-```yaml
-annotations:
-  backstage.io/kubernetes-label-selector: 'app=my-app,component=front-end'
-```
-
-We prefer to use just kuberntes labels and the `kubernetes-label-selector`.
+We prefer to use just plain kuberntes labels and the `kubernetes-label-selector`.
 
 [Documentation reference][7]
 

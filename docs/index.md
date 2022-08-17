@@ -1,18 +1,21 @@
 # Service Catalog
 
-This is the service catalog for the [operate-first][3] community cloud.
+This is the service catalog for the [Operate First Community Cloud][3].
 
 ## Architecture
 
-The service catalog is implemented using [backstage][4]. This instance of backstage is built using two basic packages, `app` and `backend`. The `app` packages serves as the frontend and `backend` package as the backend. These two applications then communicate with each other to create the service catalog.
+The service catalog is implemented using [Backstage][4]. There are 2 packages present in the repo:
+
+1. `app` package for front end
+2. `backend` package for back end
 
 ## Catalog items
 
-Backstage can utilize a separate location (for example a GitHub repository) for the catalog component definitions. More information on how to configure the entities can be found in the [configuring entities section](configuring-entities.md).
+Backstage can utilize a separate location (for example a GitHub repository) for the catalog entity definitions. More information on how to configure the entities can be found in the [configuring entities section](configuring-entities.md).
 
-Component definition files for this service catalog are located [here][1]. If you want to edit them, make a pull request in that repository.
+Entity definition files for this service catalog are located [here][1]. If you want to edit them, make a pull request in that repository.
 
-There is an `example` folder located that only contains catalog items dedicated to local development. Switching between local and remote sources can be configured in `app-config.local.yaml` in the `catalog.locations` key.
+For local development you can use an `example` folder that contains dummy catalog items. Switching between local and remote sources can be configured in `app-config.local.yaml` in the `catalog.locations` key.
 
 ## Permissions
 
