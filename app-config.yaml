@@ -47,6 +47,7 @@ backend:
   reading:
     allow:
       - host: 'argocd.operate-first.cloud'
+      - host: 'raw.githubusercontent.com'
 
 proxy:
   '/argocd/api':
