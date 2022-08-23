@@ -197,7 +197,6 @@ This plugin provides a set of badges that can be used in your repository `README
 
 [Documentation reference][8]
 
-
 [1]: https://github.com/operate-first/apps/tree/master/service-catalog
 [2]: https://backstage.io/docs/features/software-catalog/descriptor-format
 [3]: https://roadie.io/backstage/plugins/github-insights
