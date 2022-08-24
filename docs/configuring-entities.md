@@ -4,6 +4,20 @@ Catalog entities are configurable through YAML definition files located [here][1
 
 When creating new entities [ADR 0022][16] should be followed.
 
+## Featured entities
+
+Featured entities are automatically shown on the home page. To mark your entity as featured add a logo annotation and a featured annotation. See the examples bellow.
+
+```yaml
+annotations:
+    operate-first.cloud/featured: 'true'
+```
+
+```yaml
+annotations:
+    operate-first.cloud/logo-url: <img url>
+```
+
 ## TechDocs plugin
 
 TechDocs plugin publishes documentation for an entity. We use an upstream recommended setup, where documentation is built and bundled asynchronously to the service catalog deployment. As a result the configuration of this plugin for a new entity has 3 steps:

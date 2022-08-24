@@ -23,6 +23,10 @@ import useDebounce from 'react-use/lib/useDebounce';
 import { useApi } from '@backstage/core-plugin-api';
 import { Entity } from '@backstage/catalog-model';
 import Logo from '../Logo/Logo';
+import {
+  ICON_ANNOTATION,
+  FEATURED_ANNOTATION
+} from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   searchBar: {
@@ -73,7 +77,6 @@ const useCatalogStyles = makeStyles({
     },
   },
 });
-const ICON_ANNOTATION = 'operate-first.cloud/logo-url';
 
 const CatalogCards = () => {
   const catalogApi = useApi(catalogApiRef);
@@ -82,7 +85,12 @@ const CatalogCards = () => {
   const [{ loading, error }, refresh] = useAsyncFn(
     async () => {
       const response = await catalogApi.getEntities();
-      setEntities(response.items.filter(e => e.kind === 'Component'));
+      setEntities(response.items.filter(
+        e => (
+          e.metadata.annotations?.[ICON_ANNOTATION] &&
+          e.metadata.annotations?.[FEATURED_ANNOTATION] === 'true'
+        )
+      ));
     },
     [catalogApi],
     { loading: true },
