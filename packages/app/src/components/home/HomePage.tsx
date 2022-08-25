@@ -26,7 +26,7 @@ import Logo from '../Logo/Logo';
 import {
   ICON_ANNOTATION,
   FEATURED_ANNOTATION
-} from '../../../constants'
+} from '../../constants'
 
 const useStyles = makeStyles(theme => ({
   searchBar: {
