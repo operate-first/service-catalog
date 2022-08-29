@@ -12,7 +12,7 @@ spec:
         - "ReadWriteOnce"
         resources:
           requests:
-            storage: 1Gi
+            storage: 2Gi
       resources:
         limits:
           cpu: 300m
@@ -23,7 +23,7 @@ spec:
       image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.38-0
       global:
         # Save backups for 14 days, this means 2 full backups with 6 differential ones in between
-        repo1-retention-full: "14"
+        repo1-retention-full: "7"
         repo1-retention-full-type: count
       repoHost:
         resources:
@@ -44,7 +44,7 @@ spec:
             - "ReadWriteOnce"
             resources:
               requests:
-                storage: 1Gi
+                storage: 2Gi
   users:
     - name: service-catalog
       options: "SUPERUSER"
