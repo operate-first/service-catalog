@@ -46,7 +46,7 @@ mkdocs.yaml
 This default setup above is the most common use case when you have one documentation per one entity repository. However it is also posible to have multiple documentations for multiple entities in one repository. Each documented entity has to be contained in one directory. See the example below:
 
 ```
-service1/
+service2/
 ├── docs/
 │   └── index.md
 ├── mkdocs.yaml
