@@ -55,7 +55,56 @@ kubernetes:
           authProvider: 'serviceAccount'
           skipTLSVerify: false
           skipMetricsLookup: false
-          # The plugin will automatically use the auto mounted token
-          # serviceAccountToken: ${SERVICE_ACCOUNT_TOKEN}
+          serviceAccountToken: ${moc_smaug_token}
           dashboardUrl: https://console-openshift-console.apps.smaug.na.operate-first.cloud
+          dashboardApp: openshift
+    - type: 'config'
+      clusters:
+        - url: https://api.moc-infra.massopen.cloud:6443
+          name: infra
+          authProvider: 'serviceAccount'
+          skipTLSVerify: false
+          skipMetricsLookup: false
+          serviceAccountToken: ${moc_infra_token}
+          dashboardUrl: https://console-openshift-console.apps.moc-infra.massopen.cloud
+          dashboardApp: openshift
+    - type: 'config'
+      clusters:
+        - url: https://api.curator.massopen.cloud:6443
+          name: curator
+          authProvider: 'serviceAccount'
+          skipTLSVerify: false
+          skipMetricsLookup: false
+          serviceAccountToken: ${moc_curator_token}
+          dashboardUrl: https://console-openshift-console.apps.curator.massopen.cloud
+          dashboardApp: openshift
+    - type: 'config'
+      clusters:
+        - url: https://api.balrog.aws.operate-first.cloud:6443
+          name: balrog
+          authProvider: 'serviceAccount'
+          skipTLSVerify: false
+          skipMetricsLookup: false
+          serviceAccountToken: ${emea_balrog_token}
+          dashboardUrl: https://console-openshift-console.apps.balrog.aws.operate-first.cloud
+          dashboardApp: openshift
+    - type: 'config'
+      clusters:
+        - url: https://api.odh-cl1.apps.os-climate.org:6443
+          name: osc-cl1
+          authProvider: 'serviceAccount'
+          skipTLSVerify: false
+          skipMetricsLookup: false
+          serviceAccountToken: ${osc_osc-cl1_token}
+          dashboardUrl: https://console-openshift-console.apps.odh-cl1.apps.os-climate.org
+          dashboardApp: openshift
+    - type: 'config'
+      clusters:
+        - url: https://api.odh-cl2.apps.os-climate.org:6443
+          name: osc-cl2
+          authProvider: 'serviceAccount'
+          skipTLSVerify: false
+          skipMetricsLookup: false
+          serviceAccountToken: ${osc_osc-cl2_token}
+          dashboardUrl: https://console-openshift-console.apps.odh-cl2.apps.os-climate.org
           dashboardApp: openshift
