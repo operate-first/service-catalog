@@ -11,33 +11,34 @@ backend:
     credentials: true
   database:
     client: better-sqlite3
-    connection: ':memory:'
+    connection: ":memory:"
 
 catalog:
-  rules:
-    - allow:
-        - Component
-        - System
-        - Location
-        - User
-        - Group
   locations:
     - type: file
-      target: ../../examples/all.yaml
+      target: ../../${CATALOG_LOCAL_PATH}
     #  Uncomment to use defintions files from apps repo
     # - type: url
     #   target: https://github.com/operate-first/apps/blob/master/service-catalog/all.yaml
 
+auth:
+  environment: development
+  providers:
+    github:
+      development:
+        clientId: ${AUTH_GITHUB_CLIENT_ID}
+        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+
 kubernetes:
   serviceLocatorMethod:
-    type: 'multiTenant'
+    type: "multiTenant"
   clusterLocatorMethods:
-    - type: 'config'
+    - type: "config"
       clusters:
         # This is using kubectl proxy which is started in the yarn dev script
         - url: http://localhost:8001
           name: dev-cluster
-          authProvider: 'serviceAccount'
+          authProvider: "serviceAccount"
           skipTLSVerify: false
           skipMetricsLookup: false
           # If you are not signed in to your cluster, use a Service Account token

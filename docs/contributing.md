@@ -72,6 +72,10 @@ Configurations for the cluster dev setup are in `app-config.dev.yaml`.
     {oc,kubectl} apply -k manifests/overlays/dev
     ```
 
+### Local GitHub integration
+
+If you want to gain access to GitHub content in development setup, please create a GitHub OAuth application [as described here](https://roadie.io/blog/github-auth-backstage/) and update your `.env` file accordingly.
+
 ### S2I image
 
 This repository uses s2i to create images. To create image run script located in `packages/backend`:

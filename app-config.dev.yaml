@@ -21,15 +21,20 @@ backend:
   cors:
     origin: <url>
 
+catalog:
+  locations:
+    - type: url
+      target: https://github.com/operate-first/apps/blob/master/service-catalog/all.yaml
+
 kubernetes:
   serviceLocatorMethod:
-    type: 'multiTenant'
+    type: "multiTenant"
   clusterLocatorMethods:
-    - type: 'config'
+    - type: "config"
       clusters:
         - url: https://openshift.default.svc.cluster.local
           name: dev-cluster
-          authProvider: 'serviceAccount'
+          authProvider: "serviceAccount"
           skipTLSVerify: true
           skipMetricsLookup: false
           # Uncomment this if you want to use a different url other then the local one
