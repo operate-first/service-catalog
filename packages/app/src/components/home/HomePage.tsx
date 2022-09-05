@@ -120,14 +120,14 @@ const CatalogCards = () => {
                 e.metadata.annotations?.[ICON_ANNOTATION] ? (
                   <img
                     src={e.metadata.annotations[ICON_ANNOTATION]}
-                    alt={`${e.metadata.name} logo`}
+                    alt={`${e.metadata.title || e.metadata.name} logo`}
                   />
                 ) : (
                   <HelpIcon />
                 )
               }
               subheader={
-                <div className={classes.subheader}>{e.metadata.name}</div>
+                <div className={classes.subheader}>{e.metadata.title || e.metadata.name}</div>
               }
             >
               <Typography paragraph>{e.metadata.description}</Typography>
