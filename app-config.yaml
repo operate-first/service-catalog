@@ -15,7 +15,7 @@ app:
         icon: chat
         links:
           - url: https://join.slack.com/t/operatefirst/shared_invite/zt-o2gn4wn8-O39g7sthTAuPCvaCNRnLww
-            title: '#support'
+            title: "#support"
 
 organization:
   name: Operate First Cloud
@@ -32,8 +32,8 @@ backend:
   # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
   # Default Helmet Content-Security-Policy values can be removed by setting the key to false
   csp:
-    connect-src: ["'self'", 'http:', 'https:']
-    img-src: ["'self'", 'https:']
+    connect-src: ["'self'", "http:", "https:"]
+    img-src: ["'self'", "https:"]
   cors:
     origin: http://localhost:7007
     methods: [GET, POST, PUT, DELETE]
@@ -46,11 +46,11 @@ backend:
     # workingDirectory: /tmp
   reading:
     allow:
-      - host: 'argocd.operate-first.cloud'
-      - host: 'raw.githubusercontent.com'
+      - host: "argocd.operate-first.cloud"
+      - host: "raw.githubusercontent.com"
 
 proxy:
-  '/argocd/api':
+  "/argocd/api":
     # url to the api of your hosted argoCD instance
     target: https://argocd.operate-first.cloud/api/v1/
     changeOrigin: true
@@ -59,7 +59,7 @@ proxy:
     headers:
       Cookie:
         $env: ARGOCD_AUTH_TOKEN
-  '/grafana/api':
+  "/grafana/api":
     target: https://grafana.operate-first.cloud
     headers:
       Authorization: Bearer ${GRAFANA_TOKEN}
@@ -70,13 +70,14 @@ grafana:
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 techdocs:
-  builder: 'local'
+  builder: "local"
   generator:
-    runIn: 'local'
+    runIn: "local"
   publisher:
-    type: 'local'
+    type: "local"
 
 catalog:
+  readonly: true
   rules:
     - allow:
         - Component
@@ -87,17 +88,6 @@ catalog:
         - Domain
         - Api
         - Resource
-  locations:
-    - type: url
-      target: https://github.com/operate-first/apps/blob/master/service-catalog/all.yaml
 
 permission:
   enabled: true
-
-auth:
-  environment: development
-  providers:
-    github:
-      development:
-        clientId: ${AUTH_GITHUB_CLIENT_ID}
-        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}

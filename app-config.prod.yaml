@@ -22,11 +22,11 @@ backend:
     origin: https://service-catalog.operate-first.cloud
 
 techdocs:
-  builder: 'external'
+  builder: "external"
   generator:
-    runIn: 'local'
+    runIn: "local"
   publisher:
-    type: 'awsS3'
+    type: "awsS3"
     awsS3:
       bucketName: ${BUCKET_NAME}
       region: ${BUKCET_REGION}
@@ -44,15 +44,20 @@ auth:
         clientId: ${AUTH_GITHUB_CLIENT_ID}
         clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
 
+catalog:
+  locations:
+    - type: url
+      target: https://github.com/operate-first/apps/blob/master/service-catalog/all.yaml
+
 kubernetes:
   serviceLocatorMethod:
-    type: 'multiTenant'
+    type: "multiTenant"
   clusterLocatorMethods:
-    - type: 'config'
+    - type: "config"
       clusters:
         - url: https://api.smaug.na.operate-first.cloud:6443
           name: smaug
-          authProvider: 'serviceAccount'
+          authProvider: "serviceAccount"
           skipTLSVerify: false
           skipMetricsLookup: false
           serviceAccountToken: ${moc_smaug_token}
