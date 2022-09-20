@@ -36,6 +36,7 @@
     "@backstage/plugin-user-settings": "^0.4.8",
     "@backstage/theme": "^0.2.16",
     "@k-phoen/backstage-plugin-grafana": "^0.1.14",
+    "@internal/plugin-cluster-status-backend": "*",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
     "@roadiehq/backstage-plugin-argo-cd": "^2.1.9",

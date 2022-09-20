@@ -8,6 +8,7 @@ import {
   isTechDocsAvailable,
 } from '@backstage/plugin-techdocs';
 import OverviewWrapper from './shared/OverviewWrapper';
+import ClusterStatus from './ClusterStatus';
 
 const resource = (
   <LayoutWrapper>
@@ -16,7 +17,7 @@ const resource = (
         <Grid item xs={12}>
           <EntitySwitch>
             <EntitySwitch.Case if={isType('cluster')}>
-              <p>Cluster Overview Goes Here</p>
+              <ClusterStatus />
             </EntitySwitch.Case>
           </EntitySwitch>
         </Grid>
