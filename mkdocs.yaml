@@ -5,6 +5,7 @@ nav:
   - Configuring catalog entities: configuring-entities.md
   - Contributing and development setup: contributing.md
   - Kubernetes plugin configuration: k8s-plugin-configuration.md
+  - Cluster status backend plugin: cluster-status-plugin.md
 
 plugins:
   - techdocs-core
