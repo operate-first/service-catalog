@@ -8,16 +8,15 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Read S2I base image
-      id: s2ibase
-      uses: juliangruber/read-file-action@v1
-      with:
-        path: ./.s2ibase
+    - name: Install S2I
+      shell: bash
+      run: |
+        mkdir -p ~/.local/bin
+        curl \
+          https://api.github.com/repos/openshift/source-to-image/releases/latest | \
+          grep "browser_download_url.*linux-amd64" | cut -d '"' -f 4 | \
+          wget -qO - -i - | tar xzv -C ~/.local/bin
 
     - name: S2I Build
-      uses: redhat-actions/s2i-build@v2
-      with:
-        path_context: "."
-        builder_image: "${{ steps.s2ibase.outputs.content }}"
-        image: service-catalog
-        tags: "${{ inputs.tags }}"
+      shell: bash
+      run: ./packages/backend/build-image.sh "${{ inputs.tags }}"
