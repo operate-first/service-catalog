@@ -95,6 +95,14 @@ kubernetes:
           serviceAccountToken: ${osc_osc-cl2_token}
           dashboardUrl: https://console-openshift-console.apps.odh-cl2.apps.os-climate.org
           dashboardApp: openshift
+        - url: https://api.jerry.ionos.emea.operate-first.cloud:6443
+          name: jerry
+          authProvider: 'serviceAccount'
+          skipTLSVerify: false
+          skipMetricsLookup: false
+          serviceAccountToken: ${emea_jerry_token}
+          dashboardUrl: https://console-openshift-console.apps.jerry.ionos.emea.operate-first.cloud
+          dashboardApp: openshift
 
 clusterStatus:
   acmCluster: 'infra'
