@@ -4,6 +4,7 @@ nav:
   - Home: index.md
   - Configuring catalog entities: configuring-entities.md
   - Contributing and development setup: contributing.md
+  - Kubernetes plugin configuration: k8s-plugin-configuration.md
 
 plugins:
   - techdocs-core
