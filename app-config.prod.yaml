@@ -79,14 +79,6 @@ kubernetes:
           serviceAccountToken: ${moc_curator_token}
           dashboardUrl: https://console-openshift-console.apps.curator.massopen.cloud
           dashboardApp: openshift
-        - url: https://api.balrog.aws.operate-first.cloud:6443
-          name: balrog
-          authProvider: 'serviceAccount'
-          skipTLSVerify: false
-          skipMetricsLookup: false
-          serviceAccountToken: ${emea_balrog_token}
-          dashboardUrl: https://console-openshift-console.apps.balrog.aws.operate-first.cloud
-          dashboardApp: openshift
         - url: https://api.odh-cl1.apps.os-climate.org:6443
           name: osc-cl1
           authProvider: 'serviceAccount'
