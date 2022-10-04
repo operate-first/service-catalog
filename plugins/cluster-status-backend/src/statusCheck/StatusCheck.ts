@@ -118,8 +118,8 @@ export class StatusCheck {
 
   private checkClusterNames = (clusterName: string) => {
     const clusters = this.getClustersFromConfig();
-    if (clusters.some((value) => (
-      value.getString('name') !== clusterName
+    if (!clusters.some((value) => (
+      value.getString('name') === clusterName
     ))) {
       throw new Error(`${clusterName} cluster is not contained in the config file`);
     }
