@@ -36,6 +36,7 @@
     "@backstage/plugin-search-backend-module-pg": "^0.3.3",
     "@backstage/plugin-search-backend-node": "^0.6.1",
     "@backstage/plugin-techdocs-backend": "^1.1.1",
+    "@internal/plugin-cluster-status-backend": "*",
     "app": "link:../app",
     "dockerode": "^3.3.1",
     "express": "^4.17.1",
