@@ -4,6 +4,7 @@ import {
   EntityHasComponentsCard,
   EntityHasResourcesCard,
   EntityLayout,
+  EntitySwitch,
 } from '@backstage/plugin-catalog';
 import {
   Direction,
@@ -13,6 +14,8 @@ import { EntityHasApisCard } from '@backstage/plugin-api-docs';
 
 import LayoutWrapper from './shared/LayoutWrapper';
 import OverviewWrapper from './shared/OverviewWrapper';
+import { EntityKubernetesContent, isKubernetesAvailable } from '@backstage/plugin-kubernetes';
+import { EntityArgoCDOverviewCard, isArgocdAvailable } from '@roadiehq/backstage-plugin-argo-cd';
 
 const system = (
   <LayoutWrapper>
@@ -26,6 +29,13 @@ const system = (
             height={400}
           />
         </Grid>
+        <EntitySwitch>
+          <EntitySwitch.Case if={isArgocdAvailable}>
+            <Grid item xs={12}>
+              <EntityArgoCDOverviewCard />
+            </Grid>
+          </EntitySwitch.Case>
+        </EntitySwitch>
         <Grid item xs={12}>
           <EntityHasComponentsCard variant="gridItem" />
         </Grid>
@@ -36,6 +46,9 @@ const system = (
           <EntityHasResourcesCard variant="gridItem" />
         </Grid>
       </OverviewWrapper>
+    </EntityLayout.Route>
+    <EntityLayout.Route if={isKubernetesAvailable} path="/kubernetes" title="Openshift">
+      <EntityKubernetesContent refreshIntervalMs={30000} />
     </EntityLayout.Route>
   </LayoutWrapper>
 );

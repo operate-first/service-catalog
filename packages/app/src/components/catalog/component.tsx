@@ -36,6 +36,7 @@ import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
 import OverviewWrapper from './shared/OverviewWrapper';
 import { HorizontalScrollGrid, StatusOK } from '@backstage/core-components';
 import StatusCard from './shared/StatusCard';
+import { isType } from './shared/utils';
 
 const component = (
   <LayoutWrapper>
@@ -73,33 +74,37 @@ const component = (
                 No issues found
               </Typography>
             </StatusCard>
-            <div style={{ margin: 12, minWidth: 311, display: 'flex' }}>
-              <SecurityInsightsWidget />
-            </div>
-            <StatusCard
-              title="Deployment"
-              deepLink={{ title: 'View more', link: 'kubernetes' }}
-            >
-              <Typography variant="h1" component="div">
-                <StatusOK />
-              </Typography>
-              <Typography variant="subtitle2" component="div">
-                1 deployment ready, no errors
-              </Typography>
-            </StatusCard>
-            <StatusCard
-              title="Alerts"
-              deepLink={{ title: 'View more', link: 'kubernetes' }}
-            >
-              <Typography variant="h1" component="div">
-                0
-              </Typography>
-              <Typography variant="subtitle2" component="div">
-                No alerts firing
-              </Typography>
-            </StatusCard>
+            <EntitySwitch>
+              <EntitySwitch.Case if={isType(['service', 'operator'])}>
+                <StatusCard
+                  title="Deployment"
+                  deepLink={{ title: 'View more', link: 'kubernetes' }}
+                >
+                  <Typography variant="h1" component="div">
+                    <StatusOK />
+                  </Typography>
+                  <Typography variant="subtitle2" component="div">
+                    1 deployment ready, no errors
+                  </Typography>
+                </StatusCard>
+                <StatusCard
+                  title="Alerts"
+                  deepLink={{ title: 'View more', link: 'kubernetes' }}
+                >
+                  <Typography variant="h1" component="div">
+                    0
+                  </Typography>
+                  <Typography variant="subtitle2" component="div">
+                    No alerts firing
+                  </Typography>
+                </StatusCard>
+              </EntitySwitch.Case>
+            </EntitySwitch>
             <div style={{ margin: 12, minWidth: 400 }}>
               <DependabotAlertsWidget />
+            </div>
+            <div style={{ margin: 12, minWidth: 311, display: 'flex' }}>
+              <SecurityInsightsWidget />
             </div>
           </HorizontalScrollGrid>
         </Grid>
@@ -125,7 +130,7 @@ const component = (
       </Grid>
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/kubernetes" title="Openshift">
+    <EntityLayout.Route if={isType(['service', 'operator'])} path="/kubernetes" title="Openshift">
       <EntityKubernetesContent refreshIntervalMs={30000} />
     </EntityLayout.Route>
 
