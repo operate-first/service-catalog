@@ -17,8 +17,7 @@
 import React, { useContext, PropsWithChildren } from 'react';
 import { Link, makeStyles } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
-// import ExtensionIcon from '@material-ui/icons/Extension';
-// import MapIcon from '@material-ui/icons/MyLocation';
+import ExtensionIcon from '@material-ui/icons/Extension';
 import CategoryIcon from '@material-ui/icons/Category';
 import StorageIcon from '@material-ui/icons/Storage';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
@@ -88,14 +87,13 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       </SidebarGroup>
       <SidebarDivider />
       <SidebarGroup label="Menu" icon={<MenuIcon />}>
-        {/* Global nav, not org-specific */}
         <SidebarItem icon={HomeIcon} to="/" text="Home" />
         <SidebarItem icon={CategoryIcon} to="catalog" text="Catalog" />
         <SidebarItem icon={StorageIcon} to="clusterStatusPage" text="Clusters" />
-        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
-        {/* <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." /> */}
-        {/* End global nav */}
         <SidebarDivider />
+        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
+        <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
+        {/* <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." /> */}
       </SidebarGroup>
       <SidebarSpace />
       <SidebarDivider />
