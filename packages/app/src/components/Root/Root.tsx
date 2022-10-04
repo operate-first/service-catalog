@@ -21,6 +21,7 @@ import HomeIcon from '@material-ui/icons/Home';
 // import MapIcon from '@material-ui/icons/MyLocation';
 import CategoryIcon from '@material-ui/icons/Category';
 import StorageIcon from '@material-ui/icons/Storage';
+import LibraryBooks from '@material-ui/icons/LibraryBooks';
 // import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import Logo from '../Logo/Logo';
 import { NavLink } from 'react-router-dom';
@@ -89,9 +90,9 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       <SidebarGroup label="Menu" icon={<MenuIcon />}>
         {/* Global nav, not org-specific */}
         <SidebarItem icon={HomeIcon} to="/" text="Home" />
-        <SidebarItem icon={StorageIcon} to="clusterStatusPage" text="Clusters" />
         <SidebarItem icon={CategoryIcon} to="catalog" text="Catalog" />
-        {/* <SidebarItem icon={LibraryBooks} to="docs" text="Docs" /> */}
+        <SidebarItem icon={StorageIcon} to="clusterStatusPage" text="Clusters" />
+        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         {/* <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." /> */}
         {/* End global nav */}
         <SidebarDivider />
