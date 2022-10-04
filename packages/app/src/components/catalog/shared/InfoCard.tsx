@@ -138,7 +138,7 @@ export const InfoCard = () => {
         }}
         data={data}
         columns={[
-          { field: 'name', highlight: true, width: '30%' },
+          { field: 'name', highlight: true, width: '30%', cellStyle: { whiteSpace: 'nowrap'} },
           { field: 'value' },
         ]}
       />
