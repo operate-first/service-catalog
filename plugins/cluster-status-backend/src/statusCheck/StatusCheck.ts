@@ -100,7 +100,7 @@ export class StatusCheck {
   )
 
   private getClaim = (clusterClaims: any[], claimName: string): string => (
-    clusterClaims.find((value: any) => value.name === claimName).value
+    clusterClaims.find((value: any) => value.name === claimName)?.value
   )
 
   private getAcmClusterFromConfig = (): Config => {
