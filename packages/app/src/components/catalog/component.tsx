@@ -16,7 +16,6 @@ import {
   isGithubActionsAvailable,
   EntityGithubActionsContent,
 } from '@backstage/plugin-github-actions';
-import { EntityTechdocsContent } from '@backstage/plugin-techdocs';
 import {
   Direction,
   EntityCatalogGraphCard,
@@ -36,7 +35,7 @@ import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
 import OverviewWrapper from './shared/OverviewWrapper';
 import { HorizontalScrollGrid, StatusOK } from '@backstage/core-components';
 import StatusCard from './shared/StatusCard';
-import { isType } from './shared/utils';
+import { isType, techdocsContent } from './shared/utils';
 
 const component = (
   <LayoutWrapper>
@@ -143,7 +142,7 @@ const component = (
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">
-      <EntityTechdocsContent />
+      {techdocsContent}
     </EntityLayout.Route>
 
     <EntityLayout.Route if={isAdrAvailable} path="/adrs" title="ADRs">

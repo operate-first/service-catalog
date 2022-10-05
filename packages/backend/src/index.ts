@@ -34,6 +34,7 @@ import kubernetes from './plugins/kubernetes';
 import clusterStatus from './plugins/cluster-status';
 import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
+import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
@@ -47,6 +48,9 @@ function makeCreateEnv(config: Config) {
   const permissions = ServerPermissionClient.fromConfig(config, {
     discovery,
     tokenManager,
+  });
+  const identity = DefaultIdentityClient.create({
+    discovery,
   });
 
   root.info(`Created UrlReader ${reader}`);
@@ -66,6 +70,7 @@ function makeCreateEnv(config: Config) {
       tokenManager,
       scheduler,
       permissions,
+      identity
     };
   };
 }

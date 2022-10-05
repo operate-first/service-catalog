@@ -1,4 +1,3 @@
-import { IdentityClient } from '@backstage/plugin-auth-node';
 import { createRouter } from '@backstage/plugin-permission-backend';
 import {
   AuthorizeResult,
@@ -41,9 +40,6 @@ export default async function createPlugin(
     logger: env.logger,
     discovery: env.discovery,
     policy: new ReadOnlyPermissionPolicy(),
-    identity: IdentityClient.create({
-      discovery: env.discovery,
-      issuer: await env.discovery.getExternalBaseUrl('auth'),
-    }),
+    identity: env.identity,
   });
 }

@@ -2,9 +2,8 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import { EntityLayout, EntitySwitch } from '@backstage/plugin-catalog';
 import LayoutWrapper from './shared/LayoutWrapper';
-import { isType } from './shared/utils';
+import { isType, techdocsContent } from './shared/utils';
 import {
-  EntityTechdocsContent,
   isTechDocsAvailable,
 } from '@backstage/plugin-techdocs';
 import OverviewWrapper from './shared/OverviewWrapper';
@@ -24,7 +23,7 @@ const resource = (
     </EntityLayout.Route>
 
     <EntityLayout.Route if={isTechDocsAvailable} path="/docs" title="Docs">
-      <EntityTechdocsContent />
+      {techdocsContent}
     </EntityLayout.Route>
   </LayoutWrapper>
 );
