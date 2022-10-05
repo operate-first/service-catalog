@@ -1,8 +1,2 @@
 ---
 check: []
-build:
-  build-strategy: Source
-  base-image: registry.access.redhat.com/ubi9/nodejs-16-minimal:latest
-  registry: quay.io
-  registry-org: operate-first
-  registry-project: service-catalog
