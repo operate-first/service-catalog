@@ -14,6 +14,9 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/env/0/value
         value: development
+      - op: add
+        path: /spec/template/spec/serviceAccountName
+        value: service-catalog-k8s-plugin
     target:
       kind: Deployment
       name: service-catalog
