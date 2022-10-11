@@ -9,9 +9,32 @@ import {
   getEntityRelations,
   useEntity,
 } from '@backstage/plugin-catalog-react';
-import { Chip } from '@material-ui/core';
+import {
+  Avatar,
+  CardContent,
+  CardHeader,
+  Chip,
+  Divider,
+  makeStyles,
+} from '@material-ui/core';
+import { ICON_ANNOTATION } from '../../../constants'
+
+const useStyles = makeStyles(() => ({
+  avatar: {
+    width: '100%',
+    heigth: '100%'
+  },
+  table: {
+    padding: 0
+  },
+  header: {
+    paddingBottom: 10
+  }
+}));
 
 export const InfoCard = () => {
+  const classes = useStyles();
+
   const { entity } = useEntity();
 
   const ownedByRelations = getEntityRelations(entity, RELATION_OWNED_BY);
@@ -35,6 +58,7 @@ export const InfoCard = () => {
   const isLocation = entity.kind.toLocaleLowerCase('en-US') === 'location';
   const isGroup = entity.kind.toLocaleLowerCase('en-US') === 'group';
 
+  const logoUrl = entity.metadata.annotations?.[ICON_ANNOTATION]
   const data = [
     {
       name: 'Team',
@@ -127,21 +151,38 @@ export const InfoCard = () => {
     },
   ];
   return (
-    <Card title="Information" subheader={entity.metadata.description} noPadding>
-      <Table
-        options={{
-          search: false,
-          paging: false,
-          toolbar: false,
-          header: false,
-          padding: 'dense',
-        }}
-        data={data}
-        columns={[
-          { field: 'name', highlight: true, width: '30%', cellStyle: { whiteSpace: 'nowrap'} },
-          { field: 'value' },
-        ]}
+    <Card noPadding>
+      <CardHeader
+        title="Information"
+        subheader={entity.metadata.description}
+        avatar={
+          logoUrl &&
+          <Avatar className={classes.avatar}
+            variant="square"
+            alt={`${entity.metadata.name} logo`}
+            src={logoUrl}
+          />
+        }
+        titleTypographyProps={{ variant: 'h5' }}
+        className={classes.header}
       />
+      <CardContent className={classes.table} >
+        <Divider />
+        <Table
+          options={{
+            search: false,
+            paging: false,
+            toolbar: false,
+            header: false,
+            padding: 'dense',
+          }}
+          data={data}
+          columns={[
+            { field: 'name', highlight: true, width: '30%', cellStyle: { whiteSpace: 'nowrap' } },
+            { field: 'value' },
+          ]}
+        />
+      </CardContent>
     </Card>
   );
 };
