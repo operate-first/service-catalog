@@ -34,6 +34,7 @@ import kubernetes from './plugins/kubernetes';
 import clusterStatus from './plugins/cluster-status';
 import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
+import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
@@ -41,13 +42,18 @@ function makeCreateEnv(config: Config) {
   const reader = UrlReaders.default({ logger: root, config });
   const discovery = SingleHostDiscovery.fromConfig(config);
   const cacheManager = CacheManager.fromConfig(config);
-  const databaseManager = DatabaseManager.fromConfig(config);
+  const databaseManager = DatabaseManager.fromConfig(config, { logger: root });
   const tokenManager = ServerTokenManager.fromConfig(config, { logger: root });
   const taskScheduler = TaskScheduler.fromConfig(config);
+
+  const identity = DefaultIdentityClient.create({
+    discovery,
+  });
   const permissions = ServerPermissionClient.fromConfig(config, {
     discovery,
     tokenManager,
   });
+
 
   root.info(`Created UrlReader ${reader}`);
 
@@ -66,6 +72,7 @@ function makeCreateEnv(config: Config) {
       tokenManager,
       scheduler,
       permissions,
+      identity
     };
   };
 }
@@ -117,6 +124,6 @@ async function main() {
 
 module.hot?.accept();
 main().catch(error => {
-  console.error(`Backend failed to start up, ${error}`);
+  console.error('Backend failed to start up', error);
   process.exit(1);
 });
