@@ -8,7 +8,6 @@ import {
   CodeSnippet,
   StatusOK,
   StatusError,
-  StatusPending,
 } from '@backstage/core-components';
 import {
   CircularProgress,
@@ -28,7 +27,7 @@ import Logo from '../Logo/Logo';
 
 interface clusterEntity {
   status: boolean,
-  clusterEntity: Entity
+  entity: Entity
 }
 
 const useStyles = makeStyles(theme => ({
@@ -99,7 +98,7 @@ const CatalogClusters = () => {
         return {
           // !! --> converts object to boolean
           status: !!cluster?.status.available!,
-          clusterEntity: entity,
+          entity: entity,
         }
       }));
     },
@@ -122,23 +121,19 @@ const CatalogClusters = () => {
 
   return (
     <>
-      {clusterEntities.map(item => (
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={item.clusterEntity.metadata.name}>
-          <EntityRefLink entityRef={item.clusterEntity} className={classes.link}>
+      {clusterEntities.map(clusterEntity => (
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={clusterEntity.entity.metadata.name}>
+          <EntityRefLink entityRef={clusterEntity.entity} className={classes.link}>
             <InfoCard
               className={classes.root}
               title={
                 <div className={classes.subheader}>
-                  {
-                    item.status === true ? <StatusOK></StatusOK>
-                      : item.status === false ? <StatusError></StatusError>
-                        : <StatusPending></StatusPending>
-                  }
-                  {item.clusterEntity.metadata.title || item.clusterEntity.metadata.name}
+                  {clusterEntity.status === true ? <StatusOK /> : <StatusError />}
+                  {clusterEntity.entity.metadata.title || clusterEntity.entity.metadata.name}
                 </div>
               }
             >
-              <Typography paragraph>{item.clusterEntity.metadata.description}</Typography>
+              <Typography paragraph>{clusterEntity.entity.metadata.description}</Typography>
             </InfoCard>
           </EntityRefLink>
         </Grid>
