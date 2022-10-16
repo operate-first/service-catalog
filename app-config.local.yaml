@@ -49,3 +49,5 @@ kubernetes:
 
 clusterStatus:
   acmCluster: 'dev-cluster'
+
+searchInitialDelay: 5

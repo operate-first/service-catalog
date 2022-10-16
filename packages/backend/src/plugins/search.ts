@@ -26,9 +26,7 @@ export default async function createPlugin(
   const schedule = env.scheduler.createScheduledTaskRunner({
     frequency: { minutes: 10 },
     timeout: { minutes: 15 },
-    // A 3 second delay gives the backend server a chance to initialize before
-    // any collators are executed, which may attempt requests against the API.
-    initialDelay: { seconds: 30 },
+    initialDelay: { seconds: env.config.getNumber('searchInitialDelay') },
   });
 
   // Collators are responsible for gathering documents known to plugins. This

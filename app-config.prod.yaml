@@ -106,3 +106,5 @@ kubernetes:
 
 clusterStatus:
   acmCluster: 'infra'
+
+searchInitialDelay: 30
