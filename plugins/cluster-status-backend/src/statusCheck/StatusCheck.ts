@@ -71,14 +71,14 @@ export class StatusCheck {
       platform: this.getClaim(clusterClaims, 'platform.open-cluster-management.io'),
       region: this.getClaim(clusterClaims, 'region.open-cluster-management.io'),
       allocatableResources: {
-        cpuCores: allocatable.cpu,
+        cpuCores: this.convertToCpus(allocatable.cpu),
         memorySize: allocatable.memory,
-        numberOfPods: allocatable.pods,
+        numberOfPods: parseInt(allocatable.pods, 10),
       },
       availableResources: {
-        cpuCores: capacity.cpu,
+        cpuCores: this.convertToCpus(capacity.cpu),
         memorySize: capacity.memory,
-        numberOfPods: capacity.pods,
+        numberOfPods: parseInt(capacity.pods, 10),
       }
     }
 
@@ -86,6 +86,13 @@ export class StatusCheck {
       ...defaultStatus,
       ...parsedClusterInfo,
     }
+  }
+
+  private convertToCpus = (cpus: string): number => {
+    if (cpus.slice(-1) === 'm') {
+      return parseInt(cpus.slice(0, cpus.length - 1), 10) / 1000
+    }
+    return parseInt(cpus, 10)
   }
 
   private getManagedClusterViaApi = (clusterName: string): Promise<any> => (
