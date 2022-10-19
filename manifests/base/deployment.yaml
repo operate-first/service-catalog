@@ -63,6 +63,18 @@ spec:
               cpu: 300m
             requests:
               cpu: 200m
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 7007
+            failureThreshold: 1
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: 7007
+            failureThreshold: 30
+            periodSeconds: 10
       volumes:
         - name: ca-cert
           secret:

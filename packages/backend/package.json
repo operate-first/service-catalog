@@ -41,8 +41,10 @@
     "app": "link:../app",
     "dockerode": "^3.3.1",
     "express": "^4.17.1",
+    "express-prom-bundle": "^6.5.0",
     "express-promise-router": "^4.1.0",
     "pg": "^8.3.0",
+    "prom-client": "^14.1.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
