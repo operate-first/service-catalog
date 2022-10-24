@@ -30,7 +30,6 @@ import { AlertDisplay, OAuthRequestDialog } from '@backstage/core-components';
 import { createApp } from '@backstage/app-defaults';
 import { FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
-import { PermissionedRoute } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 import { HomepageCompositionRoot } from '@backstage/plugin-home';
 import { HomePage } from './components/home/HomePage';
@@ -38,6 +37,7 @@ import { ClusterStatusPage } from './components/clusterStatusPage/ClusterStatusP
 
 import { badgesPlugin } from '@backstage/plugin-badges'
 import { grafanaPlugin } from '@k-phoen/backstage-plugin-grafana';
+import { RequirePermission } from '@backstage/plugin-permission-react';
 
 const app = createApp({
   apis,
@@ -67,9 +67,7 @@ const routes = (
     <Route path="/" element={<HomepageCompositionRoot />}>
       <HomePage />
     </Route>
-    <Route path="/clusterStatusPage">
-      <ClusterStatusPage />
-    </Route>
+    <Route path="/clusterStatusPage" element={<ClusterStatusPage />}/>
     <Route path="/catalog" element={<CatalogIndexPage />} />
     <Route
       path="/catalog/:namespace/:kind/:name"
@@ -88,10 +86,13 @@ const routes = (
     </Route>
     <Route path="/create" element={<ScaffolderPage />} />
     <Route path="/api-docs" element={<ApiExplorerPage />} />
-    <PermissionedRoute
+    <Route
       path="/catalog-import"
-      permission={catalogEntityCreatePermission}
-      element={<CatalogImportPage />}
+      element={
+        <RequirePermission permission={catalogEntityCreatePermission}>
+          <CatalogImportPage />
+        </RequirePermission>
+      }
     />
     <Route path="/search" element={<SearchPage />}>
       {searchPage}

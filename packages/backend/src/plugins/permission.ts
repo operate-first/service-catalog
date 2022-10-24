@@ -25,7 +25,7 @@ class ReadOnlyPermissionPolicy implements PermissionPolicy {
     if (isPermission(request.permission, catalogEntityDeletePermission)) {
       return createCatalogConditionalDecision(
         request.permission,
-        catalogConditions.hasAnnotation('backstage.io/orphan'),
+        catalogConditions.hasAnnotation({ annotation: 'backstage.io/orphan' }),
       );
     }
     return { result: AuthorizeResult.DENY };
