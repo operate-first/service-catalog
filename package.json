@@ -15,8 +15,8 @@
     "tsc:full": "tsc --skipLibCheck false --incremental false",
     "clean": "backstage-cli repo clean",
     "diff": "lerna run diff --",
-    "test": "backstage-cli test",
-    "test:all": "lerna run test -- --coverage",
+    "test": "backstage-cli repo test",
+    "test:all": "backstage-cli repo test --coverage",
     "lint": "backstage-cli repo lint --since origin/master",
     "lint:all": "backstage-cli repo lint",
     "prettier:check": "prettier --check .",
@@ -30,7 +30,7 @@
     ]
   },
   "devDependencies": {
-    "@backstage/cli": "^0.19.0",
+    "@backstage/cli": "^0.20.0",
     "@spotify/prettier-config": "^12.0.0",
     "concurrently": "^6.0.0",
     "lerna": "^4.0.0",
