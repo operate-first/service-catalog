@@ -1,4 +1,4 @@
-import { createRouter } from '@internal/plugin-cluster-status-backend';
+import { createRouter } from '@internal/backstage-plugin-rhacm-backend';
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
 
