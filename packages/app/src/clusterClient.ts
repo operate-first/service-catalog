@@ -1,5 +1,5 @@
 import { ConfigApi } from "@backstage/core-plugin-api";
-import { ClusterDetails } from "@internal/backstage-plugin-rhacm-backend";
+import { ClusterDetails } from "@internal/backstage-plugin-rhacm-common";
 
 
 const clusterApiFetchCall = (
