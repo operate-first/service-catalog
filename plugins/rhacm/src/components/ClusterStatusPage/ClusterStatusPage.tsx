@@ -21,9 +21,8 @@ import useAsyncFn from 'react-use/lib/useAsyncFn';
 import useDebounce from 'react-use/lib/useDebounce';
 import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { Entity } from '@backstage/catalog-model';
-import { getClusters } from '../../clusterClient';
+import { getClusters } from '../../helpers/apiClient';
 import { HomePageCompanyLogo } from '@backstage/plugin-home';
-import Logo from '../Logo/Logo';
 
 interface clusterEntity {
   status: boolean,
@@ -33,10 +32,10 @@ interface clusterEntity {
 const useStyles = makeStyles(theme => ({
   container: {
     margin: theme.spacing(5, 0),
-  },
-  svg: {
-    width: 'auto',
-    height: 150,
+    "& > svg": {
+      width: 'auto',
+      height: 150,
+    },
   },
   typography: {
     display: 'flex',
@@ -96,7 +95,6 @@ const CatalogClusters = () => {
           cd.name === entity.metadata.name
         ))
         return {
-          // !! --> converts object to boolean
           status: !!cluster?.status.available!,
           entity: entity,
         }
@@ -142,8 +140,8 @@ const CatalogClusters = () => {
   );
 };
 
-export const ClusterStatusPage = () => {
-  const { svg, container, typography } = useStyles();
+export const ClusterStatusPage = ({ logo } : { logo?: React.ReactNode}) => {
+  const { container, typography } = useStyles();
 
   return (
     <SearchContextProvider>
@@ -152,7 +150,7 @@ export const ClusterStatusPage = () => {
           <Grid container justifyContent="center" spacing={6}>
             <HomePageCompanyLogo
               className={container}
-              logo={<Logo classes={{ svg }} />}
+              logo={logo}
             />
             <Grid container item xs={12} alignItems="center" direction="row">
               <Typography
