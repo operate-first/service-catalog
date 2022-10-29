@@ -1,5 +1,5 @@
 {
-  "name": "@internal/plugin-cluster-status-backend",
+  "name": "@internal/backstage-plugin-rhacm-backend",
   "version": "0.1.0",
   "main": "src/index.ts",
   "types": "src/index.ts",

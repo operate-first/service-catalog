@@ -10,7 +10,7 @@ import { configApiRef, useApi } from "@backstage/core-plugin-api";
 import { useEntity } from "@backstage/plugin-catalog-react";
 import useAsyncFn from 'react-use/lib/useAsyncFn';
 import useDebounce from "react-use/lib/useDebounce";
-import { ClusterDetails } from "@internal/plugin-cluster-status-backend";
+import { ClusterDetails } from "@internal/backstage-plugin-rhacm-backend";
 import {
   InfoCard,
   Link,
