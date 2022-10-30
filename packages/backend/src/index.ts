@@ -33,7 +33,7 @@ import search from './plugins/search';
 import permission from './plugins/permission';
 import badges from './plugins/badges';
 import kubernetes from './plugins/kubernetes';
-import clusterStatus from './plugins/cluster-status';
+import rhacm from './plugins/rhacm';
 import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
@@ -98,7 +98,7 @@ async function main() {
   const permissionEnv = useHotMemoize(module, () => createEnv('permission'));
   const badgesEnv = useHotMemoize(module, () => createEnv('badges'));
   const kubernetesEnv = useHotMemoize(module, () => createEnv('kubernetes'));
-  const clusterStatusEnv = useHotMemoize(module, () => createEnv('cluster-status'));
+  const rhacmEnv = useHotMemoize(module, () => createEnv('rhacm'));
 
   const apiRouter = Router();
   apiRouter.use('/catalog', await catalog(catalogEnv));
@@ -110,7 +110,7 @@ async function main() {
   apiRouter.use('/permission', await permission(permissionEnv));
   apiRouter.use('/badges', await badges(badgesEnv));
   apiRouter.use('/kubernetes', await kubernetes(kubernetesEnv));
-  apiRouter.use('/cluster-status', await clusterStatus(clusterStatusEnv));
+  apiRouter.use('/rhacm', await rhacm(rhacmEnv));
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());

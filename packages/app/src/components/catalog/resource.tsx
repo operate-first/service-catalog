@@ -9,12 +9,12 @@ import {
 } from '@backstage/plugin-techdocs';
 import OverviewWrapper from './shared/OverviewWrapper';
 import {
-  ClusterAllocatableResourceTable,
-  ClusterAvaliableResourceTable,
+  ClusterAllocatableResourceCard,
+  ClusterAvailableResourceCard,
+  ClusterInfoCard,
   ClusterContextProvider,
-  ClusterInfoTable,
-  ClusterStatusCard,
-} from './shared/ClusterStatus';
+  ClusterStatusCard
+} from '@internal/backstage-plugin-rhacm';
 
 const resource = (
   <LayoutWrapper>
@@ -30,14 +30,14 @@ const resource = (
                       <ClusterStatusCard />
                     </Grid>
                     <Grid item>
-                      <ClusterAllocatableResourceTable />
+                      <ClusterAllocatableResourceCard />
                     </Grid>
                     <Grid item>
-                      <ClusterAvaliableResourceTable />
+                      <ClusterAvailableResourceCard />
                     </Grid>
                   </Grid>
                   <Grid item xs>
-                    <ClusterInfoTable />
+                    <ClusterInfoCard />
                   </Grid>
                 </Grid>
               </ClusterContextProvider>
