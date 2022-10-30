@@ -22,7 +22,7 @@ const resource = (
       <OverviewWrapper>
         <Grid item xs={12}>
           <EntitySwitch>
-            <EntitySwitch.Case if={isType('cluster')}>
+            <EntitySwitch.Case if={isType('kubernetes-cluster')}>
               <ClusterContextProvider>
                 <Grid container>
                   <Grid container item direction="column" xs={3}>
