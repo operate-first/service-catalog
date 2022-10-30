@@ -104,7 +104,7 @@ kubernetes:
           dashboardUrl: https://console-openshift-console.apps.jerry.ionos.emea.operate-first.cloud
           dashboardApp: openshift
 
-clusterStatus:
-  acmCluster: 'infra'
+rhacm:
+  hub: 'infra'
 
 searchInitialDelay: 30
