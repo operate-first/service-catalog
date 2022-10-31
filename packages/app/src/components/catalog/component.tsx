@@ -38,6 +38,8 @@ import { HorizontalScrollGrid, StatusOK } from '@backstage/core-components';
 import StatusCard from './shared/StatusCard';
 import { isType } from './shared/utils';
 
+import DeploymentStatusCard from '../DeploymentStatusCard/DeploymentStatusCard';
+
 const component = (
   <LayoutWrapper>
     <EntityLayout.Route path="/" title="Overview">
@@ -76,17 +78,7 @@ const component = (
             </StatusCard>
             <EntitySwitch>
               <EntitySwitch.Case if={isType(['service', 'operator'])}>
-                <StatusCard
-                  title="Deployment"
-                  deepLink={{ title: 'View more', link: 'kubernetes' }}
-                >
-                  <Typography variant="h1" component="div">
-                    <StatusOK />
-                  </Typography>
-                  <Typography variant="subtitle2" component="div">
-                    1 deployment ready, no errors
-                  </Typography>
-                </StatusCard>
+                <DeploymentStatusCard />
                 <StatusCard
                   title="Alerts"
                   deepLink={{ title: 'View more', link: 'kubernetes' }}
