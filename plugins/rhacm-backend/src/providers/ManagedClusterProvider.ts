@@ -32,7 +32,7 @@ import { getClaim } from '../helpers/parser';
 import { getHubClusterName } from '../helpers/config';
 
 /**
- * Provides entities from AWS EKS Cluster service.
+ * Provides OpenShift cluster resource entities from RHACM.
  */
 export class ManagedClusterProvider implements EntityProvider {
   protected readonly client: CustomObjectsApi;
