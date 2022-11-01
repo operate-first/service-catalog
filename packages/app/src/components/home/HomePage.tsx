@@ -17,16 +17,17 @@ import {
   Typography,
 } from '@material-ui/core';
 
-import { catalogApiRef, EntityRefLink } from '@backstage/plugin-catalog-react';
+import {
+  catalogApiRef,
+  CATALOG_FILTER_EXISTS,
+  EntityRefLink,
+} from '@backstage/plugin-catalog-react';
 import useAsyncFn from 'react-use/lib/useAsyncFn';
 import useDebounce from 'react-use/lib/useDebounce';
 import { useApi } from '@backstage/core-plugin-api';
 import { Entity } from '@backstage/catalog-model';
 import Logo from '../Logo/Logo';
-import {
-  ICON_ANNOTATION,
-  FEATURED_ANNOTATION
-} from '../../constants'
+import { ICON_ANNOTATION, FEATURED_ANNOTATION } from '../../constants';
 
 const useStyles = makeStyles(theme => ({
   searchBar: {
@@ -84,13 +85,13 @@ const CatalogCards = () => {
   const [entities, setEntities] = useState<Entity[]>([]);
   const [{ loading, error }, refresh] = useAsyncFn(
     async () => {
-      const response = await catalogApi.getEntities();
-      setEntities(response.items.filter(
-        e => (
-          e.metadata.annotations?.[ICON_ANNOTATION] &&
-          e.metadata.annotations?.[FEATURED_ANNOTATION] === 'true'
-        )
-      ));
+      const response = await catalogApi.getEntities({
+        filter: {
+          [`metadata.annotations.${ICON_ANNOTATION}`]: CATALOG_FILTER_EXISTS,
+          [`metadata.annotations.${FEATURED_ANNOTATION}`]: 'true',
+        },
+      });
+      setEntities(response.items);
     },
     [catalogApi],
     { loading: true },
