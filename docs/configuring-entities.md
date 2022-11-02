@@ -109,7 +109,35 @@ If the documentation is not located in the root of the repository, a filter defi
     token: ${{ secrets.SESHETA_TOKEN }}
 ```
 
-<!--Mermaid diagram showing techdocs architecture somewhere here -->
+### Our techdocs architecture explained
+
+The diagram bellow explains the techdocs architecture we have setup for our service-catalog. `GitHub Backstage entity repo` is a GitHub repository, which contains the documentation source for an entity or more entities. A GitHub action in this repository sends a `GitHub dispatch event` to another GitHub repository (`operate-first/service-catalog`) to build its documentation to backstage via a GitHub workflow. The built docs are published to an `S3 bucket`. Whenever the documentation is requested, backstage fetches it from the `S3 bucket` into `backstage`.
+
+A more detailed explanation can be found in the [upstream documentation](https://backstage.io/docs/features/techdocs/architecture#recommended-deployment).
+
+```kroki-mermaid
+sequenceDiagram
+  participant BS as Backstage
+  participant GBER as GitHub Backstage entity repo
+  participant SCGA as Service Catalog GitHub action
+  participant S3 as S3 Bucket
+
+  GBER->>+SCGA: GitHub actions dispatch event
+  Note over GBER,SCGA: Inform GitHub action to build and publish docs
+  SCGA->>-S3: Publish
+  S3->>BS: Fetch built docs
+  Note over S3,BS: Whenever the documentation is requested
+```
+
+### Mermaid diagram support
+
+In order to support mermaid diagrams in your documentation the `kroki` plugin has to be added to your `mkdocs.yaml` file. See the example bellow.
+
+```yaml
+plugins:
+  - kroki
+```
+
 [Documentation reference][13]
 
 ## GitHub Insights/Security Insights
