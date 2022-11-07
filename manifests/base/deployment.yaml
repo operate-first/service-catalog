@@ -64,19 +64,19 @@ spec:
             requests:
               cpu: 200m
           livenessProbe:
-            exec:
-              command:
-                - curl
-                - http://localhost:7007/healthz
+            httpGet:
+              path: /healthz
+              port: 7007
             failureThreshold: 1
             periodSeconds: 10
+            timeoutSeconds: 5
           startupProbe:
-            exec:
-              command:
-                - curl
-                - http://localhost:7007/healthz
+            httpGet:
+              path: /healthz
+              port: 7007
             failureThreshold: 30
             periodSeconds: 10
+            timeoutSeconds: 5
       volumes:
         - name: ca-cert
           secret:
