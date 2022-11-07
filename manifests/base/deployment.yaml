@@ -64,15 +64,17 @@ spec:
             requests:
               cpu: 200m
           livenessProbe:
-            httpGet:
-              path: /healthz
-              port: 7007
+            exec:
+              command:
+                - curl
+                - http://localhost:7007/healthz
             failureThreshold: 1
             periodSeconds: 10
           startupProbe:
-            httpGet:
-              path: /healthz
-              port: 7007
+            exec:
+              command:
+                - curl
+                - http://localhost:7007/healthz
             failureThreshold: 30
             periodSeconds: 10
       volumes:
