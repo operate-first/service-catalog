@@ -4,8 +4,6 @@ namespace: service-catalog
 resources:
   - ../../base
   - obc.yaml
-generators:
-  - secret-generator.yaml
 patches:
   - patch: |
       - op: add
