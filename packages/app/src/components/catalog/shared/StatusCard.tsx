@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { BottomLinkProps, ErrorBoundaryProps, InfoCard, InfoCardVariants } from '@backstage/core-components';
+import {
+  BottomLinkProps,
+  ErrorBoundaryProps,
+  InfoCard,
+  InfoCardVariants,
+} from '@backstage/core-components';
 import { makeStyles } from '@material-ui/core/styles';
 import { CardHeaderProps } from '@material-ui/core';
 
@@ -41,7 +46,7 @@ const useStyles = makeStyles(
   { name: 'StatusCard' },
 );
 
-const StatusCard = ({ children, ...props }: StatusCardProps ) => {
+const StatusCard = ({ children, ...props }: StatusCardProps) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>

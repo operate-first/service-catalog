@@ -13,10 +13,13 @@ const LinkTiles = () => {
 
   return (
     <HorizontalScrollGrid>
-      { entity.metadata.links.map(l => <Grid item><LinkTile {...l}/></Grid>) }
+      {entity.metadata.links.map(l => (
+        <Grid item>
+          <LinkTile {...l} />
+        </Grid>
+      ))}
     </HorizontalScrollGrid>
-  )
-
-}
+  );
+};
 
 export default LinkTiles;

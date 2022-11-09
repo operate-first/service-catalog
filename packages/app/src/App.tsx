@@ -28,10 +28,10 @@ import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { HomepageCompositionRoot } from '@backstage/plugin-home';
 import { HomePage } from './components/home/HomePage';
 
-import { badgesPlugin } from '@backstage/plugin-badges'
+import { badgesPlugin } from '@backstage/plugin-badges';
 import { grafanaPlugin } from '@k-phoen/backstage-plugin-grafana';
 import { RhacmPage } from '@internal/backstage-plugin-rhacm';
-import {Logo} from './components/Logo/Logo';
+import { Logo } from './components/Logo/Logo';
 
 const app = createApp({
   apis,
@@ -76,7 +76,7 @@ const routes = (
     </Route>
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
-    <Route path="/rhacm" element={<RhacmPage logo={<Logo />}/>} />
+    <Route path="/rhacm" element={<RhacmPage logo={<Logo />} />} />
   </FlatRoutes>
 );
 

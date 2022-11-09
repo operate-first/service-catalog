@@ -128,7 +128,9 @@ const CatalogCards = () => {
                 )
               }
               subheader={
-                <div className={classes.subheader}>{e.metadata.title || e.metadata.name}</div>
+                <div className={classes.subheader}>
+                  {e.metadata.title || e.metadata.name}
+                </div>
               }
             >
               <Typography paragraph>{e.metadata.description}</Typography>

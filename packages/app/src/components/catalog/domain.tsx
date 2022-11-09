@@ -1,6 +1,10 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import { EntityHasSystemsCard, EntityLayout, EntitySwitch } from '@backstage/plugin-catalog';
+import {
+  EntityHasSystemsCard,
+  EntityLayout,
+  EntitySwitch,
+} from '@backstage/plugin-catalog';
 import LayoutWrapper from './shared/LayoutWrapper';
 import {
   Direction,

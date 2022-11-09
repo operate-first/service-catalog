@@ -62,4 +62,4 @@ export const entityPage = (
   </EntitySwitch>
 );
 
-export default entityPage
+export default entityPage;
