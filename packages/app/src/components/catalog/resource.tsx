@@ -1,8 +1,8 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { EntityLayout, EntitySwitch } from '@backstage/plugin-catalog';
 import LayoutWrapper from './shared/LayoutWrapper';
-import { isType } from './shared/utils';
+import { hasLinks, isType } from './shared/utils';
 import {
   EntityTechdocsContent,
   isTechDocsAvailable,
@@ -15,6 +15,7 @@ import {
   ClusterContextProvider,
   ClusterStatusCard
 } from '@internal/backstage-plugin-rhacm';
+import LinkTiles from '../LinkTiles/LinkTiles';
 
 const resource = (
   <LayoutWrapper>
@@ -44,6 +45,21 @@ const resource = (
             </EntitySwitch.Case>
           </EntitySwitch>
         </Grid>
+        <EntitySwitch>
+          <EntitySwitch.Case if={hasLinks}>
+            <Grid item xs={12}>
+              <Typography variant="h4" component="h2">
+                Quick actions
+              </Typography>
+              <Typography variant="body1">
+                Self service, quick access and links to learn more about this resource
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <LinkTiles />
+            </Grid>
+          </EntitySwitch.Case>
+        </EntitySwitch>
       </OverviewWrapper>
     </EntityLayout.Route>
 
