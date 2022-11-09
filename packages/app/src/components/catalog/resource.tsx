@@ -13,7 +13,7 @@ import {
   ClusterAvailableResourceCard,
   ClusterInfoCard,
   ClusterContextProvider,
-  ClusterStatusCard
+  ClusterStatusCard,
 } from '@internal/backstage-plugin-rhacm';
 import LinkTiles from '../LinkTiles/LinkTiles';
 
@@ -52,7 +52,8 @@ const resource = (
                 Quick actions
               </Typography>
               <Typography variant="body1">
-                Self service, quick access and links to learn more about this resource
+                Self service, quick access and links to learn more about this
+                resource
               </Typography>
             </Grid>
             <Grid item xs={12}>

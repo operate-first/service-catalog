@@ -108,7 +108,8 @@ const component = (
                 Quick actions
               </Typography>
               <Typography variant="body1">
-                Self service, quick access and links to learn more about this component
+                Self service, quick access and links to learn more about this
+                component
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -138,7 +139,11 @@ const component = (
       </Grid>
     </EntityLayout.Route>
 
-    <EntityLayout.Route if={isType(['service', 'operator'])} path="/kubernetes" title="Openshift">
+    <EntityLayout.Route
+      if={isType(['service', 'operator'])}
+      path="/kubernetes"
+      title="Openshift"
+    >
       <EntityKubernetesContent refreshIntervalMs={30000} />
     </EntityLayout.Route>
 

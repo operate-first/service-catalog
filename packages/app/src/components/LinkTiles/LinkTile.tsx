@@ -25,12 +25,12 @@ const useStyles = makeStyles((theme: BackstageTheme) =>
     link: {
       '&:hover': {
         textDecoration: 'none',
-      }
-    }
+      },
+    },
   }),
 );
 
-const LinkTile = ({url, title, icon }: EntityLink) => {
+const LinkTile = ({ url, title, icon }: EntityLink) => {
   const classes = useStyles();
   const app = useApp();
 
@@ -38,19 +38,13 @@ const LinkTile = ({url, title, icon }: EntityLink) => {
 
   return (
     <Link to={url} variant="body2" className={classes.link}>
-      <Box
-        className={classes.card}
-        display="flex"
-        alignItems="center"
-      >
+      <Box className={classes.card} display="flex" alignItems="center">
         <Icon />
-        <Typography variant="h6">
-          {title}
-        </Typography>
+        <Typography variant="h6">{title}</Typography>
         <ArrowRightIcon />
       </Box>
     </Link>
-  )
-}
+  );
+};
 
 export default LinkTile;

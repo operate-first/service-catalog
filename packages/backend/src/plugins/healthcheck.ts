@@ -24,10 +24,11 @@ export default async function createPlugin(
   return await createStatusCheckRouter({
     logger: env.logger,
     path: '/healthz',
-    statusCheck: async () => Promise.all([
-      // Check connection to db
-      (await env.database.getClient()).select(1),
-      // Additional checks can ho here
-    ]).then(() => Promise.resolve('ok'))
+    statusCheck: async () =>
+      Promise.all([
+        // Check connection to db
+        (await env.database.getClient()).select(1),
+        // Additional checks can ho here
+      ]).then(() => Promise.resolve('ok')),
   });
 }

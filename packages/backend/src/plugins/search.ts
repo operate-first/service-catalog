@@ -8,7 +8,7 @@ import { PluginEnvironment } from '../types';
 import { DefaultCatalogCollatorFactory } from '@backstage/plugin-catalog-backend';
 import { DefaultTechDocsCollatorFactory } from '@backstage/plugin-techdocs-backend';
 import { Router } from 'express';
-import { PgSearchEngine } from '@backstage/plugin-search-backend-module-pg'
+import { PgSearchEngine } from '@backstage/plugin-search-backend-module-pg';
 
 export default async function createPlugin(
   env: PluginEnvironment,

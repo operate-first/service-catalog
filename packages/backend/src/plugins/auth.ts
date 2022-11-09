@@ -25,7 +25,7 @@ export default async function createPlugin(
         // Authenticate everyone as a guest
         signIn: {
           resolver: async (_, ctx) => {
-            const userRef = 'user:default/guest'
+            const userRef = 'user:default/guest';
             return ctx.issueToken({
               claims: {
                 sub: userRef,

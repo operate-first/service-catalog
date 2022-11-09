@@ -67,9 +67,7 @@ const DeploymentStatusCard = () => {
 
     newPods.hasError = new Set(
       kubernetesObjects.items
-        .flatMap(item =>
-          detectErrors(kubernetesObjects).get(item.cluster.name),
-        )
+        .flatMap(item => detectErrors(kubernetesObjects).get(item.cluster.name))
         ?.filter(de => de?.kind === 'Pod')
         .map(de => de?.names)
         .flat() ?? [],
@@ -98,12 +96,13 @@ const DeploymentStatusCard = () => {
               ? `${pods.running} pod${pluralizeBe(pods.running)} running`
               : 'No pods running'}
           </Typography>
-          {pods.running > 0 || pods.pending > 0 && (
-            <Typography variant="subtitle2" component="div">
-              ({pods.hasError || 0} pod{pluralizeBe(pods.hasError)} reporting
-              errors)
-            </Typography>
-          )}
+          {pods.running > 0 ||
+            (pods.pending > 0 && (
+              <Typography variant="subtitle2" component="div">
+                ({pods.hasError || 0} pod{pluralizeBe(pods.hasError)} reporting
+                errors)
+              </Typography>
+            ))}
           {pods.failed > 0 && (
             <Typography variant="subtitle2" component="div">
               ({pods.failed} pod{pluralizeHave(pods.failed)} failed)
