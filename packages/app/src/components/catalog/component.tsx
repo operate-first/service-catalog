@@ -36,9 +36,10 @@ import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
 import OverviewWrapper from './shared/OverviewWrapper';
 import { HorizontalScrollGrid, StatusOK } from '@backstage/core-components';
 import StatusCard from './shared/StatusCard';
-import { isType } from './shared/utils';
+import { hasLinks, isType } from './shared/utils';
 
 import DeploymentStatusCard from '../DeploymentStatusCard/DeploymentStatusCard';
+import LinkTiles from '../LinkTiles/LinkTiles';
 
 const component = (
   <LayoutWrapper>
@@ -100,6 +101,21 @@ const component = (
             </div>
           </HorizontalScrollGrid>
         </Grid>
+        <EntitySwitch>
+          <EntitySwitch.Case if={hasLinks}>
+            <Grid item xs={12}>
+              <Typography variant="h4" component="h2">
+                Quick actions
+              </Typography>
+              <Typography variant="body1">
+                Self service, quick access and links to learn more about this component
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <LinkTiles />
+            </Grid>
+          </EntitySwitch.Case>
+        </EntitySwitch>
       </OverviewWrapper>
     </EntityLayout.Route>
 
