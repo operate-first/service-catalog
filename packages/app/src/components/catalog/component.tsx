@@ -31,6 +31,7 @@ import {
   EntitySecurityInsightsContent,
   SecurityInsightsWidget,
 } from '@roadiehq/backstage-plugin-security-insights';
+import { EntityPrometheusAlertCard } from '@roadiehq/backstage-plugin-prometheus';
 import { EntityAdrContent, isAdrAvailable } from '@backstage/plugin-adr';
 import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
 import OverviewWrapper from './shared/OverviewWrapper';
@@ -190,6 +191,9 @@ const component = (
           />
         </Grid>
       </Grid>
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/monitoring" title="Monitoring">
+      <EntityPrometheusAlertCard />
     </EntityLayout.Route>
   </LayoutWrapper>
 );
