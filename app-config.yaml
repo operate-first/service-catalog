@@ -64,6 +64,10 @@ proxy:
     target: https://grafana.operate-first.cloud
     headers:
       Authorization: Bearer ${GRAFANA_TOKEN}
+  "/prometheus/api":
+    target: https://rbac-query-proxy-open-cluster-management-observability.apps.moc-infra.massopen.cloud/api/v1
+    headers:
+      Authorization: Bearer ${MCO_TOKEN}
 
 grafana:
   # Publicly accessible domain
