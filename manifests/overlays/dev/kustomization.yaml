@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: service-catalog
 resources:
   - ../../base
+  - secret.yaml
 components:
   - ../../components/postgres-db
   - ../../components/rbac
@@ -22,7 +23,6 @@ patches:
       name: service-catalog
 patchesStrategicMerge:
   - route.yaml
-  - secret.yaml
 images:
   - name: quay.io/operate-first/service-catalog
     newName:
