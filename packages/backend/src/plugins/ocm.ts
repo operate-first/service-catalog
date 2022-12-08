@@ -1,4 +1,4 @@
-import { createRouter } from '@internal/backstage-plugin-rhacm-backend';
+import { createRouter } from '@janus-idp/backstage-plugin-ocm-backend';
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
 

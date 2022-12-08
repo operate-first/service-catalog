@@ -33,7 +33,7 @@ import search from './plugins/search';
 import permission from './plugins/permission';
 import badges from './plugins/badges';
 import kubernetes from './plugins/kubernetes';
-import rhacm from './plugins/rhacm';
+import ocm from './plugins/ocm';
 import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
@@ -97,7 +97,7 @@ async function main() {
   const permissionEnv = useHotMemoize(module, () => createEnv('permission'));
   const badgesEnv = useHotMemoize(module, () => createEnv('badges'));
   const kubernetesEnv = useHotMemoize(module, () => createEnv('kubernetes'));
-  const rhacmEnv = useHotMemoize(module, () => createEnv('rhacm'));
+  const ocmEnv = useHotMemoize(module, () => createEnv('ocm'));
 
   const apiRouter = Router();
   apiRouter.use('/catalog', await catalog(catalogEnv));
@@ -109,7 +109,7 @@ async function main() {
   apiRouter.use('/permission', await permission(permissionEnv));
   apiRouter.use('/badges', await badges(badgesEnv));
   apiRouter.use('/kubernetes', await kubernetes(kubernetesEnv));
-  apiRouter.use('/rhacm', await rhacm(rhacmEnv));
+  apiRouter.use('/ocm', await ocm(ocmEnv));
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());
