@@ -21198,6 +21198,11 @@ xtend@^4.0.0, xtend@~4.0.1:
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
 
+xterm-addon-attach@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/xterm-addon-attach/-/xterm-addon-attach-0.7.0.tgz#6775b3c5f1e9f91ae4cd9089f5ecb49fda8d2946"
+  integrity sha512-Yh3Kvq2e28onjnmGizQKZwlRMp9gmuZEHVX0BVZbo463YSjkqfhQS3T2wMLuO+j8AokccXsMa1z0bH1/+MMYuQ==
+
 xterm-addon-fit@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/xterm-addon-fit/-/xterm-addon-fit-0.6.0.tgz#142e1ce181da48763668332593fc440349c88c34"
