@@ -50,7 +50,7 @@ kubernetes:
 webTerminal:
   webSocketUrl: "wss://example.com:3000"
 
-rhacm:
+ocm:
   hub: 'dev-cluster'
 
 searchInitialDelay: 5

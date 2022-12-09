@@ -14,7 +14,7 @@ import {
   ClusterInfoCard,
   ClusterContextProvider,
   ClusterStatusCard,
-} from '@internal/backstage-plugin-rhacm';
+} from '@janus-idp/backstage-plugin-ocm';
 import LinkTiles from '../LinkTiles/LinkTiles';
 
 const resource = (

@@ -7,7 +7,7 @@ import {
 } from '@backstage/plugin-catalog-backend';
 import { LocationSpec } from '@backstage/plugin-catalog-common';
 import { ScaffolderEntitiesProcessor } from '@backstage/plugin-scaffolder-backend';
-import { ManagedClusterProvider } from '@internal/backstage-plugin-rhacm-backend';
+import { ManagedClusterProvider } from '@janus-idp/backstage-plugin-ocm-backend';
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
 
@@ -44,19 +44,19 @@ export default async function createPlugin(
   env: PluginEnvironment,
 ): Promise<Router> {
   const builder = await CatalogBuilder.create(env);
-  const rhacm = ManagedClusterProvider.fromConfig(env.config, {
+  const ocm = ManagedClusterProvider.fromConfig(env.config, {
     logger: env.logger,
   });
   builder.addProcessor(new ScaffolderEntitiesProcessor());
-  builder.addEntityProvider(rhacm);
+  builder.addEntityProvider(ocm);
   builder.addProcessor(new OpenshiftResourceProcessor());
   const { processingEngine, router } = await builder.build();
   await processingEngine.start();
 
   await env.scheduler.scheduleTask({
-    id: 'run_rhacm_refresh',
+    id: 'run_ocm_refresh',
     fn: async () => {
-      await rhacm.run();
+      await ocm.run();
     },
     frequency: { minutes: 30 },
     timeout: { minutes: 10 },
