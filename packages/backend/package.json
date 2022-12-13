@@ -37,7 +37,7 @@
     "@backstage/plugin-search-backend-module-pg": "^0.4.2",
     "@backstage/plugin-search-backend-node": "^1.0.4",
     "@backstage/plugin-techdocs-backend": "^1.4.1",
-    "@janus-idp/backstage-plugin-ocm-backend": "1.0.2",
+    "@janus-idp/backstage-plugin-ocm-backend": "1.0.3",
     "app": "link:../app",
     "dockerode": "^3.3.1",
     "express": "^4.17.1",
