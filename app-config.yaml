@@ -49,6 +49,8 @@ backend:
     allow:
       - host: "argocd.operate-first.cloud"
       - host: "raw.githubusercontent.com"
+      - host: "gist.githubusercontent.com"
+      - host: "docs.pulpproject.org"
 
 proxy:
   "/argocd/api":
