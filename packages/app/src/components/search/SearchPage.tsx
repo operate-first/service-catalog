@@ -17,14 +17,13 @@ import {
   SearchPagination,
   useSearch,
 } from '@backstage/plugin-search-react';
-import {
-  CatalogIcon,
-  Content,
-  DocsIcon,
-  Header,
-  Page,
-} from '@backstage/core-components';
+import { Content, Header, Page } from '@backstage/core-components';
+import CategoryIcon from '@material-ui/icons/Category';
+import LibraryBooks from '@material-ui/icons/LibraryBooks';
+import GavelIcon from '@material-ui/icons/Gavel';
 import { useApi } from '@backstage/core-plugin-api';
+import { AdrSearchResultListItem } from '@backstage/plugin-adr';
+import { AdrDocument } from '@backstage/plugin-adr-common';
 
 const useStyles = makeStyles((theme: Theme) => ({
   bar: {
@@ -64,12 +63,17 @@ const SearchPage = () => {
                 {
                   value: 'software-catalog',
                   name: 'Software Catalog',
-                  icon: <CatalogIcon />,
+                  icon: <CategoryIcon />,
                 },
                 {
                   value: 'techdocs',
                   name: 'Documentation',
-                  icon: <DocsIcon />,
+                  icon: <LibraryBooks />,
+                },
+                {
+                  value: 'adr',
+                  name: 'Architecture Decision Record',
+                  icon: <GavelIcon />,
                 },
               ]}
             />
@@ -99,7 +103,13 @@ const SearchPage = () => {
                 className={classes.filter}
                 label="Kind"
                 name="kind"
-                values={['Component', 'Template']}
+                values={[
+                  'Domain',
+                  'System',
+                  'Component',
+                  'Resource',
+                  'Template',
+                ]}
               />
               <SearchFilter.Checkbox
                 className={classes.filter}
@@ -130,6 +140,15 @@ const SearchPage = () => {
                           <TechDocsSearchResultListItem
                             key={document.location}
                             result={document}
+                            highlight={highlight}
+                            rank={rank}
+                          />
+                        );
+                      case 'adr':
+                        return (
+                          <AdrSearchResultListItem
+                            key={document.location}
+                            result={document as AdrDocument}
                             highlight={highlight}
                             rank={rank}
                           />

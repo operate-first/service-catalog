@@ -11,6 +11,10 @@ import {
   EntityCatalogGraphCard,
 } from '@backstage/plugin-catalog-graph';
 import { EntityHasApisCard } from '@backstage/plugin-api-docs';
+import {
+  EntityTechdocsContent,
+  isTechDocsAvailable,
+} from '@backstage/plugin-techdocs';
 
 import LayoutWrapper from './shared/LayoutWrapper';
 import OverviewWrapper from './shared/OverviewWrapper';
@@ -68,6 +72,9 @@ const system = (
       title="Openshift"
     >
       <EntityKubernetesContent refreshIntervalMs={30000} />
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/docs" if={isTechDocsAvailable} title="Docs">
+      <EntityTechdocsContent />
     </EntityLayout.Route>
   </LayoutWrapper>
 );

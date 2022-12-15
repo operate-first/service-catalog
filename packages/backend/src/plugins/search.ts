@@ -7,6 +7,7 @@ import {
 import { PluginEnvironment } from '../types';
 import { DefaultCatalogCollatorFactory } from '@backstage/plugin-catalog-backend';
 import { DefaultTechDocsCollatorFactory } from '@backstage/plugin-techdocs-backend';
+import { DefaultAdrCollatorFactory } from '@backstage/plugin-adr-backend';
 import { Router } from 'express';
 import { PgSearchEngine } from '@backstage/plugin-search-backend-module-pg';
 
@@ -46,6 +47,20 @@ export default async function createPlugin(
       discovery: env.discovery,
       logger: env.logger,
       tokenManager: env.tokenManager,
+    }),
+  });
+
+  indexBuilder.addCollator({
+    schedule,
+    factory: DefaultAdrCollatorFactory.fromConfig({
+      cache: env.cache,
+      config: env.config,
+      discovery: env.discovery,
+      logger: env.logger,
+      reader: env.reader,
+      tokenManager: env.tokenManager,
+      adrFilePathFilterFn: (path: string) =>
+        path === 'template.md' ? false : /^(adrs?\/)?\d{4}-.+\.md$/.test(path),
     }),
   });
 

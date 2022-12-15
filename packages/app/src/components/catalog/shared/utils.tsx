@@ -11,3 +11,6 @@ export const isType = (types: string | string[]) => (entity: Entity) => {
     ? entity?.spec?.type === types
     : types.includes(entity.spec.type as string);
 };
+
+export const adrFilePathFilter = (path: string) =>
+  path === 'template.md' ? false : /^(adrs?\/)?\d{4}-.+\.md$/.test(path);

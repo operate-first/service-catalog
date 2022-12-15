@@ -16,7 +16,10 @@ import {
   isGithubActionsAvailable,
   EntityGithubActionsContent,
 } from '@backstage/plugin-github-actions';
-import { EntityTechdocsContent } from '@backstage/plugin-techdocs';
+import {
+  EntityTechdocsContent,
+  isTechDocsAvailable,
+} from '@backstage/plugin-techdocs';
 import {
   Direction,
   EntityCatalogGraphCard,
@@ -156,7 +159,7 @@ const component = (
       <EntityGithubInsightsContent />
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/docs" title="Docs">
+    <EntityLayout.Route path="/docs" if={isTechDocsAvailable} title="Docs">
       <EntityTechdocsContent />
     </EntityLayout.Route>
 
