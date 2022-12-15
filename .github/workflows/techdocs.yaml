@@ -17,7 +17,7 @@ jobs:
         uses: operate-first/service-catalog/.github/actions/docs-dispatch@main
         with:
           docs_path: '.'
-          entity_name: 'backstage'
-          entity_kind: 'Component'
+          entity_name: 'service-catalog'
+          entity_kind: 'System'
           repository: ${{ github.repository }}
           token: ${{ secrets.SESHETA_TOKEN }}
