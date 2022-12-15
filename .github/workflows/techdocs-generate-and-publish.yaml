@@ -4,6 +4,30 @@ on:
   repository_dispatch:
     types:
       - docs-update
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: Repository containing documentation
+        required: true
+        default: operate-first/apps
+        type: string
+      docs_path:
+        description: Path to documentation within the repository
+        required: false
+        type: string
+      entity_namespace:
+        description: Backstage entity namespace
+        required: true
+        type: string
+        default: default
+      entity_kind:
+        description: Backstage entity kind
+        required: true
+        type: string
+      entity_name:
+        description: Backstage entity name
+        required: true
+        type: string
 
 jobs:
   generate-and-publish:
@@ -14,10 +38,23 @@ jobs:
       AWS_ENDPOINT: https://s3-openshift-storage.apps.smaug.na.operate-first.cloud
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
+      - name: Parse repository_dispatch
+        if: ${{ github.event_name == 'repository_dispatch' }}
+        run: |
+          echo "DOCS_REPOSITORY=${{ github.event.client_payload.repository }}" >> $GITHUB_ENV
+          echo "DOCS_PATH=${{ github.event.client_payload.docs_path }}" >> $GITHUB_ENV
+          echo "ENTITY=${{ github.event.client_payload.entity_namespace }}/${{ github.event.client_payload.entity_kind }}/${{ github.event.client_payload.entity_name }}" >> $GITHUB_ENV
+      - name: Parse workflow_dispatch
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo "DOCS_REPOSITORY=${{ inputs.repository }}" >> $GITHUB_ENV
+          echo "DOCS_PATH=${{ inputs.docs_path }}" >> $GITHUB_ENV
+          echo "ENTITY=${{ inputs.entity_namespace }}/${{ inputs.entity_kind }}/${{ inputs.entity_name }}" >> $GITHUB_ENV
+
       - name: Clone repo
         uses: actions/checkout@v3
         with:
-          repository: '${{ github.event.client_payload.repository }}'
+          repository: '${{ env.DOCS_REPOSITORY }}'
 
       - name: Setup node
         uses: actions/setup-node@v2
@@ -49,17 +86,17 @@ jobs:
         run: python -m pip install mkdocs-techdocs-core==1.* mkdocs-kroki-plugin
 
       - name: Generate docs site
-        working-directory: ${{ github.event.client_payload.docs_path }}
+        working-directory: ${{ env.DOCS_PATH }}
         run: techdocs-cli generate --no-docker --verbose
 
       - name: Publish docs site
-        working-directory: ${{ github.event.client_payload.docs_path }}
+        working-directory: ${{ env.DOCS_PATH }}
         run: |
-          echo ${{ github.event.client_payload.entity_namespace }}/${{ github.event.client_payload.entity_kind }}/${{ github.event.client_payload.entity_name }}
+          echo ${{ env.ENTITY }}
 
           techdocs-cli publish \
             --publisher-type awsS3 \
             --storage-name $BUCKET_NAME \
             --awsEndpoint $AWS_ENDPOINT \
             --awsS3ForcePathStyle \
-            --entity ${{ github.event.client_payload.entity_namespace }}/${{ github.event.client_payload.entity_kind }}/${{ github.event.client_payload.entity_name }}
+            --entity ${{ env.ENTITY }}
