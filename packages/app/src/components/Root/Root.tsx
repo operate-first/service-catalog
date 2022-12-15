@@ -21,7 +21,7 @@ import ExtensionIcon from '@material-ui/icons/Extension';
 import CategoryIcon from '@material-ui/icons/Category';
 import StorageIcon from '@material-ui/icons/Storage';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
-// import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
+import GavelIcon from '@material-ui/icons/Gavel';
 import Logo from '../Logo/Logo';
 import {
   Settings as SidebarSettings,
@@ -90,6 +90,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarItem icon={CategoryIcon} to="catalog" text="Catalog" />
         <SidebarItem icon={StorageIcon} to="ocm" text="Clusters" />
         <SidebarDivider />
+        <SidebarItem icon={GavelIcon} to="adrs" text="ADRs" />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
         {/* <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." /> */}

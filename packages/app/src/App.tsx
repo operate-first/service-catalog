@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, Navigate } from 'react-router';
 import { ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
   CatalogEntityPage,
@@ -70,6 +70,10 @@ const routes = (
         <ReportIssue />
       </TechDocsAddons>
     </Route>
+    <Route
+      path="/adrs"
+      element={<Navigate to="/catalog/default/domain/platform/adrs" />}
+    />
     <Route path="/api-docs" element={<ApiExplorerPage />} />
     <Route path="/search" element={<SearchPage />}>
       {searchPage}

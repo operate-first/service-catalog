@@ -11,8 +11,13 @@ import {
   EntityCatalogGraphCard,
 } from '@backstage/plugin-catalog-graph';
 import OverviewWrapper from './shared/OverviewWrapper';
-import { hasLinks } from './shared/utils';
+import { adrFilePathFilter, hasLinks } from './shared/utils';
 import LinkTiles from '../LinkTiles/LinkTiles';
+import {
+  EntityTechdocsContent,
+  isTechDocsAvailable,
+} from '@backstage/plugin-techdocs';
+import { EntityAdrContent, isAdrAvailable } from '@backstage/plugin-adr';
 
 const domain = (
   <LayoutWrapper>
@@ -37,6 +42,12 @@ const domain = (
           <EntityHasSystemsCard variant="gridItem" />
         </Grid>
       </OverviewWrapper>
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/docs" if={isTechDocsAvailable} title="Docs">
+      <EntityTechdocsContent />
+    </EntityLayout.Route>
+    <EntityLayout.Route if={isAdrAvailable} path="/adrs" title="ADRs">
+      <EntityAdrContent filePathFilterFn={adrFilePathFilter} />
     </EntityLayout.Route>
   </LayoutWrapper>
 );

@@ -11,11 +11,13 @@ import {
 import { HomePageCompanyLogo } from '@backstage/plugin-home';
 import { HomePageSearchBar } from '@backstage/plugin-search';
 import {
+  Chip,
   CircularProgress,
   Grid,
   makeStyles,
   Typography,
 } from '@material-ui/core';
+import FilterListIcon from '@material-ui/icons/FilterList';
 
 import {
   catalogApiRef,
@@ -35,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '60vw',
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[1],
-    padding: '8px 0',
+    padding: '8px 12px',
     borderRadius: '50px',
     margin: 'auto',
   },
@@ -83,6 +85,7 @@ const CatalogCards = () => {
   const catalogApi = useApi(catalogApiRef);
   const classes = useCatalogStyles();
   const [entities, setEntities] = useState<Entity[]>([]);
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [{ loading, error }, refresh] = useAsyncFn(
     async () => {
       const response = await catalogApi.getEntities({
@@ -97,6 +100,9 @@ const CatalogCards = () => {
     { loading: true },
   );
   useDebounce(refresh, 10);
+  const allFilters = Array.from(
+    new Set(entities.map(e => e?.spec?.domain as string)),
+  );
 
   if (error) {
     return (
@@ -110,34 +116,66 @@ const CatalogCards = () => {
     return <CircularProgress />;
   }
 
+  const handleFilterToggle = (value: string) => () => {
+    if (activeFilters.includes(value)) {
+      setActiveFilters([...activeFilters.filter(f => f !== value)]);
+    } else {
+      setActiveFilters([...activeFilters, value]);
+    }
+  };
+
   return (
     <>
-      {entities.map(e => (
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={e.metadata.name}>
-          <EntityRefLink entityRef={e} className={classes.link}>
-            <InfoCard
-              className={classes.root}
-              title={
-                e.metadata.annotations?.[ICON_ANNOTATION] ? (
-                  <img
-                    src={e.metadata.annotations[ICON_ANNOTATION]}
-                    alt={`${e.metadata.title || e.metadata.name} logo`}
-                  />
-                ) : (
-                  <HelpIcon />
-                )
-              }
-              subheader={
-                <div className={classes.subheader}>
-                  {e.metadata.title || e.metadata.name}
-                </div>
-              }
-            >
-              <Typography paragraph>{e.metadata.description}</Typography>
-            </InfoCard>
-          </EntityRefLink>
-        </Grid>
+      <FilterListIcon />{' '}
+      {allFilters.map(f => (
+        <Chip
+          label={f}
+          variant={activeFilters.includes(f) ? 'default' : 'outlined'}
+          onClick={handleFilterToggle(f)}
+        />
       ))}
+      <Grid container justifyContent="center">
+        {entities
+          .filter(
+            e =>
+              activeFilters.length === 0 ||
+              activeFilters.includes(e?.spec?.domain as string),
+          )
+          .map(e => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              xl={2}
+              key={e.metadata.name}
+            >
+              <EntityRefLink entityRef={e} className={classes.link}>
+                <InfoCard
+                  className={classes.root}
+                  title={
+                    e.metadata.annotations?.[ICON_ANNOTATION] ? (
+                      <img
+                        src={e.metadata.annotations[ICON_ANNOTATION]}
+                        alt={`${e.metadata.title || e.metadata.name} logo`}
+                      />
+                    ) : (
+                      <HelpIcon />
+                    )
+                  }
+                  subheader={
+                    <div className={classes.subheader}>
+                      {e.metadata.title || e.metadata.name}
+                    </div>
+                  }
+                >
+                  <Typography paragraph>{e.metadata.description}</Typography>
+                </InfoCard>
+              </EntityRefLink>
+            </Grid>
+          ))}
+      </Grid>
     </>
   );
 };
@@ -160,7 +198,7 @@ export const HomePage = () => {
                 placeholder="Search"
               />
             </Grid>
-            <Grid container item xs={12} justifyContent="center">
+            <Grid item xs={12}>
               <CatalogCards />
             </Grid>
           </Grid>
