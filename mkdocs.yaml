@@ -1,11 +1,11 @@
-site_name: 'Service Catalog documentation'
+site_name: "Service Catalog documentation"
 
 nav:
   - Home: index.md
   - Configuring catalog entities: configuring-entities.md
   - Contributing and development setup: contributing.md
   - Kubernetes plugin configuration: k8s-plugin-configuration.md
-  - Cluster status backend plugin: cluster-status-plugin.md
+  - OCM (Open Cluster Management) plugin: ocm-plugin.md
 
 plugins:
   - techdocs-core
