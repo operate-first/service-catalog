@@ -51,6 +51,6 @@ webTerminal:
   webSocketUrl: "wss://example.com:3000"
 
 ocm:
-  hub: 'dev-cluster'
+  cluster: 'dev-cluster'
 
 searchInitialDelay: 5
