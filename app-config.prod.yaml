@@ -105,6 +105,6 @@ kubernetes:
           dashboardApp: openshift
 
 ocm:
-  hub: 'infra'
+  cluster: 'infra'
 
 searchInitialDelay: 30
