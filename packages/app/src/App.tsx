@@ -32,6 +32,7 @@ import { badgesPlugin } from '@backstage/plugin-badges';
 import { grafanaPlugin } from '@k-phoen/backstage-plugin-grafana';
 import { OcmPage } from '@janus-idp/backstage-plugin-ocm';
 import { Logo } from './components/Logo/Logo';
+import { themes } from './themes';
 
 const app = createApp({
   apis,
@@ -44,6 +45,7 @@ const app = createApp({
       catalogIndex: catalogPlugin.routes.catalogIndex,
     });
   },
+  themes,
 });
 
 const AppProvider = app.getProvider();
