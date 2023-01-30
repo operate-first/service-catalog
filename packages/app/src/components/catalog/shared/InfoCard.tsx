@@ -1,5 +1,10 @@
 import React from 'react';
-import { InfoCard as Card, Link, Table } from '@backstage/core-components';
+import {
+  InfoCard as Card,
+  Link,
+  Table,
+  WarningIcon,
+} from '@backstage/core-components';
 import { RELATION_OWNED_BY, RELATION_PART_OF } from '@backstage/catalog-model';
 import {
   EntityRefLinks,
@@ -8,6 +13,7 @@ import {
 } from '@backstage/plugin-catalog-react';
 import {
   Avatar,
+  Box,
   CardContent,
   CardHeader,
   Chip,
@@ -28,6 +34,17 @@ const useStyles = makeStyles(() => ({
     paddingBottom: 10,
   },
 }));
+
+export const Missing = ({ text }: { text: string }) => (
+  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <span
+      style={{ marginTop: '-4px', marginBottom: '-4px', marginRight: '0.5em' }}
+    >
+      <WarningIcon fontSize="small" />
+    </span>
+    {text}
+  </Box>
+);
 
 export const InfoCard = () => {
   const classes = useStyles();
@@ -63,7 +80,7 @@ export const InfoCard = () => {
         ownedByRelations.length > 0 ? (
           <EntityRefLinks entityRefs={ownedByRelations} defaultKind="group" />
         ) : (
-          'No owner'
+          <Missing text="No owner" />
         ),
     },
     ...(isSystem || partOfDomainRelations.length > 0
@@ -77,7 +94,7 @@ export const InfoCard = () => {
                   defaultKind="domain"
                 />
               ) : (
-                'No domain'
+                <Missing text="No domain" />
               ),
           },
         ]
@@ -93,7 +110,7 @@ export const InfoCard = () => {
                   defaultKind="system"
                 />
               ) : (
-                'No system'
+                <Missing text="No system" />
               ),
           },
         ]
@@ -109,7 +126,7 @@ export const InfoCard = () => {
                   defaultKind="component"
                 />
               ) : (
-                'No parent'
+                <Missing text="No parent" />
               ),
           },
         ]

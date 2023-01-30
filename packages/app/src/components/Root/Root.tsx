@@ -15,7 +15,7 @@
  */
 
 import React, { PropsWithChildren } from 'react';
-import { makeStyles } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import CategoryIcon from '@material-ui/icons/Category';
@@ -41,6 +41,12 @@ import {
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import {
+  BrandGithub,
+  BrandSlack,
+  BrandTwitter,
+  BrandYoutube,
+} from 'tabler-icons-react';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -77,6 +83,29 @@ const SidebarLogo = () => {
   );
 };
 
+const links = [
+  <a href="https://github.com/operate-first" target="_blank" rel="noreferrer">
+    <BrandGithub color="white" />
+  </a>,
+  <a
+    href="https://join.slack.com/t/operatefirst/shared_invite/zt-o2gn4wn8-O39g7sthTAuPCvaCNRnLww"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <BrandSlack color="white" />
+  </a>,
+  <a
+    href="https://www.youtube.com/channel/UCe87bwqlGoBQs2RvMQZ5_sg"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <BrandYoutube color="white" />
+  </a>,
+  <a href="https://twitter.com/OperateFirst" target="_blank" rel="noreferrer">
+    <BrandTwitter color="white" />
+  </a>,
+];
+
 export const Root = ({ children }: PropsWithChildren<{}>) => (
   <SidebarPage>
     <Sidebar>
@@ -94,8 +123,15 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
         {/* <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." /> */}
+        <SidebarSpace />
+        <Grid container spacing={2} justifyContent="center">
+          {links.map((l, idx) => (
+            <Grid item key={idx}>
+              {l}
+            </Grid>
+          ))}
+        </Grid>
       </SidebarGroup>
-      <SidebarSpace />
       <SidebarDivider />
       <SidebarGroup
         label="Settings"

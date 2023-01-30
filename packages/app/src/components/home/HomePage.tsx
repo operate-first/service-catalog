@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { SearchContextProvider } from '@backstage/plugin-search-react';
 import {
   Content,
@@ -26,7 +27,7 @@ import {
 } from '@backstage/plugin-catalog-react';
 import useAsyncFn from 'react-use/lib/useAsyncFn';
 import useDebounce from 'react-use/lib/useDebounce';
-import { useApi } from '@backstage/core-plugin-api';
+import { useApi, configApiRef } from '@backstage/core-plugin-api';
 import { Entity } from '@backstage/catalog-model';
 import Logo from '../Logo/Logo';
 import { ICON_ANNOTATION, FEATURED_ANNOTATION } from '../../constants';
@@ -125,16 +126,19 @@ const CatalogCards = () => {
   };
 
   return (
-    <>
-      <FilterListIcon />{' '}
-      {allFilters.map(f => (
-        <Chip
-          label={f}
-          variant={activeFilters.includes(f) ? 'default' : 'outlined'}
-          onClick={handleFilterToggle(f)}
-        />
-      ))}
-      <Grid container justifyContent="center">
+    <Grid container justifyContent="center" alignContent="center" spacing={2}>
+      <Grid item>
+        <FilterListIcon />{' '}
+        {allFilters.map(f => (
+          <Chip
+            key={f}
+            label={f.slice(0, 1).toUpperCase() + f.slice(1)}
+            variant={activeFilters.includes(f) ? 'default' : 'outlined'}
+            onClick={handleFilterToggle(f)}
+          />
+        ))}
+      </Grid>
+      <Grid item xs={12} container justifyContent="center">
         {entities
           .filter(
             e =>
@@ -176,27 +180,38 @@ const CatalogCards = () => {
             </Grid>
           ))}
       </Grid>
-    </>
+    </Grid>
   );
 };
 export const HomePage = () => {
   const classes = useStyles();
+  const config = useApi(configApiRef);
   const { svg, container } = useLogoStyles();
 
   return (
     <SearchContextProvider>
       <Page themeId="home">
+        <Helmet>
+          <title>{config.getString('app.title')}</title>
+        </Helmet>
         <Content>
           <Grid container justifyContent="center" spacing={6}>
-            <HomePageCompanyLogo
-              className={container}
-              logo={<Logo classes={{ svg }} />}
-            />
-            <Grid container item xs={12} alignItems="center" direction="row">
-              <HomePageSearchBar
-                classes={{ root: classes.searchBar }}
-                placeholder="Search"
+            <Grid
+              container
+              item
+              justifyContent="center"
+              style={{ background: '#000' }}
+            >
+              <HomePageCompanyLogo
+                className={container}
+                logo={<Logo classes={{ svg }} />}
               />
+              <Grid container item xs={12} alignItems="center" direction="row">
+                <HomePageSearchBar
+                  classes={{ root: classes.searchBar }}
+                  placeholder="Search"
+                />
+              </Grid>
             </Grid>
             <Grid item xs={12}>
               <CatalogCards />

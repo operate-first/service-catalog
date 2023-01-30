@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme: BackstageTheme) =>
       '&:hover': {
         textDecoration: 'none',
       },
+      whiteSpace: 'nowrap',
     },
   }),
 );
