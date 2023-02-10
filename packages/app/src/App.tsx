@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router';
+import { Route, Navigate } from 'react-router-dom';
 import { ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
   CatalogEntityPage,
@@ -23,7 +23,7 @@ import { Root } from './components/Root';
 
 import { AlertDisplay, OAuthRequestDialog } from '@backstage/core-components';
 import { createApp } from '@backstage/app-defaults';
-import { FlatRoutes } from '@backstage/core-app-api';
+import { AppRouter, FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { HomepageCompositionRoot } from '@backstage/plugin-home';
 import { HomePage } from './components/home/HomePage';
@@ -47,9 +47,6 @@ const app = createApp({
   },
   themes,
 });
-
-const AppProvider = app.getProvider();
-const AppRouter = app.getRouter();
 
 const routes = (
   <FlatRoutes>
@@ -86,14 +83,12 @@ const routes = (
   </FlatRoutes>
 );
 
-const App = () => (
-  <AppProvider>
+export default app.createRoot(
+  <>
     <AlertDisplay />
     <OAuthRequestDialog />
     <AppRouter>
       <Root>{routes}</Root>
     </AppRouter>
-  </AppProvider>
+  </>,
 );
-
-export default App;
