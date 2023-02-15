@@ -1,0 +1,26 @@
+name: Backstage version as tag
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "backstage.json"
+
+jobs:
+  push-backstage-version-as-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get backstage version
+        id: backstage-version
+        run: |
+          echo "VERSION=$(jq '.version' backstage.json | sed  s/\"//g)" >> $GITHUB_OUTPUT
+
+      - name: Push tag
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ github.token }}
+          custom_tag: ${{ steps.backstage-version.outputs.VERSION }}

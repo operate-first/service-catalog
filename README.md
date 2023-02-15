@@ -3,8 +3,8 @@
 </p>
 <h1 align="center"><a href="https://service-catalog.operate-first.cloud/">Service Catalog</a></h1>
 <p align="center">
-  <a href="https://github.com/operate-first/peribolos-as-a-service/releases">
-    <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/operate-first/peribolos-as-a-service">
+  <a href="https://github.com/operate-first/service-catalog/tags">
+    <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/operate-first/service-catalog">
   </a>
   <a href="https://github.com/operate-first/service-catalog">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/operate-first/service-catalog">
@@ -21,27 +21,19 @@
 
 </p>
 
-This is the service catalog for the [operate first community cloud][1]. The catalog can be accessed via [this link][2].
+This is the service catalog for the [Operate First community cloud][1] built using [backstage][4]. The catalog can be accessed via [this link][2].
 
 ## Documentation
 
 The documentation for the service catalog can be found in the [backstage component][3].
 
-## Architecture
-
-The service catalog is implemented using [Backstage][4]. There are 2 packages present in the repo:
-
-1. `app` package for front end
-2. `backend` package for back end
-
 ## Catalog items
 
-Backstage can utilize a separate location (for example a GitHub repository) for the catalog component definitions. More information on how these files are defined can be found in the backstage [documentation][5] or our [documentation][3].
+Backstage can utilize a separate location (for example a GitHub repository) for the catalog component definitions. More information on how these files are defined can be found in the [upstream documentation][5] or our [documentation][3].
 
 Component definition files for this service catalog are located [here][6]. If you want to edit them, make a pull request in that repository.
 
-There is an `example` folder located that only contains catalog items dedicated to local development. Switching between local and remote sources can be configured in `app-config.local.yaml` in the `catalog.locations` key.
-
+There is an `examples` folder located that only contain catalog items dedicated to local development. Switching between local and remote sources can be configured in the `.env` file in the `CATALOG_LOCAL_PATH` key.
 
 [1]: https://github.com/operate-first
 [2]: https://service-catalog.operate-first.cloud
