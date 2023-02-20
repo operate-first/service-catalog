@@ -6508,10 +6508,10 @@
     react-use "^17.2.4"
     zustand "3.6.9"
 
-"@roadiehq/backstage-plugin-prometheus@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@roadiehq/backstage-plugin-prometheus/-/backstage-plugin-prometheus-2.3.0.tgz#bf81566269771582038c4e7b74e91cf74f3265e8"
-  integrity sha512-oj6XuT9s9PTlHdW3JyCl5cZRSlR65xEtoT/86p0YzDl67stycNa9GSbQ2xUJ926Jdx3eivg2IRkWTXg/kmlZ9w==
+"@roadiehq/backstage-plugin-prometheus@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@roadiehq/backstage-plugin-prometheus/-/backstage-plugin-prometheus-2.4.0.tgz#a8ab820593dacec1f5bfa8a2c1858b48b816e420"
+  integrity sha512-ShrV1soJXivWRro2UWM34PrdV773R80BuEVTEd4s9qlFqK4ZHGD+sS0jVv1DgwSRGCZ6q+YDrbe1jzcewirHuQ==
   dependencies:
     "@backstage/catalog-model" "^1.1.5"
     "@backstage/core-components" "^0.12.3"
@@ -7541,10 +7541,10 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
-"@types/react-dom@*", "@types/react-dom@<18.0.0":
-  version "17.0.18"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.18.tgz#8f7af38f5d9b42f79162eea7492e5a1caff70dc2"
-  integrity sha512-rLVtIfbwyur2iFKykP2w0pl/1unw26b5td16d5xMgp7/yjTHomkyxPYChFoCr/FtEX1lN9wY6lFj1qvKdS5kDw==
+"@types/react-dom@*", "@types/react-dom@<18.0.0", "@types/react-dom@^17":
+  version "17.0.19"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.19.tgz#36feef3aa35d045cacd5ed60fe0eef5272f19492"
+  integrity sha512-PiYG40pnQRdPHnlf7tZnp0aQ6q9tspYr72vD61saO6zFCybLfMqwUCN0va1/P+86DXn18ZWeW30Bk7xlC5eEAQ==
   dependencies:
     "@types/react" "^17"
 
@@ -8339,7 +8339,7 @@ anymatch@^3.0.3, anymatch@~3.1.2:
     "@material-ui/icons" "^4.9.1"
     "@roadiehq/backstage-plugin-argo-cd" "^2.2.4"
     "@roadiehq/backstage-plugin-github-insights" "^2.3.3"
-    "@roadiehq/backstage-plugin-prometheus" "^2.3.0"
+    "@roadiehq/backstage-plugin-prometheus" "^2.4.0"
     "@roadiehq/backstage-plugin-security-insights" "^2.1.5"
     history "^5.0.0"
     react "^17.0.2"
