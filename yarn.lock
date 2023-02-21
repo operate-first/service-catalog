@@ -4526,17 +4526,17 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
-"@janus-idp/backstage-plugin-ocm-backend@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@janus-idp/backstage-plugin-ocm-backend/-/backstage-plugin-ocm-backend-1.3.0.tgz#1a22a1deb9a0e9e1521471e76ad06081535872e9"
-  integrity sha512-Q1RWZQIw+/47mEemcBm+cln/aykQ/in/RIkobjFk54/oalAQQVCdPdIoz1fvaZ1w0pB1h5jOH0D3doK7ZCeEZA==
+"@janus-idp/backstage-plugin-ocm-backend@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@janus-idp/backstage-plugin-ocm-backend/-/backstage-plugin-ocm-backend-1.4.0.tgz#a006681c2f51589b653ea27be8b81598338171ac"
+  integrity sha512-km4CVExm/KSsKcKZSPzWXwXOWk7CGGXsSfoxOjC+MUnNwDXOh3YG394Vc/6q/cqU1Mm09h3p7j8k7w8RMOYuHA==
   dependencies:
     "@backstage/backend-common" "^0.18.1"
     "@backstage/catalog-client" "^1.3.0"
     "@backstage/catalog-model" "^1.1.5"
     "@backstage/config" "^1.0.6"
     "@backstage/plugin-catalog-node" "^1.3.2"
-    "@janus-idp/backstage-plugin-ocm-common" "1.1.1"
+    "@janus-idp/backstage-plugin-ocm-common" "1.2.0"
     "@kubernetes/client-node" "^0.18.0"
     express "^4.17.1"
     express-promise-router "^4.1.0"
@@ -4545,15 +4545,15 @@
     winston "^3.2.1"
     yn "^5.0.0"
 
-"@janus-idp/backstage-plugin-ocm-common@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@janus-idp/backstage-plugin-ocm-common/-/backstage-plugin-ocm-common-1.1.1.tgz#84ac3da62bcff79169c3c0546a46ea3081d3e75d"
-  integrity sha512-Rr3bmBQ+opyum58lZf0FdEIUDKlM3mpE4NMTIIcV+S5Jlmpnl1U7T6Etuf3XOHX9/5unnDzP0ILp2fLHwMqQ3g==
+"@janus-idp/backstage-plugin-ocm-common@1.2.0", "@janus-idp/backstage-plugin-ocm-common@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@janus-idp/backstage-plugin-ocm-common/-/backstage-plugin-ocm-common-1.2.0.tgz#533dfc142d1a8139a43b91845447a256d5635f46"
+  integrity sha512-yFgJSoFnQqllsDTTY4zZZ1iBXjD+QddhyQ5f161TDoPlEvVKD0xH4mEyjJST7pJVx5q/w8Kf4FZNF5+2WJm9cg==
 
-"@janus-idp/backstage-plugin-ocm@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@janus-idp/backstage-plugin-ocm/-/backstage-plugin-ocm-1.1.1.tgz#9629d25dcd9094b5ad00711a11055f42ded2df34"
-  integrity sha512-HzFB07e+pvbJdIYu+jwIKaW1Iov3gxcMgTzVZflHgW7sdp+qXgaSByZso6glhkTRvk2FPVoLH1IIEKw6TTdDUg==
+"@janus-idp/backstage-plugin-ocm@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@janus-idp/backstage-plugin-ocm/-/backstage-plugin-ocm-1.1.2.tgz#c5f9ec677d0c5ad9324666c8c86328b76c04899e"
+  integrity sha512-UX/2FDBCNTkdQpGwcsRx7odz7Hn92MvboF0+wbl4+A5jSCc1jdqJtzuXD3pPe+E1l9CWUQny20Du5V6gl5/Arg==
   dependencies:
     "@backstage/catalog-model" "^1.1.5"
     "@backstage/core-components" "^0.12.3"
@@ -4563,7 +4563,7 @@
     "@backstage/plugin-home" "^0.4.30"
     "@backstage/plugin-search-react" "^1.4.0"
     "@backstage/theme" "^0.2.16"
-    "@janus-idp/backstage-plugin-ocm-common" "1.1.1"
+    "@janus-idp/backstage-plugin-ocm-common" "1.2.0"
     "@material-ui/core" "^4.9.13"
     "@material-ui/icons" "^4.9.1"
     "@material-ui/lab" "^4.0.0-alpha.45"
@@ -7541,10 +7541,10 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
-"@types/react-dom@*", "@types/react-dom@<18.0.0":
-  version "17.0.18"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.18.tgz#8f7af38f5d9b42f79162eea7492e5a1caff70dc2"
-  integrity sha512-rLVtIfbwyur2iFKykP2w0pl/1unw26b5td16d5xMgp7/yjTHomkyxPYChFoCr/FtEX1lN9wY6lFj1qvKdS5kDw==
+"@types/react-dom@*", "@types/react-dom@<18.0.0", "@types/react-dom@^17":
+  version "17.0.19"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.19.tgz#36feef3aa35d045cacd5ed60fe0eef5272f19492"
+  integrity sha512-PiYG40pnQRdPHnlf7tZnp0aQ6q9tspYr72vD61saO6zFCybLfMqwUCN0va1/P+86DXn18ZWeW30Bk7xlC5eEAQ==
   dependencies:
     "@types/react" "^17"
 
@@ -8333,7 +8333,7 @@ anymatch@^3.0.3, anymatch@~3.1.2:
     "@backstage/plugin-user-settings" "^0.6.2"
     "@backstage/theme" "^0.2.16"
     "@internal/backstage-plugin-web-terminal" "*"
-    "@janus-idp/backstage-plugin-ocm" "^1.1.1"
+    "@janus-idp/backstage-plugin-ocm" "^1.1.2"
     "@k-phoen/backstage-plugin-grafana" "^0.1.14"
     "@material-ui/core" "^4.12.2"
     "@material-ui/icons" "^4.9.1"

@@ -10,6 +10,7 @@ import { ScaffolderEntitiesProcessor } from '@backstage/plugin-scaffolder-backen
 import { ManagedClusterProvider } from '@janus-idp/backstage-plugin-ocm-backend';
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
+import { ANNOTATION_CLUSTER_ID } from '@janus-idp/backstage-plugin-ocm-common';
 
 class OpenshiftResourceProcessor implements CatalogProcessor {
   getProcessorName(): string {
@@ -33,6 +34,11 @@ class OpenshiftResourceProcessor implements CatalogProcessor {
 
     if (originLocation.type === 'rhacm-managed-cluster') {
       resource.metadata.annotations ||= {};
+      const clusterId = resource.metadata.annotations[ANNOTATION_CLUSTER_ID];
+      resource.metadata.annotations['prometheus.io/alerts'] = 'all';
+      resource.metadata.annotations[
+        'prometheus.io/labels'
+      ] = `managed_cluster_id=${clusterId}`;
       resource.metadata.annotations['operate-first.cloud/logo-url'] =
         'https://upload.wikimedia.org/wikipedia/commons/3/3a/OpenShift-LogoType.svg';
     }
