@@ -32,3 +32,4 @@ patches:
       name: service-catalog
 patchesStrategicMerge:
   - route.yaml
+  - route-webterminal.yaml

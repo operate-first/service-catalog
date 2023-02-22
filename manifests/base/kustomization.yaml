@@ -5,6 +5,7 @@ resources:
   - deployment.yaml
   - service.yaml
   - route.yaml
+  - route-webterminal.yaml
   - postgres.yaml
   - serviceaccount.yaml
 commonLabels:
@@ -13,3 +14,5 @@ commonLabels:
 images:
   - name: service-catalog
     newName: quay.io/operate-first/service-catalog
+  - name: webterminal
+    newName: quay.io/operate-first/webterminal
