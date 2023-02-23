@@ -35,7 +35,7 @@ class OpenshiftResourceProcessor implements CatalogProcessor {
     if (originLocation.type === 'ocm-managed-cluster') {
       resource.metadata.annotations ||= {};
       const clusterId = resource.metadata.annotations[ANNOTATION_CLUSTER_ID];
-      resource.metadata.annotations['prometheus.io/alerts'] = 'all';
+      resource.metadata.annotations['prometheus.io/alert'] = 'all';
       resource.metadata.annotations[
         'prometheus.io/labels'
       ] = `managed_cluster_id=${clusterId}`;
