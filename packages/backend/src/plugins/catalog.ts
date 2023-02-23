@@ -32,7 +32,7 @@ class OpenshiftResourceProcessor implements CatalogProcessor {
       return resource;
     }
 
-    if (originLocation.type === 'rhacm-managed-cluster') {
+    if (originLocation.type === 'ocm-managed-cluster') {
       resource.metadata.annotations ||= {};
       const clusterId = resource.metadata.annotations[ANNOTATION_CLUSTER_ID];
       resource.metadata.annotations['prometheus.io/alerts'] = 'all';
