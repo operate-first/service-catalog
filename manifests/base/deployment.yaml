@@ -56,9 +56,9 @@ spec:
             timeoutSeconds: 5
         - name: webterminal
           image: webterminal
-          command: ["./webterminal"]
+          command: ["./webterminal-proxy"]
           ports:
-            - containerPort: 3000
+            - containerPort: 8080
           resources:
             limits:
               cpu: 300m
