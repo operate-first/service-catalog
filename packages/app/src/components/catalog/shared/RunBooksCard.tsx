@@ -5,7 +5,7 @@ import {
 } from '@backstage/core-components';
 import { Grid } from '@material-ui/core';
 import { EntityPrometheusAlertCard } from '@roadiehq/backstage-plugin-prometheus';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 type AlertData = {
@@ -14,6 +14,10 @@ type AlertData = {
     runbook_url: string;
   };
 };
+
+const convertGithubUrlToRaw = (url: string) =>
+  url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+
 export const RunBooksCard = () => {
   const [alertData, setAlertData] = useState<AlertData>();
   const [runbook, setRunbook] = useState<string>();
@@ -28,10 +32,19 @@ export const RunBooksCard = () => {
   };
   const getAlertData = (arg: any) => {
     setAlertData(arg);
-    if (alertData?.annotations.runbook_url) {
-      getRunbook(alertData.annotations.runbook_url);
-    }
   };
+
+  useEffect(() => {
+    if (alertData?.annotations.runbook_url) {
+      const url = alertData.annotations.runbook_url;
+      getRunbook(
+        new URL(url).hostname === 'github.com'
+          ? convertGithubUrlToRaw(url)
+          : url,
+      );
+    }
+  }, [alertData]);
+
   return (
     <Grid container spacing={4}>
       <Grid item xs={6} style={{ overflowY: 'scroll', maxHeight: '500px' }}>
