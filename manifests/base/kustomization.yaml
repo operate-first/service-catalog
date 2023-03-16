@@ -15,4 +15,4 @@ images:
   - name: service-catalog
     newName: quay.io/operate-first/service-catalog
   - name: webterminal
-    newName: quay.io/operate-first/webterminal
+    newName: quay.io/janus-idp/webterminal-proxy
