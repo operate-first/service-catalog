@@ -16,6 +16,8 @@ import {
   ClusterStatusCard,
 } from '@janus-idp/backstage-plugin-ocm';
 import LinkTiles from '../LinkTiles/LinkTiles';
+import { RunBooksCard } from './shared/RunBooksCard';
+import { WebTerminal } from '@internal/backstage-plugin-web-terminal';
 
 const resource = (
   <LayoutWrapper>
@@ -66,6 +68,16 @@ const resource = (
 
     <EntityLayout.Route if={isTechDocsAvailable} path="/docs" title="Docs">
       <EntityTechdocsContent />
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/sre" title="SRE">
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <RunBooksCard />
+        </Grid>
+        <Grid item xs={12}>
+          <WebTerminal />
+        </Grid>
+      </Grid>
     </EntityLayout.Route>
   </LayoutWrapper>
 );

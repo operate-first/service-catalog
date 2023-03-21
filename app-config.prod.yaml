@@ -104,6 +104,9 @@ kubernetes:
           dashboardUrl: https://console-openshift-console.apps.jerry.ionos.emea.operate-first.cloud
           dashboardApp: openshift
 
+webTerminal:
+  webSocketUrl: "wss://service-catalog.operate-first.cloud/webterminal"
+
 ocm:
   cluster: 'infra'
 
