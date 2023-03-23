@@ -49,6 +49,7 @@ kubernetes:
 
 webTerminal:
   webSocketUrl: "wss://example.com:3000"
+  restServerUrl: "https://example.com/rest:3000"
 
 ocm:
   cluster: 'dev-cluster'
