@@ -106,6 +106,7 @@ kubernetes:
 
 webTerminal:
   webSocketUrl: "wss://service-catalog.operate-first.cloud/webterminal"
+  restServerUrl: "https://service-catalog.operate-first.cloud/webterminal/rest"
 
 ocm:
   cluster: 'infra'
